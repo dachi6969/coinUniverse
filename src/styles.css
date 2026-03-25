@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    /* Backgrounds */
+    --bg-main: #0A0B0E;
+    --bg-surface: #16181D;
+    --bg-card: #192136;
+    --bg-input: #1A1C23;
+
+    /* Text Colors */
+    --text-primary: #FFFFFF;
+    --text-secondary: #E0E0E0;
+    --text-muted: #8F9BB3;
+    --text-nav: #B0B0B0;
+
+    /* Brand & Actions */
+    --primary: #345BDB;
+    --primary-variant: #2E447A;
+    
+    /* Semantic Colors */
+    --success: #0AC473;
+    --success-alt: #00E08F;
+    --danger: #EB4034;
+    --warning: #F5A623;
+
+    /* Borders & Utilities */
+    --border-subtle: #2A2F3E;
+    --track-bg: #262931;
+}
+
+html, body{
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+button{
+    cursor: pointer;
+}
