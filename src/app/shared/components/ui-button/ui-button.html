@@ -1,0 +1,21 @@
+<button
+[class]="size()"
+[class.full]="fullWidth()"
+[disabled]="disabled()"
+(click)="handleClick()"
+[style.color]="variant() === 'outlined' ? selectedColor() : 'white'"
+[style.border]="variant() === 'outlined' ? '1px solid ' + selectedColor() : 'none'"
+[style.background]="variant() === 'outlined' ? 'transparent' : selectedColor()"
+>
+    <span class="button_content"
+    [style.visibility]="disabled() ? 'hidden' : 'visible'"
+    >
+        <ng-content></ng-content>
+    </span>
+    @if (disabled()) {
+        <div 
+        class="spinner"
+        [style.border-top-color]="variant() === 'outlined' ? selectedColor() : 'white'"
+        ></div>
+    }
+</button>

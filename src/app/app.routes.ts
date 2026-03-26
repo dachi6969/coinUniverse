@@ -5,7 +5,7 @@ import { DashboardPage } from './features/dashboard/pages/dashboard-page/dashboa
 export const routes: Routes = [
 
     { 
-        path: 'dashboard',
+        path: '',
         component: DashboardLayout,
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
