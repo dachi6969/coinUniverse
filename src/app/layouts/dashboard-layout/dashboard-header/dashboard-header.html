@@ -1,1 +1,38 @@
-<p>dashboard-header works!</p>
+<header class="header" id="header">
+    <div>
+        @if ( isDesktop() ) {
+            <a class="header_title" href="/dashboard">
+                Dashboard
+            </a>
+        }@else {    
+            <div>
+                <menu-icon 
+                [size]="30"
+                (onClick)="open()"
+                />
+                @if ( isSidebarOpen() ) {
+                    <div class="sidebar-modal"
+                    (click)="close()"
+                    >
+                        <app-dashboard-sidebar 
+                        (click)="$event.stopPropagation()"
+                        ></app-dashboard-sidebar>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    <div>
+        @if ( isDesktop() ) {
+            <div class="desktop-actions_wrap">
+                <!-- search is hardcoded right now, no output  -->
+                <dashboard-search /> 
+                <div class="profile-icon_wrap">
+                    <profile-icon color="light" [size]="27" />
+                </div>
+            </div>
+        }@else {
+            <profile-icon color="light" [size]="30" />
+        }
+    </div>
+</header>
