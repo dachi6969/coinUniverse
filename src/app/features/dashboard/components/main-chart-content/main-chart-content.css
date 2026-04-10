@@ -1,0 +1,103 @@
+.main-chart-card {
+    font-family: 'Inter', sans-serif; 
+    width: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+  
+      .title-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+  
+  
+        h2 {
+          margin: 0;
+          color: var(--text-primary);
+          font-size: 20px;
+          font-weight: 600;
+        }
+  
+        .badge {
+          background-color: #414a67;
+          color: var(--text-primary);
+          padding: 4px 8px;
+          border-radius: 6px;
+          font-size: 12px;
+          font-weight: 600;
+        }
+      }
+  
+      .price {
+        text-align: right;
+  
+        h3 {
+          margin: 0;
+          color: var(--text-primary);
+          font-size: 24px;
+          font-weight: 700;
+        }
+  
+        .trend {
+          font-size: 14px;
+          font-weight: 600;
+          
+          &.up {
+            color: var(--success);
+          }
+        }
+      }
+    }
+  
+    .canvas-wrapper {
+      position: relative;
+      height: 280px;
+      width: 100%;
+    }
+  }
+
+
+  .filter_section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .date-filter_wrap{  
+    display: flex;
+    gap: 8px;
+  }
+
+  .date-filter_button{
+    all: unset;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: #33415583;
+  }
+
+
+@media (max-width: 600px) {
+  .canvas-wrapper{
+    height: 200px;
+  }
+}
+
+
+@media (hover:hover) and (pointer:fine) {
+  .date-filter_button:hover{
+    background-color: #334155;
+    color: var(--text-primary);
+  }
+}
+
+

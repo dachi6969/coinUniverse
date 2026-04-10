@@ -1,5 +1,4 @@
 .dashboard-layout{
-    margin-top: 65px;
     min-height: 200vh;
 }
 
@@ -12,6 +11,9 @@
 @media ( max-width: 900px ) {
     app-dashboard-sidebar {
         display: none;
+    }
+    .dashboard-layout{
+        margin-top: 65px;
     }
     .dashboard-wrap{
         margin-left: 0;

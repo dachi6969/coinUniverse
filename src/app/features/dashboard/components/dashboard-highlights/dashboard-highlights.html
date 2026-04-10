@@ -1,0 +1,57 @@
+@if ( data(); as d ) {
+  <div class="card_section_wrap">
+    
+    <div class="btc_card">
+      <div class="btc_card_content">
+        <div class="btc_header">
+          <img [src]="d?.btc?.image" width="32" height="32" />
+          <h3>{{ d.btc?.name }} ({{ d.btc?.symbol?.toUpperCase() }})</h3>
+        </div>
+        <div class="btc_price">${{ d.btc?.current_price | number: "1.2-6" }}</div>
+        <div class="btc_change">↑ {{ d.btc?.price_change_percentage_24h | number:'1.2-2' }}%</div>
+      </div>
+    </div>
+
+    <div class="top-gainer_card">
+      <div class="top-gainer_card_content">
+        <div class="top-gainer_header">
+          <img [src]="d.topGainer.image" width="32" height="32" />
+          <h3>Gainer: {{ d.topGainer.symbol.toUpperCase() }}</h3>
+        </div>
+        <div class="top-gainer_price">${{ d.topGainer.current_price | number: "1.2-6" }}</div>
+        <div class="top-gainer_change">🚀 {{ d.topGainer.price_change_percentage_24h | number:'1.2-2' }}%</div>
+      </div>
+    </div>
+
+    <div class="top-loser_card">
+      <div class="top-loser_card_content">
+        <div class="top-loser_header">
+          <img [src]="d.topLoser.image" width="32" height="32" />
+          <h3>Loser: {{ d.topLoser.symbol.toUpperCase() }}</h3>
+        </div>
+        <div class="top-loser_price">${{ d.topLoser.current_price | number: "1.2-6" }}</div>
+        <div class="top-loser_change loser">
+          🔻 {{ d.topLoser.price_change_percentage_24h | number:'1.2-2' }}%
+        </div>
+      </div>
+    </div>
+
+    <div class="top-volume_card">
+      <div class="top-volume_card_content">
+        <div class="top-volume_header">
+          <img [src]="d.topVolume.image" width="32" height="32" />
+          <h3>Volume: {{ d.topVolume.symbol.toUpperCase() }}</h3>
+        </div>
+        <div class="top-volume_price">${{ d.topVolume.current_price | number: "1.2-6" }}</div>
+        <div class="top-volume_change">📊 {{ d.topVolume.total_volume | number:'1.0-0' }}</div>
+      </div>
+    </div>
+
+  </div>
+} @else {
+  <div class="card_section_wrap">
+    @for (item of [1,2,3,4]; track $index) {
+      <highlight-skeleton class="skeleton"></highlight-skeleton>
+    }
+  </div>
+}

@@ -1,0 +1,79 @@
+.card_section_wrap{
+    display: flex;
+    gap: 14px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+.top-gainer_card,
+.top-loser_card,
+.btc_card,
+.top-volume_card{
+    min-height: 140px;
+    min-width: 250px;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
+    padding: 14px;
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-gainer_card_content,
+.top-loser_card_content,
+.btc_card_content,
+.top-volume_card_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.top-gainer_header,
+.top-loser_header,
+.btc_header,
+.top-volume_header{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+}
+
+.top-gainer_header h3,
+.top-loser_header h3,
+.btc_header h3,
+.top-volume_header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    white-space: nowrap;    
+    overflow: hidden;        
+    text-overflow: ellipsis; 
+    max-width: calc(100% - 40px); 
+}
+.top-gainer_price,
+.top-loser_price,
+.btc_price,
+.top-volume_price {
+    font-weight: 600;
+    font-size: 26px;
+}
+.top-gainer_change,
+.top-loser_change,
+.btc_change,
+.top-volume_change{
+    font-weight: 700;
+    color: var(--success); 
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.loser{
+  color: var(--danger);
+}
+
+.skeleton{
+  flex: 1;
+}

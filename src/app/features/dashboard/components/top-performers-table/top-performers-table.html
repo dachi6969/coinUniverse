@@ -1,0 +1,49 @@
+<div class="top-performers-content_wrap">
+    <h3 class="table_title">
+        Top Cryptocurrencies
+    </h3>
+
+    @if ( data() ) {
+        <div class="table-container">
+            <table class="minimal-table">
+              <thead>
+                <tr>
+                  <th>Asset</th>
+                  <th>Price</th>
+                  <th>24h Change</th>
+                  <th>Market Cap</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for ( c of data()?.topValues; track c.id ) {
+                    <tr>
+                        <td>
+                            <div class="assets">
+                                <div class="icon-wrapper">
+                                    <img [ngSrc]="c.image" alt="logo" fill class="coin-icon" />
+                                  </div>
+                                <span>{{ c.symbol | uppercase}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            ${{ c.current_price | number: '1.2-2'}}
+                        </td>
+                        <td>
+                            <span class="daily_changes">
+                                {{ c.price_change_percentage_24h | number: '1.2-2' }}%
+                            </span>
+                        </td>
+                        <td>
+                            ${{ c.market_cap | abbreviateNumber }}
+                        </td>
+                    </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+    }@else {
+        <table-skeleton></table-skeleton>
+    }
+
+</div>

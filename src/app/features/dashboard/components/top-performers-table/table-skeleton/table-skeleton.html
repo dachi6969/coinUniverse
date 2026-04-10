@@ -1,0 +1,24 @@
+<div class="table-container skeleton-container">
+    <table class="minimal-table">
+      <thead>
+        <tr>
+          <th><div class="skeleton-pulse th-skel asset-w"></div></th>
+          <th><div class="skeleton-pulse th-skel price-w"></div></th>
+          <th><div class="skeleton-pulse th-skel change-w"></div></th>
+          <th><div class="skeleton-pulse th-skel mcap-w"></div></th>
+          <th><div class="skeleton-pulse th-skel vol-w"></div></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of [1, 2, 3, 4, 5]; track row) {
+          <tr>
+            <td><div class="skeleton-pulse td-skel asset-w"></div></td>
+            <td><div class="skeleton-pulse td-skel price-w"></div></td>
+            <td><div class="skeleton-pulse td-skel change-w"></div></td>
+            <td><div class="skeleton-pulse td-skel mcap-w"></div></td>
+            <td><div class="skeleton-pulse td-skel vol-w"></div></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>

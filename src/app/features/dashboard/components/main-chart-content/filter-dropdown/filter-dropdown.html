@@ -1,0 +1,38 @@
+<div class="dropdown" (click)="toggle(); $event.stopPropagation()">
+
+@if (options(); as opts) {
+
+  <div class="dropdown__selected"
+    [style.width]="maxWidth() ? '100%' : ''">
+
+    @if (selected(); as sel) {
+
+      <img [ngSrc]="sel.image" width="22" height="22" />
+      {{ sel.name }} ({{ sel.symbol | uppercase }})
+
+    } @else {
+
+      <img [ngSrc]="opts[0].image" width="22" height="22" />
+      {{ opts[0]?.name }} ({{ opts[0]?.symbol | uppercase }})
+    }
+
+  </div>
+
+  @if (open()) {
+    <ul class="dropdown__list">
+
+      @for (option of opts; track option.id) {
+        <li
+          class="dropdown__item"
+          (click)="select(option); $event.stopPropagation()">
+
+          {{ option.name }} ({{ option.symbol | uppercase }})
+        </li>
+      }
+
+    </ul>
+  }
+
+}
+
+</div>

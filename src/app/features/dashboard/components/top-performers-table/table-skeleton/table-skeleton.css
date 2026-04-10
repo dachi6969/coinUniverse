@@ -1,0 +1,49 @@
+.table-container {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .minimal-table {
+    width: 100%;
+    border-collapse: collapse;
+  
+    th, td {
+      padding: 16px 12px;
+      text-align: left;
+      vertical-align: middle;
+    }
+  
+    tbody tr {
+      border-bottom: 1px solid #334155;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  
+  .skeleton-pulse {
+    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+    background-size: 200% 100%;
+    animation: pulse 1.5s infinite linear;
+    border-radius: 4px;
+  }
+  
+  @keyframes pulse {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  .th-skel {
+    height: 16px;
+  }
+  
+  .td-skel {
+    height: 20px;
+  }
+  
+  .asset-w { width: 80px; }
+  .price-w { width: 60px; }
+  .change-w { width: 45px; }
+  .mcap-w { width: 70px; }
+  .vol-w { width: 55px; }
