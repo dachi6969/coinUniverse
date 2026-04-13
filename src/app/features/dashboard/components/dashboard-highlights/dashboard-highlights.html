@@ -7,7 +7,11 @@
           <img [src]="d?.btc?.image" width="32" height="32" />
           <h3>{{ d.btc?.name }} ({{ d.btc?.symbol?.toUpperCase() }})</h3>
         </div>
-        <div class="btc_price">${{ d.btc?.current_price | number: "1.2-6" }}</div>
+        <div class="btc_price price-cell"
+        [priceHighlight]="livePrices()?.[ (d.btc?.symbol | uppercase) + 'USDT' ]"
+        >
+          ${{ livePrices()?.[ (d.btc?.symbol | uppercase) + 'USDT' ] || d.btc?.current_price }}
+        </div>
         <div class="btc_change">↑ {{ d.btc?.price_change_percentage_24h | number:'1.2-2' }}%</div>
       </div>
     </div>
@@ -18,7 +22,11 @@
           <img [src]="d.topGainer.image" width="32" height="32" />
           <h3>Gainer: {{ d.topGainer.symbol.toUpperCase() }}</h3>
         </div>
-        <div class="top-gainer_price">${{ d.topGainer.current_price | number: "1.2-6" }}</div>
+        <div class="top-gainer_price price-cell"
+        [priceHighlight]="livePrices()?.[ (d.topGainer.symbol | uppercase) + 'USDT' ]"
+        >
+          ${{ livePrices()?.[ (d.topGainer.symbol | uppercase) + 'USDT' ] || d.topGainer.current_price }}
+        </div>
         <div class="top-gainer_change">🚀 {{ d.topGainer.price_change_percentage_24h | number:'1.2-2' }}%</div>
       </div>
     </div>
@@ -29,7 +37,11 @@
           <img [src]="d.topLoser.image" width="32" height="32" />
           <h3>Loser: {{ d.topLoser.symbol.toUpperCase() }}</h3>
         </div>
-        <div class="top-loser_price">${{ d.topLoser.current_price | number: "1.2-6" }}</div>
+        <div class="top-loser_price price-cell"
+        [priceHighlight]="livePrices()?.[ (d.topLoser.symbol | uppercase) + 'USDT' ]"
+        >
+          ${{ livePrices()?.[ (d.topLoser.symbol | uppercase) + 'USDT' ] || d.topLoser.current_price }}
+        </div>
         <div class="top-loser_change loser">
           🔻 {{ d.topLoser.price_change_percentage_24h | number:'1.2-2' }}%
         </div>
@@ -42,7 +54,11 @@
           <img [src]="d.topVolume.image" width="32" height="32" />
           <h3>Volume: {{ d.topVolume.symbol.toUpperCase() }}</h3>
         </div>
-        <div class="top-volume_price">${{ d.topVolume.current_price | number: "1.2-6" }}</div>
+        <div class="top-volume_price price-cell"
+        [priceHighlight]="livePrices()?.[ (d.topVolume.symbol | uppercase) + 'USDT' ]"
+        >
+          ${{ livePrices()?.[ (d.topVolume.symbol | uppercase) + 'USDT' ] || d.topVolume.current_price }}
+        </div>
         <div class="top-volume_change">📊 {{ d.topVolume.total_volume | number:'1.0-0' }}</div>
       </div>
     </div>

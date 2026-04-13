@@ -15,22 +15,27 @@
                 </tr>
               </thead>
               <tbody>
-                @for ( c of data()?.topValues; track c.id ) {
+                @for ( c of data(); track c.id; let i = $index ) {
                     <tr>
                         <td>
                             <div class="assets">
+                                <span>{{ i + 1 }}</span>
                                 <div class="icon-wrapper">
                                     <img [ngSrc]="c.image" alt="logo" fill class="coin-icon" />
-                                  </div>
+                                </div>
                                 <span>{{ c.symbol | uppercase}}</span>
                             </div>
                         </td>
-                        <td>
-                            ${{ c.current_price | number: '1.2-2'}}
+                        <td class="price-cell"
+                        [priceHighlight]="livePrices()?.[ (c.symbol | uppercase) + 'USDT' ]"
+                        >
+                            ${{ (livePrices()?.[ (c.symbol | uppercase) + 'USDT' ] || c.current_price) | number: '1.2-6' }}
                         </td>
                         <td>
-                            <span class="daily_changes">
-                                {{ c.price_change_percentage_24h | number: '1.2-2' }}%
+                            <span class="daily_changes"
+                            BenefitIndicator
+                            >
+                                {{ (c.price_change_percentage_24h | number: '1.2-2') || '0.00' }}%
                             </span>
                         </td>
                         <td>

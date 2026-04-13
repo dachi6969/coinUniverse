@@ -3,19 +3,22 @@ import { CommonModule } from '@angular/common';
 import { DashboardHighlights } from "../../components/dashboard-highlights/dashboard-highlights";
 import { TopPerformersTable } from "../../components/top-performers-table/top-performers-table";
 import { MainDashboardService } from '../../services/main-dashboard-service';
-import { combineLatest, map, Observable, tap } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 import { MainChartContent } from "../../components/main-chart-content/main-chart-content";
-import { DashboardData, DashboardState } from '../../../../core/types/coin-types';
+import { CryptoExchange, DashboardData } from '../../../../core/types/coin-types';
+import { TopExchangesTable } from "../../components/top-exchanges-table/top-exchanges-table";
+import { LiveStreamService } from '../../../../core/services/live-stream-service';
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [CommonModule, TopPerformersTable, DashboardHighlights, MainChartContent],
+  imports: [CommonModule, TopPerformersTable, DashboardHighlights, MainChartContent, TopExchangesTable],
   templateUrl: './dashboard-page.html',
   styleUrl: './dashboard-page.css',
 })
 export class DashboardPage {
 
   private mainDashboardService = inject(MainDashboardService);
+  private liveStreamService = inject(LiveStreamService)
 
   readonly dashboardData$: Observable<DashboardData> = 
   this.mainDashboardService.dashboardData$;
@@ -29,15 +32,23 @@ export class DashboardPage {
   readonly selectedCoin$ = 
   this.mainDashboardService.selectedCoin$;
 
-  readonly cs$: Observable<DashboardState> = 
+  readonly cs$: any = 
   combineLatest(
     this.topCoins$,
     this.selectedCoin$,
   ).pipe(
     map(([topCoins,selectedCoin]) => {
       return { topCoins,selectedCoin };
-    }),
-    tap(console.log)
-  )
+    })
+  );
+
+  readonly cryptoExchanges$: Observable<CryptoExchange[]> = 
+  this.mainDashboardService.exchangesData$;
+
+  readonly top100Coin$ = 
+  this.liveStreamService.topCoins$;
+
+  readonly livePrices$ = 
+  this.liveStreamService.livePrices$
 
 }

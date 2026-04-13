@@ -6,13 +6,17 @@
     [style.width]="maxWidth() ? '100%' : ''">
 
     @if (selected(); as sel) {
-
-      <img [ngSrc]="sel.image" width="22" height="22" />
+   
+      <div class="icon-wrapper">
+        <img [ngSrc]="sel.image" fill class="coin-icon"/>
+      </div>
       {{ sel.name }} ({{ sel.symbol | uppercase }})
 
     } @else {
 
-      <img [ngSrc]="opts[0].image" width="22" height="22" />
+      <div class="icon-wrapper">
+        <img [ngSrc]="opts[0].image" fill class="coin-icon"/>
+      </div>
       {{ opts[0]?.name }} ({{ opts[0]?.symbol | uppercase }})
     }
 

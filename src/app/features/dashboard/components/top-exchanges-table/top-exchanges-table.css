@@ -4,19 +4,20 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     gap: 16px;
-}
-
-.table_title{
+  }
+  
+  .table_title{
     color: var(--text-primary);
-}
-
-.table-container {
+  }
+  
+  .table-container {
+    max-height: 380px;
     width: 100%;
     overflow-x: auto;
     overflow-y: auto;
     scrollbar-width: none;
-    max-height: 110vh;
   }
   
   .minimal-table {
@@ -63,7 +64,7 @@
   }
   
   .coin-icon {
-    object-fit: contain; 
+    object-fit: contain;
     border-radius: 50%;
   }
 
@@ -75,23 +76,4 @@
 
 .daily_changes{
     color: var(--success);
-}
-
-
-.price-cell {
-  transition: all 0.9s ease-out;
-}
-
-.flash-up {
-  color: #00ff00 !important;
-  text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
-}
-
-.flash-down {
-  color: #ff4444 !important;
-  text-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
-}
-
-.has-dash{
-  color: #ff4444
 }

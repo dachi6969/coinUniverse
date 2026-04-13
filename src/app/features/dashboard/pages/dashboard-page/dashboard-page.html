@@ -1,6 +1,9 @@
 <main class="dashboard_wrap">
 
-    <dashboard-highlights [data]="dashboardData$ | async"></dashboard-highlights>
+    <dashboard-highlights 
+    [data]="dashboardData$ | async"
+    [livePrices]="livePrices$ | async"
+    ></dashboard-highlights>
 
     <div class="dashboard-content_wraper">
         <div class="box box1">
@@ -10,13 +13,15 @@
             ></main-chart-content>
         </div>
         <div class="box box2">
-            <top-performers-table [data]="dashboardData$ | async"></top-performers-table>
+            <top-performers-table 
+            [data]="top100Coin$ | async"
+            [livePrices]="livePrices$ | async"
+            ></top-performers-table>
         </div>
         <div class="box box3">
-            3
-        </div>
-        <div class="box box4">
-            4
+            <top-exchanges-table 
+            [data]="cryptoExchanges$ | async"
+            ></top-exchanges-table>
         </div>
     </div>
 

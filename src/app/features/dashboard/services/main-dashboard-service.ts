@@ -2,6 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { DashboardService } from '../../../core/services/dashboard-service';
 import { catchError, map, Observable, of, shareReplay, switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { CryptoExchange } from '../../../core/types/coin-types';
 
 @Injectable({
   providedIn: 'root',
@@ -84,12 +85,14 @@ export class MainDashboardService {
       const topValues = 
       [...coins]
       .sort((a, b) => b.current_price - a.current_price)
-      .slice(0, 5)
+      .slice(0, 10)
       return { btc, topGainer, topLoser, topVolume, topValues };
     }),
     shareReplay(1)
   );
 
+  readonly exchangesData$: Observable<CryptoExchange[]> = 
+  this.dashboardService.getTopCryptoExchanges();
   
 
 }

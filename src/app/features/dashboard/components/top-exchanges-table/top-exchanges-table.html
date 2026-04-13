@@ -1,0 +1,53 @@
+<div class="top-performers-content_wrap">
+    <h3 class="table_title">
+        Top Exchanges
+    </h3>
+
+    @if ( data(); as data ) {
+        <div class="table-container">
+            <table class="minimal-table">
+              <thead>
+                <tr>
+                  <th>Exchange</th>
+                  <th>Trust Score</th>
+                  <th>24h Volume (BTC)</th>
+                  <th>Country / year</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for ( te of data; track te.id ) {
+                    <tr>
+                        <td>
+                            <div class="assets">
+                                <span>
+                                    {{ te.trust_score_rank }}
+                                </span>
+                                <div class="icon-wrapper">
+                                    <img [ngSrc]="te.image" alt="logo" fill class="coin-icon" />
+                                  </div>
+                                <span>{{ te.name }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            {{ te.trust_score }}
+                        </td>
+                        <td>
+                            <span class="daily_changes">
+                                {{ te.trade_volume_24h_btc | number: '1.0-0' }}BTC
+                            </span>
+                        </td>
+                        <td>
+                            {{ te.country }} / {{ te.year_established }}y
+                        </td>
+                    </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+    }
+    @else {
+        <table-skeleton></table-skeleton>
+    }
+
+</div>
