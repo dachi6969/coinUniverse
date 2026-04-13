@@ -8,6 +8,7 @@
   
   .dropdown__selected {
     padding: 10px 12px;
+    max-width: 190px;
     border: 1px solid var(--secondary);
     background: var(--bg-card);
     border-radius: 8px;
@@ -16,6 +17,14 @@
     align-items: center;
     gap: 10px;
     font-size: 14px;
+  }
+
+  .dropdown__selected-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0; 
+    flex: 1;           
   }
 
   .dropdown__selected::after{
