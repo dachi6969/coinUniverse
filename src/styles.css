@@ -17,12 +17,14 @@
     --primary-variant: #2E447A;
     
     /* Semantic Colors */
+    --light: #FFFFFF;
     --success: #0AC473;
     --success-alt: #00E08F;
     --danger: #eb4034;
     --warning: #F5A623;
 
     /* Borders & Utilities */
+    --border-light: #FFFFFF;
     --border-subtle: #2A2F3E;
     --track-bg: #262931;
 }

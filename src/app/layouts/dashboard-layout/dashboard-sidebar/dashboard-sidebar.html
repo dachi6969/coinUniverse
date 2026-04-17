@@ -1,5 +1,6 @@
 <aside 
-[class]="!isDesktop() ? ' sidebar-wrap open' : 'sidebar-wrap'"
+class="sidebar-wrap"
+[class.open]="!isDesktop()"
 >
     <div>
         <div class="sidebar_title">
@@ -7,35 +8,30 @@
             <span class="brand-title">CoinUniverse</span>
         </div>
         <nav class="sidebar_nav">
-                <a class="nav_link">
-                    <dashboard-icon color="light" [size]="24"/>
-                    Dashboard
+            @for ( nav of navigation; track nav ) {
+                <a class="nav_link" [href]="nav.navTitle">
+                    <ng-container
+                     *ngComponentOutlet="nav.icon; inputs: { size: 24, color: 'light' }">
+                    </ng-container>
+                    <span>
+                        {{ nav.navTitle }}
+                    </span>
                 </a>
-                <a class="nav_link">
-                    <portfolio-icon color="light" [size]="24"/>
-                    Portfolio
-                </a>
-                <a class="nav_link">
-                    <market-icon color="light" [size]="24"/>
-                    Markets
-                </a>
-                <a class="nav_link">
-                    <chart-icon color="light" [size]="24"/>
-                    Charts
-                </a>
-                <a class="nav_link">
-                    <notification-icon color="light" [size]="24"/>
-                    Notifications
-                </a>
-                <a class="nav_link">
-                    <settings-icon color="light" [size]="24"/>
-                    Settings
-                </a>
+            }
         </nav>
     </div>
     <div class="auth_nav">
-        <a>
-            Login
-        </a>
+        @if ( isUserLoggedIn() ) {
+            <button class="auth_btn">
+                Log out
+            </button>
+        }@else {
+            <button class="auth_btn" (click)="navToLoginPage()">
+                <login-icon color="light" [size]="24"/>
+                <span>
+                    Log in
+                </span>
+            </button>
+        }
     </div>
 </aside>

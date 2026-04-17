@@ -16,7 +16,7 @@
     font-weight: bold;
     font-size: 28px;
     color: var(--text-primary);
-    cursor: pointer;
+    cursor: default;
 }
 
 menu-icon{
@@ -47,6 +47,7 @@ menu-icon{
     border-radius: 10px;
     cursor: pointer;
 }
+
 
 
 

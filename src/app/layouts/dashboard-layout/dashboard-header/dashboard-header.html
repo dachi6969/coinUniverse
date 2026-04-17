@@ -1,15 +1,12 @@
 <header class="header" id="header">
     <div>
         @if ( isDesktop() ) {
-            <a class="header_title" href="/dashboard">
+            <span class="header_title">
                 Dashboard
-            </a>
+            </span>
         }@else {    
             <div>
-                <menu-icon 
-                [size]="30"
-                (onClick)="open()"
-                />
+                <menu-icon [size]="30" (onClick)="open()" />
                 @if ( isSidebarOpen() ) {
                     <div class="sidebar-modal"
                     (click)="close()"
@@ -28,11 +25,11 @@
                 <!-- search is hardcoded right now, no output  -->
                 <dashboard-search /> 
                 <div class="profile-icon_wrap">
-                    <profile-icon color="light" [size]="27" />
+                    <profile-icon color="light" [size]="27" (onClick)="navToProfile()"/>
                 </div>
             </div>
         }@else {
-            <profile-icon color="light" [size]="30" />
+            <profile-icon color="light" [size]="30" (onClick)="navToProfile()"/>
         }
     </div>
 </header>

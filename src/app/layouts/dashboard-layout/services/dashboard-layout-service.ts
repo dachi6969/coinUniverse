@@ -5,9 +5,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Injectable({
   providedIn: 'root',
 })
-export class DashboardService {
+export class DashboardLayoutService {
 
   public isDesktop = signal<boolean>(false);
+  public isAuthModalOpen = signal<boolean>(false);
   public isSidebarOpen = signal<boolean>(false);
   
   private breakpointObserver = inject(BreakpointObserver);
@@ -28,4 +29,6 @@ export class DashboardService {
   closeSidebar(): void {
     this.isSidebarOpen.set(false);
   };
+
+
 }

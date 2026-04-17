@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, shareReplay, tap } from 'rxjs';
-import { Coin, CryptoExchange, MarketChartResponse } from '../types/coin-types';
+import { Coin, CryptoExchange, MarketChartResponse } from '../../types/coin-types';
 
 export const TOP_100_COIN_URL = 
   "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1";
@@ -40,7 +40,8 @@ export class DashboardService {
   // fetching top 50 exchange platform data.
   getTopCryptoExchanges(): Observable<CryptoExchange[]>{
     return this.http.get<CryptoExchange[]>('https://api.coingecko.com/api/v3/exchanges?per_page=50').pipe(
-      tap(() => console.log('this is getTopCryptoExchanges request') )
+      tap(() => console.log('this is getTopCryptoExchanges request') ),
+      shareReplay(1)
     )
   }
 

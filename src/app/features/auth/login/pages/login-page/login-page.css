@@ -1,0 +1,160 @@
+  .login-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #000000; /* Dark black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Main Login Card */
+  .login-container {
+    background-color: #0a0a0c;
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #1a1a24;
+    box-shadow: 0 8px 32px rgba(0, 15, 40, 0.6); /* Subtle dark blue glow */
+  }
+  
+  /* Header & Brand */
+  .brand-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  
+  .logo-placeholder {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #0d47a1, #001529); /* Dark blue gradient logo */
+    border-radius: 50%;
+    margin: 0 auto 16px auto;
+  }
+  
+  .brand-header h1 {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  
+  .brand-header p {
+    color: #8c8c9a;
+    font-size: 14px;
+  }
+  
+  /* Form Layout */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .input-group label {
+    color: #c4c4d4;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  
+  .input-group input {
+    background-color: #121216;
+    border: 1px solid #2a2a35;
+    color: #ffffff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .input-group input::placeholder {
+    color: #5a5a6a;
+  }
+  
+  /* Focus States using Dark Blue */
+  .input-group input:focus {
+    border-color: #0d47a1;
+    box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
+  }
+  
+  /* Actions: Checkbox & Forgot Password */
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+  
+  .remember-me {
+    color: #8c8c9a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  
+  .forgot-password {
+    color: #1976d2;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .forgot-password:hover {
+    color: #42a5f5;
+  }
+  
+  /* Primary Button */
+  .login-button {
+    background-color: #0d47a1; /* Deep dark blue */
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #1565c0;
+  }
+  
+  /* Footer / Signup */
+  .signup-prompt {
+    text-align: center;
+    margin-top: 24px;
+    color: #8c8c9a;
+    font-size: 13px;
+  }
+  
+  .signup-prompt a {
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 4px;
+    transition: color 0.2s ease;
+  }
+  
+  .signup-prompt a:hover {
+    color: #42a5f5;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 30px 20px;
+      border: none;
+      box-shadow: none;
+    }
+  }

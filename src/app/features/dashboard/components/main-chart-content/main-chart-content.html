@@ -1,7 +1,7 @@
 <div class="main-chart-card">
-    @if ( combinedData(); as cd ) {
+    @if ( perDayPrice() && combinedData(); as cd ) {
+
       <div class="filter_section">
-  
         <filter-dropdown 
         placeholder="Bitcoin"
         [options]="cd.topCoins.topValues"
@@ -19,8 +19,8 @@
   
             <div class="title-wrapper">
               <img [ngSrc]="selectedCoin.image" alt="coin" width="32" height="32" />
-              <h2>
-                {{ selectedCoin.name }}
+              <h2 class="truncate">
+                {{ selectedCoin.name | slice:0:15 }}
               </h2>
               <span class="badge">{{ selectedCoin.symbol | uppercase }}</span>
             </div>

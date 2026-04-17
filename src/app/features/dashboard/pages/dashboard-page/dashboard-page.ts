@@ -7,7 +7,7 @@ import { combineLatest, map, Observable } from 'rxjs';
 import { MainChartContent } from "../../components/main-chart-content/main-chart-content";
 import { CryptoExchange, DashboardData } from '../../../../core/types/coin-types';
 import { TopExchangesTable } from "../../components/top-exchanges-table/top-exchanges-table";
-import { LiveStreamService } from '../../../../core/services/live-stream-service';
+import { LiveStreamService } from '../../../../core/services/dashboard-services/live-stream-service';
 
 @Component({
   selector: 'app-dashboard-page',

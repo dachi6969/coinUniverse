@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { DashboardService } from './dashboard-service';
 import { webSocket } from 'rxjs/webSocket';
 import { map, Observable, retry, shareReplay, switchMap, scan, auditTime, tap } from 'rxjs';
-import { Coin } from '../types/coin-types';
-import { LivePrices } from '../types/live-prices.types';
+import { Coin } from '../../types/coin-types';
+import { LivePrices } from '../../types/live-prices.types';
 
 @Injectable({
   providedIn: 'root',

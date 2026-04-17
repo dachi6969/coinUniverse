@@ -1,0 +1,33 @@
+@if ( isAuthModalOpen() ) {
+    <div class="modal-overlay">
+        <div class="modal-card">
+          <div class="modal-header">
+            <div class="icon-warning">!</div>
+            <h2>Login Required</h2>
+          </div>
+          
+          <div class="modal-body">
+            <p>
+              'You need to be logged in to access your profile settings. Would you like to log in now?'
+            </p>
+          </div>
+      
+          <div class="modal-footer">
+
+            <button 
+            class="btn btn-ghost" 
+            (click)="close()"
+            >
+                Maybe later
+            </button>
+            <button 
+            class="btn btn-primary" 
+            (click)="navToLoginPage()"
+            >
+                Sign In
+            </button>
+            
+          </div>
+        </div>
+    </div>
+}

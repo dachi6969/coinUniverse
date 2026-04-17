@@ -25,8 +25,6 @@
     animation: slideSidebar 0.3s ease-out forwards;
 }
 
-  
-
 .brand-title{
     font-size: 26px;
     font-weight: 800;
@@ -45,6 +43,7 @@
 }
 
 .nav_link{
+    text-decoration: none;
     cursor: pointer;
     color: var(--text-nav);
 
@@ -68,6 +67,13 @@
     border-top: 1px solid var(--text-nav);
     color: var(--text-nav);
     font-size: 18px;
+}
+
+.auth_btn{
+    all: unset;
+    gap: 16px;
+    display: flex;
+    cursor: pointer;
 }
 
 
