@@ -75,16 +75,7 @@
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
-  
-  .input-group input::placeholder {
-    color: #5a5a6a;
-  }
-  
-  /* Focus States using Dark Blue */
-  .input-group input:focus {
-    border-color: #0d47a1;
-    box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
-  }
+
   
   /* Actions: Checkbox & Forgot Password */
   .form-actions {
@@ -101,20 +92,26 @@
     gap: 6px;
     cursor: pointer;
   }
+
+  .forgot-password,
+  .signup-prompt a {
+    color: var(--primary);
+  }
   
   .forgot-password {
-    color: #1976d2;
+    /* color: var(--primary); */
     text-decoration: none;
     transition: color 0.2s ease;
   }
   
-  .forgot-password:hover {
-    color: #42a5f5;
+  .forgot-password:hover, 
+  .login-button:hover{
+    filter: brightness(1.2);
   }
   
   /* Primary Button */
   .login-button {
-    background-color: #0d47a1; /* Deep dark blue */
+    background-color: var(--primary); /* Deep dark blue */
     color: #ffffff;
     border: none;
     padding: 14px;
@@ -126,29 +123,22 @@
     transition: background-color 0.2s ease;
   }
   
-  .login-button:hover {
-    background-color: #1565c0;
-  }
-  
   /* Footer / Signup */
   .signup-prompt {
     text-align: center;
     margin-top: 24px;
-    color: #8c8c9a;
+    color: var(--text-muted);
     font-size: 13px;
   }
   
   .signup-prompt a {
-    color: #1976d2;
+    color: var(--primary);
     text-decoration: none;
     font-weight: 500;
     margin-left: 4px;
     transition: color 0.2s ease;
   }
-  
-  .signup-prompt a:hover {
-    color: #42a5f5;
-  }
+
   
   /* Responsiveness */
   @media (max-width: 480px) {
