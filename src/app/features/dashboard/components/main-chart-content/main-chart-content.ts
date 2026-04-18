@@ -16,4 +16,5 @@ export class MainChartContent {
   readonly perDayPrice = input<number[] | null>(null);
   readonly combinedData = input<DashboardState | null>();
 
+
 }

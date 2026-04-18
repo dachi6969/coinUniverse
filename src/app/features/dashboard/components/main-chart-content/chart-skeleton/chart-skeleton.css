@@ -1,9 +1,11 @@
 .main-chart-card {
   width: 100%;
+  height: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
 
   .filter_section {
     display: flex;
@@ -37,8 +39,31 @@
 
   .canvas-wrapper {
     position: relative;
-    height: 280px;
+    min-height: 280px;
+    height: 100%;
     width: 100%;
+
+    .retry-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+      padding: 13px 26px;
+      border-radius: 8px;
+      border: 1px solid var(--light);
+    
+      background: transparent;
+      color: var(--light);
+      font-weight: bold;
+      cursor: pointer;
+    
+      transition: all 0.3s ease;
+    }
+    
+    .retry-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
     
     @media (max-width: 600px) {
       height: 200px;

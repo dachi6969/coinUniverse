@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MainDashboardService } from '../../../services/main-dashboard-service';
 
 @Component({
   selector: 'chart-skeleton',
@@ -7,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './chart-skeleton.css',
 })
 export class ChartSkeleton {
+
+  private mainDashboardService = inject(MainDashboardService);
+
+  retry(): void {
+    this.mainDashboardService.retry();
+  }
 
 }

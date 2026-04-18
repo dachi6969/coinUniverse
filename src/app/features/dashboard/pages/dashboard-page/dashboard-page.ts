@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardHighlights } from "../../components/dashboard-highlights/dashboard-highlights";
 import { TopPerformersTable } from "../../components/top-performers-table/top-performers-table";
 import { MainDashboardService } from '../../services/main-dashboard-service';
-import { combineLatest, map, Observable } from 'rxjs';
+import { combineLatest, map, Observable, tap } from 'rxjs';
 import { MainChartContent } from "../../components/main-chart-content/main-chart-content";
 import { CryptoExchange, DashboardData } from '../../../../core/types/coin-types';
 import { TopExchangesTable } from "../../components/top-exchanges-table/top-exchanges-table";
@@ -26,7 +26,7 @@ export class DashboardPage {
   readonly topCoins$: Observable<DashboardData> = 
   this.mainDashboardService.dashboardData$;
 
-  readonly perDayPrices$: Observable<number[]> = 
+  readonly perDayPrices$: Observable<number[] | null> = 
   this.mainDashboardService.perDay$;
 
   readonly selectedCoin$ = 
