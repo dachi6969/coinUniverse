@@ -1,20 +1,28 @@
 <div class="login-wrapper">
     <div class="login-container">
       <div class="brand-header">
-        <div class="logo-placeholder"></div>
-        <h1>CoinUniverse</h1>
+        <logo-icon [size]="65" color="dark" />
+        <h1>Log in</h1>
         <p>Welcome back, trader.</p>
       </div>
   
-      <form class="login-form">
+      <form class="login-form" 
+      [formGroup]="form"
+      >
         <div class="input-group">
           <label for="email">Email Address</label>
-          <auth-input />
+          <auth-input 
+          placeHolder="Email..."
+          formControlName="email"
+          />
         </div>
   
         <div class="input-group">
           <label for="password">Password</label>
-          <auth-input />
+          <auth-input 
+          placeHolder="Password..."
+          formControlName="password"
+          />
         </div>
   
         <div class="form-actions">
@@ -28,7 +36,10 @@
       </form>
   
       <div class="signup-prompt">
-        Don't have an account? <a href="#">Sign up here</a>
+        Don't have an account? <a href="/auth/register">Sign up here</a>
+      </div>
+      <div class="back-home">
+        <a href="/dashboard">← Back to Dashboard</a>
       </div>
     </div>
   </div>

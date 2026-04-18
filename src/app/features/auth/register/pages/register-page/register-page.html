@@ -1,1 +1,97 @@
-<p>register-page works!</p>
+<div class="register-wrapper">
+    <div class="register-card">
+      
+        <div class="content_box">
+            <div class="content_header">
+                <logo-icon [size]="65" />
+                <h1 class="content_title">
+                    Sign up here
+                </h1>
+            </div>
+        
+            <div class="content_inner">
+              <ul class="content_list">
+                <li>Real-time market data streams and live order books</li>
+                <li>Secure, encrypted tracking for your entire portfolio</li>
+                <li>Advanced charting tools tailored for professional traders</li>
+                <li>Smart alerts to capitalize on market fluctuations</li>
+                <li>A completely dark-themed, distraction-free environment</li>                
+              </ul>
+            </div>
+          
+            <p class="content_footer">
+              Designed to stay out of your way and let you focus on the market.
+            </p>
+        </div>
+  
+      <div class="reg-form-panel">
+        <div class="form-header">
+          <h3>Create Account</h3>
+          <p>Enter your details to initialize your workspace.</p>
+        </div>
+  
+        <form class="register-form"
+        [formGroup]="form"
+        >
+            <div class="input-wrap">
+              <label>First Name</label>
+              <auth-input 
+              placeHolder="Username..."
+              formControlName="username"
+              />
+            </div>
+            <div class="input-wrap">
+              <label>Last Name</label>
+              <auth-input 
+              placeHolder="Lastname..."
+              formControlName="lastname"
+              />
+            </div>
+          
+            <div class="input-wrap full-width">
+              <label>Email Address</label>
+              <auth-input 
+              placeHolder="Email..."
+              formControlName="email"
+              />
+            </div>
+
+            <div class="input-wrap full-width">
+              <label>Phone number</label>
+              <auth-input 
+              placeHolder="Number..."
+              formControlName="number"
+              />
+            </div>
+          
+            <div class="input-wrap">
+              <label>Password</label>
+              <auth-input 
+              placeHolder="Password..."
+              formControlName="password"
+              />
+            </div>
+            <div class="input-wrap">
+              <label>Confirm Password</label>
+              <auth-input 
+              placeHolder="Confirm password..."
+              formControlName="confirm"
+              />
+            </div>
+          
+            <button type="submit" class="btn-primary">
+                Sign up
+            </button>
+          </form>
+  
+        <div class="form-footer">
+          <p>Already a trader? <a href="/auth/login">Log in here</a></p>
+        </div>
+        <div class="back-home">
+            <a href="/dashboard">← Back to Dashboard</a>
+        </div>
+      </div>
+
+  
+    </div>
+  </div>

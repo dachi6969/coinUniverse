@@ -1,22 +1,20 @@
   .login-wrapper {
     min-height: 100vh;
-    width: 100%;
-    background-color: #000000; /* Dark black background */
+    width: 100%; 
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
   }
   
-  /* Main Login Card */
   .login-container {
-    background-color: #0a0a0c;
+    background-color: var(--bg-main);
     width: 100%;
     max-width: 420px;
     padding: 40px;
     border-radius: 12px;
     border: 1px solid #1a1a24;
-    box-shadow: 0 8px 32px rgba(0, 15, 40, 0.6); /* Subtle dark blue glow */
+    box-shadow: 0 8px 32px var(--border-subtle); 
   }
   
   /* Header & Brand */
@@ -34,15 +32,15 @@
   }
   
   .brand-header h1 {
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 32px;
+    font-weight: bold;
     margin-bottom: 8px;
     letter-spacing: 0.5px;
   }
   
   .brand-header p {
-    color: #8c8c9a;
+    color: var(--text-muted);
     font-size: 14px;
   }
   
@@ -60,24 +58,11 @@
   }
   
   .input-group label {
-    color: #c4c4d4;
+    color: var(--text-muted);
     font-size: 13px;
     font-weight: 500;
   }
-  
-  .input-group input {
-    background-color: #121216;
-    border: 1px solid #2a2a35;
-    color: #ffffff;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
 
-  
-  /* Actions: Checkbox & Forgot Password */
   .form-actions {
     display: flex;
     justify-content: space-between;
@@ -86,7 +71,7 @@
   }
   
   .remember-me {
-    color: #8c8c9a;
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     gap: 6px;
@@ -99,7 +84,6 @@
   }
   
   .forgot-password {
-    /* color: var(--primary); */
     text-decoration: none;
     transition: color 0.2s ease;
   }
@@ -111,8 +95,8 @@
   
   /* Primary Button */
   .login-button {
-    background-color: var(--primary); /* Deep dark blue */
-    color: #ffffff;
+    background-color: var(--primary);
+    color: var(--text-primary);
     border: none;
     padding: 14px;
     border-radius: 8px;
@@ -120,15 +104,25 @@
     font-weight: 600;
     cursor: pointer;
     margin-top: 8px;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s ease;
   }
   
-  /* Footer / Signup */
   .signup-prompt {
     text-align: center;
     margin-top: 24px;
     color: var(--text-muted);
     font-size: 13px;
+  }
+
+  .back-home{
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .back-home a{
+    cursor: pointer;
+    color: var(--primary);
   }
   
   .signup-prompt a {
