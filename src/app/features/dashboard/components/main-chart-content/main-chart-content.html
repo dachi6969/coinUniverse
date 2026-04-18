@@ -18,10 +18,8 @@
         <div class="chart-header">
   
             <div class="title-wrapper">
-              <img [ngSrc]="selectedCoin.image" alt="coin" width="32" height="32" />
-              <h2 class="truncate">
-                {{ selectedCoin.name | slice:0:15 }}
-              </h2>
+              <img [ngSrc]="selectedCoin.image" alt="coin" width="35" height="35" />
+              
               <span class="badge">{{ selectedCoin.symbol | uppercase }}</span>
             </div>
             <div class="price">

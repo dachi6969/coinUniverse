@@ -31,15 +31,8 @@
           color: var(--text-primary);
           padding: 4px 8px;
           border-radius: 6px;
-          font-size: 12px;
+          font-size: 15px;
           font-weight: 600;
-        }
-
-        .truncate {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 150px;
         }
       }
   

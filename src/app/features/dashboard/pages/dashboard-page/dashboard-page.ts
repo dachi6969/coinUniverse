@@ -49,6 +49,6 @@ export class DashboardPage {
   this.liveStreamService.topCoins$;
 
   readonly livePrices$ = 
-  this.liveStreamService.livePrices$
+  this.liveStreamService.livePrices$;
 
 }
