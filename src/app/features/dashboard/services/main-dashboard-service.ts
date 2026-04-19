@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { DashboardService } from '../../../core/services/dashboard-services/dashboard-service';
-import { catchError, map, Observable, of, shareReplay, startWith, Subject, switchMap, tap, withLatestFrom } from 'rxjs';
+import { catchError, map, Observable, of, shareReplay, switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { CryptoExchange } from '../../../core/types/coin-types';
 
@@ -9,6 +9,7 @@ import { CryptoExchange } from '../../../core/types/coin-types';
 })
 export class MainDashboardService {
   
+  isChartError = signal<boolean>(false);
   readonly selectedCoin = signal<string>('bitcoin');
 
   selected$ = 

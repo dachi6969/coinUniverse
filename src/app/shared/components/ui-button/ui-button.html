@@ -3,6 +3,7 @@
 [class.full]="fullWidth()"
 [disabled]="disabled()"
 (click)="handleClick()"
+[type]="type()"
 [style.color]="variant() === 'outlined' ? selectedColor() : 'white'"
 [style.border]="variant() === 'outlined' ? '1px solid ' + selectedColor() : 'none'"
 [style.background]="variant() === 'outlined' ? 'transparent' : selectedColor()"

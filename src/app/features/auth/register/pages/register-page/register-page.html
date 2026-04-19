@@ -32,18 +32,21 @@
   
         <form class="register-form"
         [formGroup]="form"
+        (ngSubmit)="onSubmit()"
         >
             <div class="input-wrap">
               <label>First Name</label>
               <auth-input 
               placeHolder="Username..."
-              formControlName="username"
+              typeAs="text"
+              formControlName="firstname"
               />
             </div>
             <div class="input-wrap">
               <label>Last Name</label>
               <auth-input 
               placeHolder="Lastname..."
+              typeAs="text"
               formControlName="lastname"
               />
             </div>
@@ -52,6 +55,7 @@
               <label>Email Address</label>
               <auth-input 
               placeHolder="Email..."
+              typeAs="email"
               formControlName="email"
               />
             </div>
@@ -60,6 +64,7 @@
               <label>Phone number</label>
               <auth-input 
               placeHolder="Number..."
+              typeAs="tel"
               formControlName="number"
               />
             </div>
@@ -68,6 +73,7 @@
               <label>Password</label>
               <auth-input 
               placeHolder="Password..."
+              typeAs="password"
               formControlName="password"
               />
             </div>
@@ -75,13 +81,25 @@
               <label>Confirm Password</label>
               <auth-input 
               placeHolder="Confirm password..."
+              typeAs="password"
               formControlName="confirm"
+              [missMatch]="isPasswordMismatch()"
               />
             </div>
-          
-            <button type="submit" class="btn-primary">
+
+            <div class="button-wrapper">
+              <ui-button 
+                size="big" 
+                variant="filled" 
+                color="primary" 
+                type="submit"
+                [fullWidth]="true"
+                [disabled]="pending()"
+              >
                 Sign up
-            </button>
+              </ui-button>
+            </div>
+            
           </form>
   
         <div class="form-footer">
@@ -94,4 +112,6 @@
 
   
     </div>
+
+    <succesfully-register-modal></succesfully-register-modal>
   </div>

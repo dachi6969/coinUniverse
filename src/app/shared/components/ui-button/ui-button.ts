@@ -12,6 +12,7 @@ export class UiButton {
   public color = input<ColorVariant>('light');
   public variant = input<'outlined' | 'filled'>('outlined');
   public size = input<'small' | 'medium' | 'big'>('medium');
+  public type = input<'submit' | 'button'>('button');
   public fullWidth = input<boolean>(false);
   public disabled = input<boolean>(false);
 

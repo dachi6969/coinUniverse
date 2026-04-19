@@ -15,7 +15,7 @@ export class LiveStreamService {
   // filtering top50 coin from coinGecko API
   public topCoins$: Observable<Coin[]> = 
   this.dashboardService.getCoinsData().pipe( 
-    map((allCoins: any[]) => {
+    map((allCoins: Coin[]) => {
       return [...allCoins]
         .sort((a, b) => a.market_cap_rank - b.market_cap_rank)
     }),

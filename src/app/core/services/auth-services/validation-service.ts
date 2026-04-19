@@ -30,12 +30,18 @@ export class ValidationService {
     if ( !value ) return null;
 
     const errors: any = {};
+
+    const isValidUsername = /^[A-Za-z]+$/.test(value);
     
     if ( value.length < 2 ) {
       errors.minlength = {
         requiredLength: 2,
         actualLength: value.length
       }
+    };
+
+    if ( !isValidUsername ) {
+      errors.invalidFormat = true;
     }
 
     return Object.keys(errors).length ? errors : null;
@@ -43,18 +49,21 @@ export class ValidationService {
 
     // email
 
-  emailValidation(control: AbstractControl):ValidatorsType {
-    const value = control.value?.trim();
-
-    if ( !value ) return null;
-
-    const errors: any = {};
+  emailValidation(control: AbstractControl): ValidatorsType {
+      const value = control.value?.trim();
     
-    if ( !value.includes("@") || !value.includes(".") ) {
-      errors.email = true;
-    }
-
-    return Object.keys(errors).length ? errors : null;
+      if (!value) return null;
+    
+      const errors: any = {};
+    
+      const emailRegex =
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
+    
+      if (!emailRegex.test(value)) {
+        errors.email = true;
+      }
+    
+      return Object.keys(errors).length ? errors : null;
   }
 
       // number 
@@ -68,15 +77,18 @@ export class ValidationService {
   
         const num = Number(value);
         const hasMinLength = value.length >= 9;
+        const tooLongNumb = value.length > 9;
       
         if ( Number.isNaN(num) ) {
-          error.invalidNumFormat = true;
+          error.invalidFormat = true;
         }
         else if ( !hasMinLength ) {
           error.minlength = {
             requiredLength: 9,
-        };
-      }
+        }}
+        else if ( tooLongNumb ) {
+          error.tooLongNumb = true;
+        }
         return Object.keys(error).length ? error : null;
       }
 

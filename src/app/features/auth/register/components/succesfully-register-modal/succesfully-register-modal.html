@@ -1,0 +1,28 @@
+@if ( isUserResgistered() ) {
+    <div class="modal-overlay">
+        <div class="modal-card">
+          <div class="modal-header">
+            <div class="icon-warning">!</div>
+            <h2>Registration Successful</h2>
+          </div>
+          
+          <div class="modal-body">
+            <p>
+                Your account has been created successfully.
+                You can now log in.
+            </p>
+          </div>
+      
+          <div class="modal-footer">
+
+            <button 
+            class="btn btn-primary" 
+            (click)="navToLoginPage()"
+            >
+                Sign In
+            </button>
+            
+          </div>
+        </div>
+    </div>
+}

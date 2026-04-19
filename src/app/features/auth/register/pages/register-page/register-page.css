@@ -14,7 +14,7 @@
     background-color: var(--bg-main);
     border-radius: 16px;
     border: 1px solid var(--border-subtle);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px var(--border-subtle); 
     overflow: hidden;
   }
   
@@ -80,7 +80,7 @@
   
   .reg-form-panel {
     flex: 1;
-    padding: 50px 60px;
+    padding: 50px 20px;
     background-color: transparent; 
     display: flex;
     flex-direction: column;
@@ -132,21 +132,13 @@
     font-weight: 500;
     letter-spacing: 0.3px;
   }
-  
-  .btn-primary {
+
+  .button-wrapper {
     grid-column: span 2; 
-    background-color: var(--primary);
-    color: var(--light);
-    border: none;
-    border-radius: 10px;
-    padding: 16px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: all 0.2s ease;
     width: 100%;
+    margin-top: 10px;
   }
+  
   
   .form-footer {
     margin-top: 30px;
@@ -169,6 +161,12 @@
 
     .register-wrapper{
         padding: 0 16px;
+    }
+
+    .button-wrapper {
+      grid-column: span 1; 
+      width: 100%;
+      margin-top: 10px;
     }
 
     .register-card {
@@ -194,20 +192,7 @@
       grid-template-columns: 1fr;
     }
     
-    .input-wrap.full-width, 
-    .btn-primary {
+    .input-wrap.full-width {
       grid-column: auto;
-    }
-  }
-  
-  @media (hover:hover) and (pointer:fine) {
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(52, 91, 219, 0.25);
-    }
-  
-    .form-footer a:hover,
-    .btn-primary:hover {
-      filter: brightness(1.2);
     }
   }

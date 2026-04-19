@@ -8,31 +8,53 @@
   
       <form class="login-form" 
       [formGroup]="form"
+      (ngSubmit)="onSubmit()"
       >
         <div class="input-group">
           <label for="email">Email Address</label>
           <auth-input 
-          placeHolder="Email..."
+          placeHolder="Enter your email..."
+          typeAs="email"
           formControlName="email"
           />
+          @if ( form.hasError('invalidLogin') ) {
+            <small>Invalid email or password. Please try again.</small>
+          }
         </div>
   
         <div class="input-group">
           <label for="password">Password</label>
           <auth-input 
-          placeHolder="Password..."
+          placeHolder="Enter your password..."
+          typeAs="password"
           formControlName="password"
           />
+          @if ( form.hasError('invalidLogin') ) {
+            <small>Invalid email or password. Please try again.</small>
+          }
         </div>
   
         <div class="form-actions">
           <label class="remember-me">
-            <input type="checkbox"> Remember me
+            <input 
+            type="checkbox" 
+            (change)="check($event)" 
+            [checked]="isChecked()"
+            > Remember me
           </label>
           <a href="#" class="forgot-password">Forgot password?</a>
         </div>
   
-        <button type="submit" class="login-button">Log In</button>
+        <ui-button 
+        variant="filled"
+        color="primary"
+        size="big"
+        type="submit"
+        [fullWidth]="true"
+        [disabled]="pending()"
+        >
+        Sign in
+        </ui-button>
       </form>
   
       <div class="signup-prompt">
