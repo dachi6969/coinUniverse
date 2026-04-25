@@ -1,0 +1,33 @@
+<div class="delete-card">
+    <div class="header">
+      <h3 class="title">Delete Account</h3>
+    </div>
+  
+    <div class="warning-box">
+      <i class="pi pi-exclamation-triangle"></i>
+      <div class="warning-text">
+        <strong>Warning:</strong> Once you delete your account, there is no going back. 
+        All your crypto tracking data and profile settings will be wiped from <strong>CoinUniverse</strong>.
+      </div>
+    </div>
+  
+    <div class="confirmation-section">
+      <label>Please type <strong>DELETE</strong> to confirm</label>
+      <div class="input-group">
+        <input 
+        type="text"  
+        placeholder="Type DELETE here..."
+        [value]="inputValue()"
+        (input)="inputValue.set($event.target.value)"
+        >
+      </div>
+  
+      <button 
+        class="delete-btn" 
+        [disabled]="!canDelete() || pending()"
+        (click)="onDeleteAccount()"
+        >
+        Delete
+      </button>
+    </div>
+  </div>

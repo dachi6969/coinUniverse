@@ -1,12 +1,12 @@
-.dashboard-layout{
-    min-height: 100vh;
-}
 
 .dashboard-wrap{
     flex: 1;
     margin-left: 300px;
 }
 
+.dashboard-layout{
+    /* min-height: 100vh; */
+}
 
 @media ( max-width: 900px ) {
     app-dashboard-sidebar {

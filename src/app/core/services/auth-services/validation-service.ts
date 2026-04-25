@@ -10,7 +10,7 @@ export class ValidationService {
 
   // required 
 
-  required(control: AbstractControl):ValidatorsType {
+  static required(control: AbstractControl):ValidatorsType {
     const value = control.value?.trim();
 
     const errors: any = {};
@@ -24,7 +24,7 @@ export class ValidationService {
   
     // username 
 
-  usernameValidation(control: AbstractControl):ValidatorsType {
+  static usernameValidation(control: AbstractControl):ValidatorsType {
     const value = control.value?.trim();
 
     if ( !value ) return null;
@@ -49,7 +49,7 @@ export class ValidationService {
 
     // email
 
-  emailValidation(control: AbstractControl): ValidatorsType {
+  static emailValidation(control: AbstractControl): ValidatorsType {
       const value = control.value?.trim();
     
       if (!value) return null;
@@ -68,7 +68,7 @@ export class ValidationService {
 
       // number 
 
-      numberValidation(control: AbstractControl):ValidatorsType {
+  static numberValidation(control: AbstractControl):ValidatorsType {
         const value = control.value;
   
         if ( !value ) return null;
@@ -90,11 +90,11 @@ export class ValidationService {
           error.tooLongNumb = true;
         }
         return Object.keys(error).length ? error : null;
-      }
+  }
 
     // password 
 
-    passwordValidation(control: AbstractControl):ValidatorsType {
+    static passwordValidation(control: AbstractControl):ValidatorsType {
       const value = control.value;
 
       if ( !value ) return null;

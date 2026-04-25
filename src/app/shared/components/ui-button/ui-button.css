@@ -58,16 +58,17 @@ button:disabled {
 }
   
 
-button.outlined:hover {
-    filter: brightness(1.1);
-}
-  
-
-/* shared for all button type */
-button:hover{
-    transform: scale(1.02);
-}
-button:active{
-    transform: scale(0.98);
-    filter: brightness(1.1);
+@media (hover:hover) and (pointer:fine) {
+    button.outlined:hover {
+        filter: brightness(1.1);
+    }
+      
+    /* shared for all button type */
+    button:hover{
+        transform: scale(1.01);
+    }
+    button:active{
+        transform: scale(0.98);
+        filter: brightness(1.1);
+    }
 }

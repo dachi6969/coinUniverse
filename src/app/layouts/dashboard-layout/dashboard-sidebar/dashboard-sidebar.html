@@ -9,7 +9,11 @@ class="sidebar-wrap"
         </div>
         <nav class="sidebar_nav">
             @for ( nav of navigation; track nav ) {
-                <a class="nav_link" [href]="nav.navTitle">
+                <a 
+                class="nav_link" 
+                [routerLink]="nav.navTitle.toLocaleLowerCase()" 
+                (click)="closeSidebar()"
+                >
                     <ng-container
                      *ngComponentOutlet="nav.icon; inputs: { size: 24, color: 'light' }">
                     </ng-container>
@@ -22,8 +26,11 @@ class="sidebar-wrap"
     </div>
     <div class="auth_nav">
         @if ( isUserLoggedIn() ) {
-            <button class="auth_btn">
-                Log out
+            <button class="auth_btn" (click)="logOut()">
+                <login-icon color="light" [size]="24"/>
+                <span>
+                    Log out
+                </span>
             </button>
         }@else {
             <button class="auth_btn" (click)="navToLoginPage()">

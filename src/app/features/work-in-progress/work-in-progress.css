@@ -1,0 +1,107 @@
+.coming-page {
+    min-height: 100dvh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    color: var(--text-primary);
+    font-family: 'Segoe UI', sans-serif;
+}
+  
+  .bg-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.25), transparent 70%);
+    filter: blur(80px);
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%   { transform: translateY(0px) }
+    50%  { transform: translateY(-40px) }
+    100% { transform: translateY(0px) }
+  }
+  
+  .visual-area {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .orbit {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed rgba(99, 102, 241, 0.3);
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 10s linear infinite;
+  }
+  
+  .planet {
+    font-size: 2.5rem;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 10px #6366f1);
+  }
+  
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .content {
+    text-align: center;
+    z-index: 2;
+    max-width: 600px;
+    padding: 20px;
+  }
+  
+  .content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #3b82f6, #22d3ee);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .content h2 {
+    margin-top: 10px;
+    font-size: 1.8rem;
+    opacity: 0.9;
+  }
+  
+  .content p {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #94a3b8;
+  }
+  
+  .actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  button {
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
+  
+button {
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    color: white;
+    box-shadow: 0 0 15px rgba(59,130,246,0.5);
+}
+

@@ -5,6 +5,11 @@ import { AuthLayout } from './layouts/auth-layout/auth-layout';
 import { LoginPage } from './features/auth/login/pages/login-page/login-page';
 import { RegisterPage } from './features/auth/register/pages/register-page/register-page';
 import { NotFoundPage } from './features/not-found/pages/not-found-page/not-found-page';
+import { ProfilePage } from './features/profile/pages/profile-page/profile-page';
+import { profileRedirectGuard } from './features/profile/guards/profile-redirect-guard';
+import { WorkInProgress } from './features/work-in-progress/work-in-progress';
+import { profileSlugGuard } from './features/profile/guards/profile-slug-guard';
+
 
 export const routes: Routes = [
 
@@ -13,7 +18,14 @@ export const routes: Routes = [
         component: DashboardLayout,
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-            { path: 'dashboard', component: DashboardPage }
+            { path: 'dashboard', component: DashboardPage },
+            { path: 'profile', component: ProfilePage, canActivate: [profileRedirectGuard] },
+            { path: 'profile/:firtname', component: ProfilePage, canActivate: [profileSlugGuard] },
+            { path: 'settings', component: WorkInProgress },
+            { path: 'portfolio', component: WorkInProgress },
+            { path: 'markets', component: WorkInProgress },
+            { path: 'notifications', component: WorkInProgress },
+            { path: 'charts', component: WorkInProgress },
         ]
     },
     {
@@ -27,6 +39,6 @@ export const routes: Routes = [
     },
 
     { path: 'not-found', component: NotFoundPage },
-    { path: "**", redirectTo: 'dashboard' }
+    { path: "**", redirectTo: 'not-found' }
 
 ];

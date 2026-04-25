@@ -10,7 +10,10 @@ export class DashboardLayoutService {
   public isDesktop = signal<boolean>(false);
   public isAuthModalOpen = signal<boolean>(false);
   public isSidebarOpen = signal<boolean>(false);
-  
+
+  public headerTitle = signal<string>('Dashboard');
+  public isProfilePage = signal<boolean>(false);
+
   private breakpointObserver = inject(BreakpointObserver);
 
   constructor() {
@@ -22,11 +25,11 @@ export class DashboardLayoutService {
     });
   };
 
-  openSidebar(): void {
+  public openSidebar(): void {
     this.isSidebarOpen.set(true);
   };
 
-  closeSidebar(): void {
+  public closeSidebar(): void {
     this.isSidebarOpen.set(false);
   };
 

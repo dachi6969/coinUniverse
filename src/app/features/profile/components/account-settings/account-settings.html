@@ -1,0 +1,56 @@
+<div class="settings-card">
+    <h3 class="card-title">Security Settings</h3>
+  
+    <div class="settings-section">
+      <label>Registered Email</label>
+      <div class="input-wrapper email">
+        <input type="email" [value]="user()?.email"  readonly class="readonly-input">
+        <span class="status-tag">Verified</span>
+      </div>
+      <div class="info-box">
+        <i class="pi pi-info-circle"></i>
+        <p>Email changes require manual verification for security reasons.</p>
+      </div>
+    </div>
+  
+    <form  class="settings-section" 
+    [formGroup]="form"
+    (ngSubmit)="onSaveChanges()"
+    >
+      <label>Change Password</label>
+      
+      <div class="password-grid">
+        <div class="input-wrapper">
+            <auth-input 
+            placeHolder="Enter New Password..."
+            typeAs="password"
+            formControlName="password"
+            />
+            <small>
+                {{ errorMessage() }}
+            </small>
+        </div>
+        <div class="input-wrapper">
+            <auth-input 
+            placeHolder="Confirm Password..."
+            typeAs="password"
+            formControlName="confirm"
+            [missMatch]="isPasswordMismatch()"
+            />
+        </div>
+      </div>
+  
+      <ui-button
+      color="primary"
+      size="big"
+      variant="filled"
+      type="submit"
+      [fullWidth]='true'
+      [disabled]="loading() || form.invalid || isPasswordMismatch()"
+      [loading]="loading()"
+      (onClick)="onSaveChanges()"
+      >
+        Save Changes
+      </ui-button>
+    </form>
+  </div>

@@ -1,0 +1,42 @@
+<div class="activity-container">
+    <h3 class="title">Recent Login Activity</h3>
+    
+    <div class="table-wrapper">
+      <table class="login-table">
+        <thead>
+          <tr>
+            <th>Date & Time</th>
+            <th>Device / Browser</th>
+            <th>IP Address</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+            @if ( loginHistory(); as lh ) {
+                @for (log of lh; track log.id) {
+                    <tr>
+                      <td class="date-cell">
+                        <span class="main-date">{{ log.created_at | date:'MMM d, y' }}</span>
+                        <span class="sub-date">{{ log.created_at | date:'HH:mm' }}</span>
+                      </td>
+                      <td class="device-cell">
+                        <i class="device-icon"></i> 
+                        {{ log.device_info.os }} 
+                        / {{ log.device_info.device }}
+                        / {{ log.device_info.browser }}
+                      </td>
+                      <td class="ip-cell">{{ log.ip_address || '192.168.1.1' }}</td>
+                      <td>
+                        <span class="status-badge success">Success</span>
+                      </td>
+                    </tr>
+                  } @empty {
+                    <tr>
+                      <td colspan="4" class="empty-state">No login history found.</td>
+                    </tr>
+                  }
+            }
+        </tbody>
+      </table>
+    </div>
+  </div>

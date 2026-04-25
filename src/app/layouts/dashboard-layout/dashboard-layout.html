@@ -1,17 +1,19 @@
 
-<div>
+<div class="dashboard-root">
 
     <app-dashboard-sidebar></app-dashboard-sidebar>
 
     <div class="dashboard-wrap">
-        <app-dashboard-header></app-dashboard-header>
+        @if ( !isProfilePage() || !isDesktop() ) {
+            <app-dashboard-header></app-dashboard-header>
+        }
         <div class="dashboard-layout">
             <router-outlet></router-outlet>
         </div>
+        <app-dashboard-footer></app-dashboard-footer>
     </div>
 
 <!-- pops in case notLoggedIn user tries to nav to profile -->
     <app-auth-modal></app-auth-modal> 
 
 </div>
-<!-- <app-dashboard-footer></app-dashboard-footer> -->

@@ -13,6 +13,7 @@ export class UiButton {
   public variant = input<'outlined' | 'filled'>('outlined');
   public size = input<'small' | 'medium' | 'big'>('medium');
   public type = input<'submit' | 'button'>('button');
+  public loading = input<boolean>(false);
   public fullWidth = input<boolean>(false);
   public disabled = input<boolean>(false);
 

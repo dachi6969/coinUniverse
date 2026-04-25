@@ -2,7 +2,7 @@
     <div>
         @if ( isDesktop() ) {
             <span class="header_title">
-                Dashboard
+                {{ headerTitle() | titlecase}}
             </span>
         }@else {    
             <div>

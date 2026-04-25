@@ -1,0 +1,62 @@
+<div class="profile-overview_wrap">
+  
+  <div class="profile-icon_wrap">
+    <div class="profile-img_container">
+      <img 
+        ngSrc="/test.png"
+        alt="profile image"
+        width="150"
+        height="150"
+        priority="true"
+        class="profile-img"
+      />
+      <span class="status-indicator"></span>
+    </div>
+
+    <div class="user-text_info">
+      <h3 class="username">
+        {{ user()?.firstname }} {{ user()?.lastname }}
+      </h3>
+      <p class="email">{{ user()?.email }}</p>
+      <span class="user-badge">Rank: 🐣 Rookie</span>
+    </div>
+  </div>
+
+    <!-- right side box -->
+  <div class="user-info_wrap">
+    <div class="info-card balance">
+      <span class="label">Total Balance</span>
+      <h2 class="value">${{ user()?.balance ?? 0 }}</h2>
+    </div>
+
+    <div class="info-card stats">
+      <div class="stat-row">
+        <span class="label">Status:</span>
+        <span class="status-active">Active</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">Email Status:</span>
+        <span class="value-small"
+        [ngClass]="user()?.email_verified ? 'verified' : 'unverified'"
+        >
+          {{ user()?.email_verified ? 'Verified' : 'Unverified' }}
+        </span>
+      </div>
+      <div class="stat-row">
+        <span class="label">Phone Status:</span>
+        <span class="value-small"
+        [ngClass]="user()?.phone_verified ? 'verified' : 'unverified'"
+        >
+          {{ user()?.phone_verified ? 'Verified' : 'Unverified' }}
+        </span>
+      </div>
+      <div class="stat-row">
+        <span class="label">Joined:</span>
+        <span class="value-small">
+          {{ userStatus()?.created_at | date }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+</div>

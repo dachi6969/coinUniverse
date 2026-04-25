@@ -1,0 +1,66 @@
+.error-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: var(--text-primary);
+    overflow: hidden;
+  }
+
+  .content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 32px;
+  }
+
+  h1 {
+    font-size: clamp(6rem, 15vw, 10rem);
+    font-weight: bold;
+    margin: 0;
+    line-height: 1;
+    
+    background: linear-gradient(180deg, var(--light) 40%, var(--primary));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px rgba(52, 91, 219, 0.3));
+  }
+  
+  h2 {
+    color: var(--text-secondary);
+    font-size: 32px;
+    font-weight: bold;
+    margin: 16px 0;
+    letter-spacing: 0.5px;
+  }
+  
+  p {
+    color: var(--text-muted);
+    max-width: 440px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  .actions button {
+    background-color: var(--primary);
+    color: var(--light);
+    border: 1px solid var(--primary-variant);
+    padding: 14px 36px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 20px -10px var(--primary);
+  }
+  
+
+  @media (hover:hover) and (pointer:fine) {
+    .actions button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 15px 30px -10px var(--primary);
+        border-color: var(--primary);
+    }
+  }

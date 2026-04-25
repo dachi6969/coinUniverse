@@ -1,0 +1,70 @@
+.activity-container {
+    height: 100%;
+    max-height: 450px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.activity-container .title {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.login-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.login-table th {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.login-table td {
+    padding: 1rem;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+}
+
+.login-table tr:hover {
+    background: rgba(59, 130, 246, 0.03); 
+}
+
+.login-table .date-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-table .date-cell .sub-date {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.login-table .status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.login-table .status-badge.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.login-table .ip-cell {
+    font-family: 'JetBrains Mono', monospace; 
+    color: var(--primary); 
+}

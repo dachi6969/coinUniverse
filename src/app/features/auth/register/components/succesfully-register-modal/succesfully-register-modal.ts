@@ -17,8 +17,10 @@ export class SuccesfullyRegisterModal {
   this.authService.isUserRegistered;
 
 
-  navToLoginPage(): void {
-    this.router.navigate(['/auth/login']);
+  public navToProfilePage(): void {
+    const user = this.authService.userData();
+
+    this.router.navigate(['profile', user?.firstname]);
     this.authService.resetRegistration();
   }
 

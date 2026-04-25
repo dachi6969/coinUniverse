@@ -9,11 +9,11 @@
 [style.background]="variant() === 'outlined' ? 'transparent' : selectedColor()"
 >
     <span class="button_content"
-    [style.visibility]="disabled() ? 'hidden' : 'visible'"
+    [style.visibility]="loading() ? 'hidden' : 'visible'"
     >
         <ng-content></ng-content>
     </span>
-    @if (disabled()) {
+    @if (loading()) {
         <div 
         class="spinner"
         [style.border-top-color]="variant() === 'outlined' ? selectedColor() : 'white'"
