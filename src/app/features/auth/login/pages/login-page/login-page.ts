@@ -7,6 +7,7 @@ import { AuthService } from '../../../../../core/services/auth-services/auth-ser
 import { UserData } from '../../../../../core/types/user-data.types';
 import { Router, RouterLink } from '@angular/router';
 import { EMAIL_VALIDATOR, PASSWORD_VALIDATOR } from '../../../../../core/services/auth-services/validators';
+import { SecurityService } from '../../../../../core/services/security-service/security-service';
 
 @Component({
   selector: 'app-login-page',
@@ -22,12 +23,13 @@ export class LoginPage {
   public isChecked = signal<boolean>(false);
 
   private authService = inject(AuthService);
+  private securityService = inject(SecurityService);
 
   private router = inject(Router);
   private fb = inject(FormBuilder);
 
   // forms!
-  public form = this.fb.group({
+  public readonly form = this.fb.group({
     email: ['', EMAIL_VALIDATOR],
     password: ['', PASSWORD_VALIDATOR]
   }, { updateOn: 'submit' });
@@ -54,9 +56,10 @@ export class LoginPage {
 
       localStorage.setItem('rememberedEmail',email ?? '');
     };
-
+    
+    this.pending.set(false);
     this.form.reset();
-    this.authService.updateLoginHistory()
+    this.securityService.updateLoginHistory()
     
     this.router.navigate(['/profile', user?.firstname ]);
 }
@@ -84,9 +87,7 @@ export class LoginPage {
       return;
     }
 
-    this.pending.set(false);
     this.loginDone();
-
   }
 
   public check(event: Event) {

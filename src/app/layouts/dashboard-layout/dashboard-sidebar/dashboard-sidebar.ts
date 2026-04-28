@@ -6,11 +6,17 @@ import { AuthService } from '../../../core/services/auth-services/auth-service';
 import { Router, RouterLink } from '@angular/router';
 import { LoginIcon } from "../../../shared/icons/login-icon/login-icon";
 import { navigation } from './sidebar-nav-list';
-
+import { DisableIfDirective } from '../../../shared/directives/disable-if-directive';
 
 @Component({
   selector: 'app-dashboard-sidebar',
-  imports: [LogoIcon, NgComponentOutlet, LoginIcon, RouterLink],
+  imports: [
+    LogoIcon, 
+    NgComponentOutlet, 
+    LoginIcon, 
+    RouterLink, 
+    DisableIfDirective
+  ],
   templateUrl: './dashboard-sidebar.html',
   styleUrl: './dashboard-sidebar.css',
 })

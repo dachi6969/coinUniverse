@@ -4,10 +4,6 @@
     margin-left: 300px;
 }
 
-.dashboard-layout{
-    /* min-height: 100vh; */
-}
-
 @media ( max-width: 900px ) {
     app-dashboard-sidebar {
         display: none;

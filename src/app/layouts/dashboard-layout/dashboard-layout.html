@@ -16,4 +16,12 @@
 <!-- pops in case notLoggedIn user tries to nav to profile -->
     <app-auth-modal></app-auth-modal> 
 
+    <!-- new notification touste which pops for 3sec -->
+    @if ( newNotifi() ) {
+        <dashboard-notification
+        [newNotification]="newNotifi()"
+        (close)="close()"
+        ></dashboard-notification>
+    }
+
 </div>

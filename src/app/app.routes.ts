@@ -9,6 +9,8 @@ import { ProfilePage } from './features/profile/pages/profile-page/profile-page'
 import { profileRedirectGuard } from './features/profile/guards/profile-redirect-guard';
 import { WorkInProgress } from './features/work-in-progress/work-in-progress';
 import { profileSlugGuard } from './features/profile/guards/profile-slug-guard';
+import { NotificationsPage } from './features/user-notifications/pages/notifications-page/notifications-page';
+import { notificationsGuard } from './features/user-notifications/guards/notifications-guard';
 
 
 export const routes: Routes = [
@@ -19,12 +21,24 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardPage },
-            { path: 'profile', component: ProfilePage, canActivate: [profileRedirectGuard] },
-            { path: 'profile/:firtname', component: ProfilePage, canActivate: [profileSlugGuard] },
+            { 
+                path: 'profile', 
+                component: ProfilePage, 
+                canActivate: [profileRedirectGuard] 
+            },
+            { 
+                path: 'profile/:firtname', 
+                component: ProfilePage, 
+                canActivate: [profileSlugGuard] 
+            },
+            { 
+                path: 'notifications', 
+                component: NotificationsPage, 
+                canActivate: [notificationsGuard] 
+            },
             { path: 'settings', component: WorkInProgress },
             { path: 'portfolio', component: WorkInProgress },
             { path: 'markets', component: WorkInProgress },
-            { path: 'notifications', component: WorkInProgress },
             { path: 'charts', component: WorkInProgress },
         ]
     },

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../../../core/services/auth-services/auth-service';
 import { CommonModule } from '@angular/common';
+import { SecurityService } from '../../../../core/services/security-service/security-service';
 
 @Component({
   selector: 'login-history-table',
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginHistoryTable {
 
-  private authService = inject(AuthService);
-  public loginHistory = this.authService.loginHistory;
+  private securityService = inject(SecurityService);
+  public loginHistory = this.securityService.loginHistory;
 
 }

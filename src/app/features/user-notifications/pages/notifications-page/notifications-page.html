@@ -1,0 +1,75 @@
+<main class="notifications-page_wrap">
+    <div class="notifications_table">
+
+        <!-- Header -->
+        <div class="table_header">
+            <div class="search-bar_wrap">
+                <search-icon 
+                    color="light" 
+                    [size]="20" 
+                />
+                <input 
+                    class="search-bar"
+                    type="search"
+                    placeholder="Search notifications..."
+                    [value]="searchVal()"
+                    (input)="searchVal.set($event.target.value)"
+                />
+            </div>
+
+            <ui-button
+                color="light"
+                size="small"
+                variant="outlined"
+                (onClick)="deleteAll()"
+                [disabled]="!currentNotifi().length"
+            >
+                Clear all
+            </ui-button>
+        </div>
+
+        <!-- Content -->
+        <div class="table_content">
+            @if ( isLoading() ) {
+                <notifications-skeleton></notifications-skeleton>
+            }
+            @if ( currentNotifi(); as notifi ) {
+                @for ( n of notifi; track n.id ) {
+                    <div class="content"
+                    (click)="openMessage(n)"
+                    >
+
+                        <div class="status-indicator"></div>
+
+                        <div class="content_main">
+                            <div class="content_title">
+                                {{ n.title | titlecase }}
+                            </div>
+
+                            <div class="content_body">
+                                {{ n.message }}
+                            </div>
+                        </div>
+
+                        <span class="content_date">
+                            {{ n.created_at | date: 'shortTime' }}
+                        </span>
+
+                    </div>
+                }@empty {
+                    <div class="empty-state">
+                        <p>0 Notifications...</p>
+                        <span>Your Activities will appear here.</span>
+                    </div> 
+                }
+            }
+            @if ( isNotificationOpen() && selectedMessage() ) {
+                <open-notification 
+                (goBack)="closeMessage()"
+                [message]="selectedMessage()"
+                ></open-notification>
+            }
+        </div>
+
+    </div>
+</main>

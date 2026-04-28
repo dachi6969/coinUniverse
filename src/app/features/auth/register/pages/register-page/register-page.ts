@@ -11,7 +11,14 @@ import { EMAIL_VALIDATOR, NUMBER_VALIDATOR, PASSWORD_VALIDATOR, USERNAME_VALIDAT
 
 @Component({
   selector: 'app-register-page',
-  imports: [LogoIcon, AuthInput, ReactiveFormsModule, SuccesfullyRegisterModal, UiButton, RouterLink],
+  imports: [
+    LogoIcon, 
+    AuthInput, 
+    ReactiveFormsModule, 
+    SuccesfullyRegisterModal, 
+    UiButton, 
+    RouterLink
+  ],
   templateUrl: './register-page.html',
   styleUrl: './register-page.css',
 })
@@ -33,7 +40,6 @@ export class RegisterPage {
     confirm: ['']
   }, { updateOn: 'blur' });
 
-
   // checking if password = confirm.
   public isPasswordMismatch() {
     const { password, confirm } = this.form.getRawValue();
@@ -43,7 +49,8 @@ export class RegisterPage {
     false
   };
 
-  private registerDone(): void {
+  private async registerDone() {
+    this.pending.set(false); 
     this.form.reset();
     this.authService.registerUser();
   }
@@ -52,6 +59,9 @@ export class RegisterPage {
   public async onSubmit() {
     this.form.markAllAsTouched();
     this.form.markAllAsDirty();
+    
+    if ( this.form.invalid ) return;
+    this.pending.set(true); 
 
     const { 
       email, 
@@ -60,9 +70,6 @@ export class RegisterPage {
       lastname, 
       number 
     } = this.form.getRawValue();
-
-    if ( this.form.invalid ) return;
-    this.pending.set(true); 
 
     // checking if email is duplicated!
     if ( await this.userService.checkEmail(email ?? '') ) {
@@ -85,7 +92,7 @@ export class RegisterPage {
         data: {
           firstname: firstname ?? '',
           lastname: lastname ?? '',
-          number: number ?? ''
+          number: number ?? '',
         }
       }
     });
@@ -95,7 +102,6 @@ export class RegisterPage {
       return;
     }
 
-    this.pending.set(true); 
     this.registerDone();
   }
 

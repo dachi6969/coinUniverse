@@ -76,6 +76,11 @@
     cursor: pointer;
 }
 
+.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+}
 
 @media (hover:hover) and (pointer:fine) {
     .nav_link:hover{

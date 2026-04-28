@@ -1,0 +1,26 @@
+@if ( newNotification(); as new ) {
+    <div class="toast-container">
+
+        <div 
+        [class]="`toast-card ` + new.type"
+        >
+          <div class="toast-icon">
+
+          </div>
+          <div class="toast-body">
+            <div class="toast-title">
+                {{ new.title }}
+            </div>
+            <div class="toast-msg">
+              {{ new.message }}
+            </div>
+          </div>
+            <button class="toast-close"
+            (click)="closeNotification()"
+            >
+            ✕
+            </button>
+        </div>
+      
+    </div>
+}
