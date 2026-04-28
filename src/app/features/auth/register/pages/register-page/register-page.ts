@@ -7,7 +7,7 @@ import { SuccesfullyRegisterModal } from "../../components/succesfully-register-
 import { UiButton } from "../../../../../shared/components/ui-button/ui-button";
 import { UserService } from '../../../../../core/services/user-service/user-service';
 import { RouterLink } from "@angular/router";
-import { EMAIL_VALIDATOR, NUMBER_VALIDATOR, PASSWORD_VALIDATOR, USERNAME_VALIDATOR } from '../../../../../core/services/auth-services/validators';
+import { CONFIRM_VALIDATOR, EMAIL_VALIDATOR, NUMBER_VALIDATOR, PASSWORD_VALIDATOR, USERNAME_VALIDATOR } from '../../../../../core/services/auth-services/validators';
 
 @Component({
   selector: 'app-register-page',
@@ -37,17 +37,8 @@ export class RegisterPage {
     email: ['', EMAIL_VALIDATOR],
     number: ['', NUMBER_VALIDATOR],
     password: ['', PASSWORD_VALIDATOR],
-    confirm: ['']
+    confirm: ['', CONFIRM_VALIDATOR]
   }, { updateOn: 'blur' });
-
-  // checking if password = confirm.
-  public isPasswordMismatch() {
-    const { password, confirm } = this.form.getRawValue();
-
-    return confirm !== '' ? 
-    confirm !== password : 
-    false
-  };
 
   private async registerDone() {
     this.pending.set(false); 

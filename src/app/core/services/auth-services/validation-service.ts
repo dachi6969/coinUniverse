@@ -121,5 +121,23 @@ export class ValidationService {
       return Object.keys(error).length ? error : null;
     }
 
+    static confirmValidation(control:AbstractControl): ValidatorsType {
+      const value = control.value;
+      const password = control.parent?.get('password')?.value;
+
+      if ( !value ) return null;
+
+      const error: any = {};
+
+      const isMissMatch = value !== password;
+
+      if ( isMissMatch ) {
+        error.missMatch = true;
+      }
+
+      return Object.keys(error).length ? error : null;
+
+    }
+
 
 }

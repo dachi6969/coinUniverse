@@ -35,7 +35,6 @@
             placeHolder="Confirm Password..."
             typeAs="password"
             formControlName="confirm"
-            [missMatch]="isPasswordMismatch()"
             />
         </div>
       </div>
@@ -46,7 +45,7 @@
       variant="filled"
       type="submit"
       [fullWidth]='true'
-      [disabled]="loading() || form.invalid || isPasswordMismatch()"
+      [disabled]="loading() || form.invalid"
       [loading]="loading()"
       (onClick)="onSaveChanges()"
       >

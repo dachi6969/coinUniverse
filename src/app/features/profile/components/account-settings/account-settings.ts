@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { AuthInput } from "../../../../shared/components/auth-input/auth-input";
 import { FormBuilder, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth-services/auth-service';
-import { PASSWORD_VALIDATOR, REQUIRED_VALIDATOR } from '../../../../core/services/auth-services/validators';
+import { CONFIRM_VALIDATOR, PASSWORD_VALIDATOR } from '../../../../core/services/auth-services/validators';
 import { UiButton } from "../../../../shared/components/ui-button/ui-button";
 
 @Component({
@@ -25,20 +25,12 @@ export class AccountSettings {
 
   public form = this.fb.group({
     password: ['', PASSWORD_VALIDATOR],
-    confirm: ['', REQUIRED_VALIDATOR]
+    confirm: ['', CONFIRM_VALIDATOR]
   }, 
   { updateOn: 'change' });
 
-  public isPasswordMismatch(): boolean {
-    const { password, confirm } = this.form.getRawValue();
-
-    return confirm !== '' ? 
-    confirm !== password : 
-    false
-  };
-
   public async onSaveChanges() {
-  if (this.form.invalid || this.isPasswordMismatch()) return;
+  if ( this.form.invalid ) return;
 
   const { password } = this.form.getRawValue();
 

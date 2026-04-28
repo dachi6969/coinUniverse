@@ -12,7 +12,6 @@ export class AuthInput implements ControlValueAccessor {
 
   typeAs = input<HTMLInputElement['type']>();
   placeHolder = input<string>();
-  missMatch = input(false);
 
   value = signal('');
   disabled = signal<boolean>(false);
@@ -52,7 +51,6 @@ export class AuthInput implements ControlValueAccessor {
       ) {
       return this.ngControl.errors
     }
-    if (this.missMatch()) return { missMatch: true }
     return null
   }
 

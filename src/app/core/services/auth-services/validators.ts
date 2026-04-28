@@ -19,3 +19,7 @@ export const PASSWORD_VALIDATOR = [
     ValidationService.required,
     ValidationService.passwordValidation
 ];
+export const CONFIRM_VALIDATOR = [
+    ValidationService.required,
+    ValidationService.confirmValidation
+]
