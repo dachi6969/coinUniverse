@@ -9,16 +9,14 @@ import { Router } from '@angular/router';
   styleUrl: './account-deletion.css',
 })
 export class AccountDeletion {
-
-  readonly inputValue = signal('');
+  public readonly inputValue = signal('');
 
   public canDelete = signal<boolean>(false);
   public pending = signal<boolean>(false);
 
-  private authService = inject(AuthService);
-  private supabase = this.authService.supabase;
-
-  private router = inject(Router);
+  private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
+  private readonly supabase = this.authService.supabase;
 
   constructor() {
     effect(() => {
@@ -31,25 +29,32 @@ export class AccountDeletion {
     })
   }
 
-  private async deletionDone() {
+  private async deletionDone(): Promise<void> {
     await this.supabase.auth.signOut();
     this.router.navigate(['/dashboard']);
   }
 
-  public async onDeleteAccount() {
+  public async onDeleteAccount(): Promise<void> {
     if ( !this.canDelete() ) return;
 
-    this.pending.set(true);
+    try{
+      this.pending.set(true);
+      const { data, error } = 
+      await this.supabase
+      .rpc('delete_user_account');
 
-    const { data, error } = await this.supabase.rpc('delete_user_account');
-  
-    if (error) {
-      console.error('Error deleting account:', error.message);
-      this.pending.set(false);
-    } else {
+      if (error) {
+        console.error('supabase deletion error:', error.message);
+        return;
+      }
       this.deletionDone();
-      this.pending.set(false);
     }
+    catch(err) {
+      console.error(err);
+    }
+    finally{
+      this.pending.set(false);
+    };
   }
 
 }

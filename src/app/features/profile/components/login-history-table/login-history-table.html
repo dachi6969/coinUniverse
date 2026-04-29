@@ -12,12 +12,16 @@
           </tr>
         </thead>
         <tbody>
-            @if ( loginHistory(); as lh ) {
+            @if ( history(); as lh ) {
                 @for (log of lh; track log.id) {
                     <tr>
                       <td class="date-cell">
-                        <span class="main-date">{{ log.created_at | date:'MMM d, y' }}</span>
-                        <span class="sub-date">{{ log.created_at | date:'HH:mm' }}</span>
+                        <span class="main-date">
+                          {{ log.created_at | date:'MMM d, y' }}
+                        </span>
+                        <span class="sub-date">
+                          {{ log.created_at | date:'HH:mm' }}
+                        </span>
                       </td>
                       <td class="device-cell">
                         <i class="device-icon"></i> 
@@ -25,14 +29,18 @@
                         / {{ log.device_info.device }}
                         / {{ log.device_info.browser }}
                       </td>
-                      <td class="ip-cell">{{ log.ip_address || '192.168.1.1' }}</td>
+                      <td class="ip-cell">{{ log.ip_address }}</td>
                       <td>
-                        <span class="status-badge success">Success</span>
+                        <span class="status-badge success">
+                          Success
+                        </span>
                       </td>
                     </tr>
                   } @empty {
                     <tr>
-                      <td colspan="4" class="empty-state">No login history found.</td>
+                      <td colspan="4" class="empty-state">
+                        No login history found.
+                      </td>
                     </tr>
                   }
             }

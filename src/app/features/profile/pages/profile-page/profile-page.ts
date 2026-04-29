@@ -4,18 +4,32 @@ import { LoginHistoryTable } from "../../components/login-history-table/login-hi
 import { AccountSettings } from "../../components/account-settings/account-settings";
 import { AccountDeletion } from "../../components/account-deletion/account-deletion";
 import { DashboardLayoutService } from '../../../../layouts/dashboard-layout/services/dashboard-layout-service';
+import { SecurityService } from '../../../../core/services/security-service/security-service';
+import { AuthService } from '../../../../core/services/auth-services/auth-service';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [ProfileOverview, LoginHistoryTable, AccountSettings, AccountDeletion],
+  imports: [
+    ProfileOverview, 
+    LoginHistoryTable, 
+    AccountSettings, 
+    AccountDeletion
+  ],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.css',
 })
 export class ProfilePage implements OnDestroy {
+  private readonly dashboardLayoutService = inject(DashboardLayoutService);
 
-  private dashboardLayoutService = inject(DashboardLayoutService)
+  private readonly securityService = inject(SecurityService);
+  public readonly loginHistory = 
+  this.securityService.loginHistory;
+
+  private readonly authService = inject(AuthService);
+  public readonly user = this.authService.userData;
+  public readonly userStatus = this.authService.userStatusData;
 
   ngOnDestroy(): void {
-    this.dashboardLayoutService.isProfilePage.set(false)
+    this.dashboardLayoutService.isProfilePage.set(false);
   }
 }

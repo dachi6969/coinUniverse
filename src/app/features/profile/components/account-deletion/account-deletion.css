@@ -38,12 +38,6 @@
     align-items: flex-start;
 }
 
-.warning-box i {
-    color: var(--danger);
-    font-size: 1.2rem;
-    margin-top: 2px;
-}
-
 .warning-box .warning-text {
     color: #94a3b8;
     font-size: 0.85rem;

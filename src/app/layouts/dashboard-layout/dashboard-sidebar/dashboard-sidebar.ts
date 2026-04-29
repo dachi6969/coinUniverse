@@ -21,17 +21,16 @@ import { DisableIfDirective } from '../../../shared/directives/disable-if-direct
   styleUrl: './dashboard-sidebar.css',
 })
 export class DashboardSidebar {
+  private readonly router = inject(Router);
 
-  private router = inject(Router);
+  private readonly dashboardLayoutService = inject(DashboardLayoutService);
+  public readonly isDesktop = this.dashboardLayoutService.isDesktop;
 
-  private dashboardLayoutService = inject(DashboardLayoutService);
-  public isDesktop = this.dashboardLayoutService.isDesktop;
-
-  private authService = inject(AuthService);
-  public isUserLoggedIn = 
+  private readonly authService = inject(AuthService);
+  public readonly isUserLoggedIn = 
   this.authService.isUserLoggedIn;
 
-  public navigation = navigation;
+  public readonly navigation = navigation;
 
   public closeSidebar(): void {
     this.dashboardLayoutService.closeSidebar();

@@ -13,10 +13,10 @@ export class DashboardService {
   
   private coinsRequest$?: Observable<Coin[]>;
 
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   // fetching current selected coin prices( for chart !).
-  oneDayResults(id: string): Observable<MarketChartResponse>{
+  public oneDayResults(id: string): Observable<MarketChartResponse>{
     return this.http.get<MarketChartResponse>(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1`)
     .pipe(
       tap(() => console.log('this is oneDayResults request') ),
@@ -25,7 +25,7 @@ export class DashboardService {
   }
 
   // fetching top100 coin data.
-  getCoinsData(): Observable<Coin[]> { 
+  public getCoinsData(): Observable<Coin[]> { 
 
     if (!this.coinsRequest$) {
       this.coinsRequest$ = this.http.get<Coin[]>(TOP_100_COIN_URL).pipe(
@@ -38,7 +38,7 @@ export class DashboardService {
   };
 
   // fetching top 50 exchange platform data.
-  getTopCryptoExchanges(): Observable<CryptoExchange[]>{
+  public getTopCryptoExchanges(): Observable<CryptoExchange[]>{
     return this.http.get<CryptoExchange[]>('https://api.coingecko.com/api/v3/exchanges?per_page=50').pipe(
       tap(() => console.log('this is getTopCryptoExchanges request') ),
       shareReplay(1)

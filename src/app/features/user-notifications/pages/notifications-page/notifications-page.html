@@ -38,8 +38,10 @@
                     <div class="content"
                     (click)="openMessage(n)"
                     >
-
-                        <div class="status-indicator"></div>
+                        <div 
+                        class="status-indicator" 
+                        [ngClass]="n.is_read ? 'read' : 'unread'">
+                        </div>
 
                         <div class="content_main">
                             <div class="content_title">

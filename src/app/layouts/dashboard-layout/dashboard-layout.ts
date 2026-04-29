@@ -23,16 +23,16 @@ import { UserNotifyService } from '../../core/services/user-notifications/user-n
 })
 export class DashboardLayout {
 
-  private dashboardLayoutService = inject(DashboardLayoutService);
-  private nService = inject(UserNotifyService)
+  private readonly dashboardLayoutService = inject(DashboardLayoutService);
+  private readonly nService = inject(UserNotifyService)
 
-  public newNotifi = 
+  public readonly newNotifi = 
   this.nService.isNewNotification;
 
-  public isProfilePage = 
+  public readonly isProfilePage = 
   this.dashboardLayoutService.isProfilePage;
 
-  public isDesktop =
+  public readonly isDesktop =
   this.dashboardLayoutService.isDesktop;
 
   close() {

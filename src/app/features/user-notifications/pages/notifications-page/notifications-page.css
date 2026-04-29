@@ -94,12 +94,19 @@
     width: 8px;
     height: 8px;
     margin-top: 6px;
-
     border-radius: 50%;
-    background-color: #38bdf8;
-
     flex-shrink: 0;
+    transition: all 0.2s ease; 
+}
+
+.status-indicator.unread {
+    background-color: #38bdf8;
     box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+}
+
+.status-indicator.read {
+    background-color: #94a3b8; 
+    box-shadow: none; 
 }
 
 .content_main {

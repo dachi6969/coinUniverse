@@ -10,8 +10,5 @@ import { TableSkeleton } from "../top-performers-table/table-skeleton/table-skel
   styleUrl: './top-exchanges-table.css',
 })
 export class TopExchangesTable {
-
-  readonly data = input< CryptoExchange[] | null >(null);
-
-
+  public readonly data = input< CryptoExchange[] | null >(null);
 }

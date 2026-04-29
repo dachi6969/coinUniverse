@@ -10,7 +10,7 @@ import { LivePrices } from '../../types/live-prices.types';
 })
 export class LiveStreamService {
 
-  private dashboardService = inject(DashboardService);
+  private readonly dashboardService = inject(DashboardService);
 
   // filtering top50 coin from coinGecko API
   public topCoins$: Observable<Coin[]> = 

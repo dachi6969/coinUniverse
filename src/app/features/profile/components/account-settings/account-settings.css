@@ -106,11 +106,6 @@
     align-items: center;
   }
   
-  .info-box i {
-    color: #3b82f6;
-    font-size: 1rem;
-  }
-  
   .info-box p {
     color: #64748b;
     font-size: 0.8rem;

@@ -8,12 +8,11 @@
         <span class="status-tag">Verified</span>
       </div>
       <div class="info-box">
-        <i class="pi pi-info-circle"></i>
         <p>Email changes require manual verification for security reasons.</p>
       </div>
     </div>
   
-    <form  class="settings-section" 
+    <form class="settings-section" 
     [formGroup]="form"
     (ngSubmit)="onSaveChanges()"
     >
@@ -47,7 +46,6 @@
       [fullWidth]='true'
       [disabled]="loading() || form.invalid"
       [loading]="loading()"
-      (onClick)="onSaveChanges()"
       >
         Save Changes
       </ui-button>

@@ -18,7 +18,7 @@
           formControlName="email"
           />
           @if ( form.hasError('invalidLogin') ) {
-            <small>Invalid email or password. Please try again.</small>
+            <small>{{ errMsg }}</small>
           }
         </div>
   
@@ -30,7 +30,7 @@
           formControlName="password"
           />
           @if ( form.hasError('invalidLogin') ) {
-            <small>Invalid email or password. Please try again.</small>
+            <small>{{ errMsg }}</small>
           }
         </div>
   
@@ -38,7 +38,7 @@
           <label class="remember-me">
             <input 
             type="checkbox" 
-            (change)="check($event)" 
+            (change)="isChecked.set($event.target.checked)"
             [checked]="isChecked()"
             > Remember me
           </label>

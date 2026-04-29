@@ -45,3 +45,9 @@ input.error:focus {
     background: var(--bg-surface);
     box-shadow: 0 0 0 4px rgba(235, 64, 52, 0.15);
 }
+
+input:disabled {
+    opacity: 0.6;
+    background: var(--bg-input);
+    color: var(--text-muted);
+}

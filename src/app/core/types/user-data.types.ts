@@ -23,19 +23,19 @@ export interface CreateUserDTO {
 
 export interface UserStatus {
     id: string;
-    aud: string; // "authenticated"
-    role: string; // "authenticated"
+    aud: string; // authenticated
+    role: string; // authenticated
   
     email: string;
     phone: string;
   
     is_anonymous: boolean;
   
-    created_at: string; // ISO date
-    updated_at: string; // ISO date
-    confirmed_at: string | null; // ISO date or null
-    email_confirmed_at: string | null; // ISO date or null
-    last_sign_in_at: string | null; // ISO date or null
+    created_at: string; 
+    updated_at: string; 
+    confirmed_at: string | null;
+    email_confirmed_at: string | null;
+    last_sign_in_at: string | null;
   
     identities: Identity[];
   }

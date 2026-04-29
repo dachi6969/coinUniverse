@@ -2,10 +2,15 @@
 
     <div class="dashboard-content_wraper">
         <div class="box box1">
-            <profile-overview></profile-overview>
+            <profile-overview 
+            [user]="user()" 
+            [userStatus]="userStatus()"
+            ></profile-overview>
         </div>
         <div class="box box2">
-            <login-history-table></login-history-table>
+            <login-history-table 
+            [history]="loginHistory()"
+            ></login-history-table>
         </div>
         <div class="box box3">
             <account-settings></account-settings>

@@ -10,11 +10,11 @@ import { SessionType } from '../../types/auth-types';
 })
 export class SecurityService {
 
-  private http = inject(HttpClient);
-  private authService = inject(AuthService);
+  private readonly http = inject(HttpClient);
+  private readonly authService = inject(AuthService);
   private readonly supabase = this.authService.supabase;
 
-  private deviceParser = parseUserAgent;
+  private readonly deviceParser = parseUserAgent;
 
   public loginHistory = signal<SessionType[] | null>(null);
 

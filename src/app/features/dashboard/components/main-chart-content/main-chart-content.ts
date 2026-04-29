@@ -13,8 +13,8 @@ import { DashboardState } from '../../../../core/types/coin-types';
 })
 export class MainChartContent {
 
-  readonly perDayPrice = input<number[] | null>(null);
-  readonly combinedData = input<DashboardState | null>();
+  public readonly perDayPrice = input<number[] | null>(null);
+  public readonly combinedData = input<DashboardState | null>();
 
 
 }

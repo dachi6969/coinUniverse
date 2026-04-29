@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SecurityService } from '../../../../core/services/security-service/security-service';
+import { SessionType } from '../../../../core/types/auth-types';
 
 @Component({
   selector: 'login-history-table',
@@ -9,8 +9,5 @@ import { SecurityService } from '../../../../core/services/security-service/secu
   styleUrl: './login-history-table.css',
 })
 export class LoginHistoryTable {
-
-  private securityService = inject(SecurityService);
-  public loginHistory = this.securityService.loginHistory;
-
+  public history = input<SessionType[] | null>([]);
 }

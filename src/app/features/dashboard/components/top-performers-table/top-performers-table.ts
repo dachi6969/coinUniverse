@@ -15,10 +15,10 @@ import { BenefitIndicator } from '../../../../shared/directives/benefit-indicato
 })
 export class TopPerformersTable {
 
-  readonly data = 
+  public readonly data = 
   input< Coin[] | null >(null);
 
-  readonly livePrices = 
+  public readonly livePrices = 
   input< LivePrices | null >(null);
 
 }

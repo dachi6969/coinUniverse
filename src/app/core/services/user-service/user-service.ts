@@ -6,8 +6,8 @@ import { AuthService } from '../auth-services/auth-service';
 })
 export class UserService {
 
-  private authService = inject(AuthService);
-  private supabase = this.authService.supabase;
+  private readonly authService = inject(AuthService);
+  private readonly supabase = this.authService.supabase;
 
   public async checkEmail(email: string): Promise<boolean> {
     if (!email) return false;
@@ -19,7 +19,6 @@ export class UserService {
       console.error('RPC Error:', error);
       return false;
     }
-  
     if (isTaken) return true;
     
     return false; 

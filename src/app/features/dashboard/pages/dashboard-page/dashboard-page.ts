@@ -11,7 +11,13 @@ import { LiveStreamService } from '../../../../core/services/dashboard-services/
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [CommonModule, TopPerformersTable, DashboardHighlights, MainChartContent, TopExchangesTable],
+  imports: [
+    CommonModule, 
+    TopPerformersTable, 
+    DashboardHighlights, 
+    MainChartContent, 
+    TopExchangesTable
+  ],
   templateUrl: './dashboard-page.html',
   styleUrl: './dashboard-page.css',
 })
@@ -20,19 +26,19 @@ export class DashboardPage {
   private mainDashboardService = inject(MainDashboardService);
   private liveStreamService = inject(LiveStreamService)
 
-  readonly dashboardData$: Observable<DashboardData> = 
+  public readonly dashboardData$: Observable<DashboardData> = 
   this.mainDashboardService.dashboardData$;
 
-  readonly topCoins$: Observable<DashboardData> = 
+  public readonly topCoins$: Observable<DashboardData> = 
   this.mainDashboardService.dashboardData$;
 
-  readonly perDayPrices$: Observable<number[] | null> = 
+  public readonly perDayPrices$: Observable<number[] | null> = 
   this.mainDashboardService.last24hPrices$;
 
-  readonly selectedCoin$ = 
+  private readonly selectedCoin$ = 
   this.mainDashboardService.selectedCoin$;
 
-  readonly cs$: any = 
+  public readonly cs$: any = 
   combineLatest(
     this.topCoins$,
     this.selectedCoin$,
@@ -42,13 +48,13 @@ export class DashboardPage {
     })
   );
 
-  readonly cryptoExchanges$: Observable<CryptoExchange[]> = 
+  public readonly cryptoExchanges$: Observable<CryptoExchange[]> = 
   this.mainDashboardService.exchangesData$;
 
-  readonly top100Coin$ = 
+  public readonly top100Coin$ = 
   this.liveStreamService.topCoins$;
 
-  readonly livePrices$ = 
+  public readonly livePrices$ = 
   this.liveStreamService.livePrices$;
 
 }

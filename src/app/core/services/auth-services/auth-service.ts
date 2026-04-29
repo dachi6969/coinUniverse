@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../../enviroments/supa-base-env';
-import { UserData, UserStatus } from '../../types/user-data.types';
+import { CreateUserDTO, UserData, UserStatus } from '../../types/user-data.types';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Router } from '@angular/router';
 import { Session } from '@supabase/supabase-js';
@@ -10,7 +10,7 @@ import { Session } from '@supabase/supabase-js';
 })
 export class AuthService {
     
-  public supabase: SupabaseClient =  
+  public readonly supabase: SupabaseClient =  
   createClient(environment.supabaseUrl, environment.supabaseKey); // SupaBase SDK.
 
   public isUserLoggedIn = signal<boolean>(false);
@@ -20,7 +20,7 @@ export class AuthService {
   public userData = signal< UserData | null >(null); // current user info.
   public userStatusData = signal<UserStatus | null>(null);
 
-  private router = inject(Router);
+  private readonly router = inject(Router);
 
   constructor() {
     this.supabase.auth.onAuthStateChange((event, session) => {
@@ -39,11 +39,12 @@ export class AuthService {
     });
   }
 
-  private async handleUserLogin(session: Session) {
+  private async handleUserLogin(session: Session): Promise<void> {
     this.userData.set(session.user.user_metadata as UserData);
     this.userStatusData.set(session.user as UserStatus);
 
-    const { data, error } = await this.supabase
+    const { data, error } = 
+    await this.supabase
       .from('profiles')
       .select('*')
       .eq('id', session.user.id)
@@ -52,6 +53,46 @@ export class AuthService {
     if (data && !error) {
       this.userData.update(prev => prev ? { ...prev, ...data } : data);
     }
+  };
+
+  public async signIn(email: string, password: string) {
+    const { data, error } = 
+    await this.supabase
+    .auth
+    .signInWithPassword({
+      email,
+      password
+    });
+  
+    return { data, error };
+  };
+
+  public async signUp(user: CreateUserDTO) {
+    const { data, error } = 
+    await this.supabase
+    .auth
+    .signUp({
+      email: user.email ?? '',   
+      password: user.password ?? '', 
+      options: {
+        data: {
+          firstname: user.firstname ?? '',
+          lastname: user.lastname ?? '',
+          number: user.number ?? '',
+        }
+      }
+    });
+  
+    return { data, error };
+  };
+
+  public async updateUser(pass: string){
+    const { error } = 
+    await this.supabase
+    .auth.updateUser({
+      password: pass
+    });
+    return { error };
   };
 
   // METHODS.

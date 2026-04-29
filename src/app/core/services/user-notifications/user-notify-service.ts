@@ -88,7 +88,7 @@ export class UserNotifyService {
   if (insertError) return;
   }
 
-  public async deleteAllNotifications() {
+  public async deleteAllNotifications(): Promise<void> {
     const userId = this.authService.userStatusData()?.id;
     if (!userId) return;
   
@@ -102,6 +102,29 @@ export class UserNotifyService {
     } else {
       console.error('Error deleting notifications:', error);
     }
+  };
+
+  public async readNotification(id: string, userId: string): Promise<void> {
+    const { data, error } = await this.supabase
+    .from('notifications')
+    .update({ is_read: true })
+    .eq('id', id)
+    .eq('user_id', userId)
+    .select();
+
+    if ( data ) {
+      this.notifications.update(list =>
+        list.map(n =>
+          n.id === id
+            ? { ...n, is_read: true }
+            : n
+        )
+      );
+    }
+    if ( error ) {
+      console.error(error);
+    }
+
   }
   
 }

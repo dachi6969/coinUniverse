@@ -8,6 +8,7 @@ import { UiButton } from "../../../../../shared/components/ui-button/ui-button";
 import { UserService } from '../../../../../core/services/user-service/user-service';
 import { RouterLink } from "@angular/router";
 import { CONFIRM_VALIDATOR, EMAIL_VALIDATOR, NUMBER_VALIDATOR, PASSWORD_VALIDATOR, USERNAME_VALIDATOR } from '../../../../../core/services/auth-services/validators';
+import { CreateUserDTO } from '../../../../../core/types/user-data.types';
 
 @Component({
   selector: 'app-register-page',
@@ -23,15 +24,14 @@ import { CONFIRM_VALIDATOR, EMAIL_VALIDATOR, NUMBER_VALIDATOR, PASSWORD_VALIDATO
   styleUrl: './register-page.css',
 })
 export class RegisterPage {
-
   public pending = signal<boolean>(false);
 
-  private userService = inject(UserService);
-  private authService = inject(AuthService);
-  private fb = inject(FormBuilder);
+  private readonly userService = inject(UserService);
+  private readonly authService = inject(AuthService);
+  private readonly fb = inject(FormBuilder);
 
   // forms!
-  public form = this.fb.group({
+  public readonly form = this.fb.group({
     firstname: ['', USERNAME_VALIDATOR],
     lastname: ['', USERNAME_VALIDATOR],
     email: ['', EMAIL_VALIDATOR],
@@ -40,60 +40,68 @@ export class RegisterPage {
     confirm: ['', CONFIRM_VALIDATOR]
   }, { updateOn: 'blur' });
 
-  private async registerDone() {
-    this.pending.set(false); 
+  private async registerDone(): Promise<void> {
     this.form.reset();
     this.authService.registerUser();
-  }
+  };
+
+  private setEmailErr(): void {
+    this.form
+    .get('email')
+    ?.setErrors(
+      { infoMatched: { fieldName: 'email' } }
+    );
+  };
+  private setNumberErr(): void {
+    this.form
+    .get('number')
+    ?.setErrors(
+      { infoMatched: { fieldName: 'number' } }
+    );
+  };
 
   // login process
-  public async onSubmit() {
+  public async onSubmit(): Promise<void> {
     this.form.markAllAsTouched();
     this.form.markAllAsDirty();
     
     if ( this.form.invalid ) return;
     this.pending.set(true); 
 
-    const { 
-      email, 
-      password, 
-      firstname, 
-      lastname, 
-      number 
-    } = this.form.getRawValue();
+    const { confirm, ...user } = 
+    this.form.getRawValue() as CreateUserDTO;
 
-    // checking if email is duplicated!
-    if ( await this.userService.checkEmail(email ?? '') ) {
-      this.form.get('email')?.setErrors({ infoMatched: { fieldName: 'email' } });
-      this.pending.set(false); 
-      return;
-    }
-    // checking if number is duplicated!
-    if ( await this.userService.checkNumber(number ?? '') ) {
-      this.form.get('number')?.setErrors({ infoMatched: { fieldName: 'number' } });
-      this.pending.set(false); 
-      return;
-    }
+    try{
+      const [takenEmail, takenNumber] = 
+      await Promise.all([
+        this.userService.checkEmail(user.email ?? ''),
+        this.userService.checkNumber(user.number ?? '')
+      ]);
 
-    // sending registerable data to supabase.
-    const { data, error } = await this.authService.supabase.auth.signUp({
-      email: email ?? '',   
-      password: password ?? '', 
-      options: {
-        data: {
-          firstname: firstname ?? '',
-          lastname: lastname ?? '',
-          number: number ?? '',
-        }
-      }
-    });
+      if ( takenEmail ) {
+        this.setEmailErr();
+        return;
+      };
+      if ( takenNumber ) {
+        this.setNumberErr();
+        return;
+      };
+
+      const { error } = 
+      await this.authService.signUp(user);
   
-    if (error) {
-      this.pending.set(false); 
-      return;
+      if (error) {
+        console.error('Supabase err:',error);
+        return;
+      }
+      this.registerDone();
     }
-
-    this.registerDone();
+    catch(err) {
+      console.error(err);
+    }
+    finally{
+      this.pending.set(false); 
+    }
   }
 
 }

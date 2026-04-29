@@ -1,17 +1,17 @@
 
 // basic coin data type.
 export interface Coin {
-    id: string;                       // e.g., "bitcoin"
-    symbol: string;                   // e.g., "btc"
-    name: string;                      // e.g., "Bitcoin"
-    image: string;                     // coin logo URL
-    current_price: number;             // current USD price
-    price_change_percentage_24h: number; // 24h % change (positive/negative)
-    price_change_24h: number;          // absolute price change in USD
-    total_volume: number;              // 24h trading volume
-    market_cap: number;                // current market cap
-    market_cap_rank: number;           // rank number 
-    [key: string]: any;                // optional for extra fields
+    id: string;                      
+    symbol: string;                 
+    name: string;                   
+    image: string;   
+    current_price: number; 
+    price_change_percentage_24h: number; 
+    price_change_24h: number;      
+    total_volume: number;             
+    market_cap: number;              
+    market_cap_rank: number;        
+    [key: string]: any;            
 };
 
 // exchange platform data types.
