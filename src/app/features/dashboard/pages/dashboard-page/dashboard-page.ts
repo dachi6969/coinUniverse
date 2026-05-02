@@ -34,10 +34,7 @@ export class DashboardPage {
   this.mainDashboardService.dashboardData$;
 
   public readonly last24hPrices$: Observable<number[] | null> = 
-  this.mainDashboardService.last24hPrices$
-  .pipe( 
-
-  );
+  this.mainDashboardService.last24hPrices$;
 
   private readonly selectedCoin$ = 
   this.mainDashboardService.selectedCoin$;

@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { DashboardService } from '../../../core/services/dashboard-services/dashboard-service';
-import { catchError, distinctUntilChanged, EMPTY, map, Observable, shareReplay, switchMap } from 'rxjs';
+import { catchError, distinctUntilChanged, map, Observable, of, shareReplay, switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Coin, CryptoExchange } from '../../../core/types/coin-types';
 
@@ -62,7 +62,8 @@ export class MainDashboardService {
             }),
             catchError(() => {
               this.isChartError.set(true);
-              return EMPTY;
+              this.last24hPricesCache$.delete(coinName);
+              return of(null);
             }),
             shareReplay(1) 
           );
