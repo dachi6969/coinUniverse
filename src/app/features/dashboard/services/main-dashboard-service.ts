@@ -1,22 +1,25 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { DashboardService } from '../../../core/services/dashboard-services/dashboard-service';
-import { catchError, distinctUntilChanged, map, Observable, of, shareReplay, switchMap } from 'rxjs';
+import { catchError, distinctUntilChanged, EMPTY, map, Observable, shareReplay, switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { CryptoExchange } from '../../../core/types/coin-types';
+import { Coin, CryptoExchange } from '../../../core/types/coin-types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MainDashboardService {
-  
-  isChartError = signal<boolean>(false);
-  readonly selectedCoin = signal<string>('bitcoin');
+  public isChartError = signal<boolean>(false);
+  selectedCoin = signal<Coin | null>(null);
 
-  private last24hPricesCache$ = new Map<string, Observable<number[] | null>>();
+  private last24hPricesCache$ = 
+  new Map<string, Observable<number[] | null>>();
 
-  selected$ = 
+  selected$: Observable<string> = 
   toObservable(this.selectedCoin)
-  .pipe( distinctUntilChanged() );
+  .pipe(
+    map(coin => coin?.id ?? 'bitcoin'),
+    distinctUntilChanged()
+  );
 
   private dashboardService = inject(DashboardService);
 
@@ -24,7 +27,7 @@ export class MainDashboardService {
   this.selected$.
   pipe(
     switchMap((coinName: string) => {
-      return this.dashboardService.getCoinsData()
+      return this.dashboardService.top100coin$
       .pipe(
         map(coins => coins.find(c => c.id === coinName))
       )
@@ -57,7 +60,10 @@ export class MainDashboardService {
                 return match ? Math.round(match.price) : 0;
               });
             }),
-            catchError(() => of(null)),
+            catchError(() => {
+              this.isChartError.set(true);
+              return EMPTY;
+            }),
             shareReplay(1) 
           );
   
@@ -68,7 +74,7 @@ export class MainDashboardService {
       })
     );
 
-  readonly dashboardData$ = this.dashboardService.getCoinsData().pipe(
+  readonly dashboardData$ = this.dashboardService.top100coin$.pipe(
     map(coins => {
       // 1. Get BTC
       const btc = coins.find(c => c.id === "bitcoin");
@@ -100,11 +106,11 @@ export class MainDashboardService {
   );
 
   readonly exchangesData$: Observable<CryptoExchange[]> = 
-  this.dashboardService.getTopCryptoExchanges();
-
+  this.dashboardService.getTopCryptoExchanges$;
 
   public retry(): void {
-    this.selectedCoin.set('bitcoin')
-  }
+    this.selectedCoin.set(null);
+    this.isChartError.set(false);
+  };
   
 }

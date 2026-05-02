@@ -5,14 +5,7 @@
         <filter-dropdown 
         placeholder="Bitcoin"
         [options]="cd.topCoins.topValues"
-        />
-  
-        <div class="date-filter_wrap">
-            <button class="date-filter_button">1d</button>
-            <button class="date-filter_button">1w</button>
-            <button class="date-filter_button">1m</button>
-        </div>
-  
+      />
     </div>
     @if ( cd.selectedCoin; as selectedCoin ) {
         <div class="chart-header">
@@ -36,7 +29,10 @@
       <main-chart [data]="perDayPrice()"></main-chart>
       
     }@else {
-      <chart-skeleton></chart-skeleton>
+      <chart-skeleton 
+      [isChartError]="isChartError()"
+      (retry)="retry.emit()"
+      ></chart-skeleton>
     }
     
     </div>

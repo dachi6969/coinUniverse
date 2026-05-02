@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { DashboardService } from './dashboard-service';
 import { webSocket } from 'rxjs/webSocket';
-import { map, Observable, retry, shareReplay, switchMap, scan, auditTime, tap } from 'rxjs';
+import { map, Observable, retry, shareReplay, switchMap, scan, auditTime } from 'rxjs';
 import { Coin } from '../../types/coin-types';
 import { LivePrices } from '../../types/live-prices.types';
 
@@ -12,9 +12,9 @@ export class LiveStreamService {
 
   private readonly dashboardService = inject(DashboardService);
 
-  // filtering top50 coin from coinGecko API
+  // filtering top100 coin from coinGecko API
   public topCoins$: Observable<Coin[]> = 
-  this.dashboardService.getCoinsData().pipe( 
+  this.dashboardService.top100coin$.pipe( 
     map((allCoins: Coin[]) => {
       return [...allCoins]
         .sort((a, b) => a.market_cap_rank - b.market_cap_rank)
@@ -27,10 +27,6 @@ export class LiveStreamService {
       const streamUrl = this.buildCombinedUrl(top100Coins);
       
       return webSocket(streamUrl).pipe(
-        tap({
-          subscribe: () => console.log('WEBSOCKET CONNECTION OPENED!'),
-          finalize: () => console.log('WEBSOCKET CLOSED!')
-        }),
 
         map(response => this.formatData(response)),
 

@@ -2,11 +2,6 @@
   
     <div class="filter_section">
       <div class="skeleton-pulse dropdown-skel"></div>
-      <div class="date-filter_wrap">
-        <div class="skeleton-pulse btn-skel"></div>
-        <div class="skeleton-pulse btn-skel"></div>
-        <div class="skeleton-pulse btn-skel"></div>
-      </div>
     </div>
   
     <div class="chart-header">
@@ -24,9 +19,11 @@
     <div class="canvas-wrapper">
       <div class="skeleton-pulse canvas-skel"></div>
 
-      <button class="retry-btn" (click)="retry()">
-        Retry
-      </button>
+      @if ( isChartError() ) {
+        <button class="retry-btn" (click)="retry.emit()">
+          Retry
+        </button>
+      }
     </div>
     
 </div>

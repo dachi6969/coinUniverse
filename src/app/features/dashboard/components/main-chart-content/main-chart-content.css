@@ -65,28 +65,11 @@
     }
   }
 
-
   .filter_section{
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-
-  .date-filter_wrap{  
-    display: flex;
-    gap: 8px;
-  }
-
-  .date-filter_button{
-    all: unset;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 10px;
-    font-size: 14px;
-    background-color: #33415583;
-  }
-
 
 @media (max-width: 600px) {
   .canvas-wrapper{

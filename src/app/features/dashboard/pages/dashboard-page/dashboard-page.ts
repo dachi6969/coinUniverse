@@ -24,6 +24,7 @@ import { LiveStreamService } from '../../../../core/services/dashboard-services/
 export class DashboardPage {
 
   private mainDashboardService = inject(MainDashboardService);
+  public readonly isChartError = this.mainDashboardService.isChartError;
   private liveStreamService = inject(LiveStreamService)
 
   public readonly dashboardData$: Observable<DashboardData> = 
@@ -32,8 +33,11 @@ export class DashboardPage {
   public readonly topCoins$: Observable<DashboardData> = 
   this.mainDashboardService.dashboardData$;
 
-  public readonly perDayPrices$: Observable<number[] | null> = 
-  this.mainDashboardService.last24hPrices$;
+  public readonly last24hPrices$: Observable<number[] | null> = 
+  this.mainDashboardService.last24hPrices$
+  .pipe( 
+
+  );
 
   private readonly selectedCoin$ = 
   this.mainDashboardService.selectedCoin$;
@@ -56,5 +60,10 @@ export class DashboardPage {
 
   public readonly livePrices$ = 
   this.liveStreamService.livePrices$;
+
+
+  public retry(): void {
+    this.mainDashboardService.retry();
+  }
 
 }

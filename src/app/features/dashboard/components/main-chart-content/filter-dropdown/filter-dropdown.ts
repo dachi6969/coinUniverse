@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, HostListener, inject, input, signal } from '@angular/core';
+import { Component, HostListener, inject, input, OnInit, signal } from '@angular/core';
 import { MainDashboardService } from '../../../services/main-dashboard-service';
 import { Coin } from '../../../../../core/types/coin-types';
 
@@ -9,27 +9,31 @@ import { Coin } from '../../../../../core/types/coin-types';
   templateUrl: './filter-dropdown.html',
   styleUrl: './filter-dropdown.css',
 })
-export class FilterDropdown {
-  options = input< Coin[] | null >(null);
-  placeholder = input('default');
-  maxWidth = input<boolean>(false);
+export class FilterDropdown implements OnInit {
+  public options = input< Coin[] | null >(null);
+  public readonly placeholder = input('default');
+  public maxWidth = input<boolean>(false);
 
-  open = signal(false);
-  selected = signal<Coin | null>(null);
+  public open = signal(false);
+  public selected = signal<Coin | null>(null);
 
   private mainDashboardService = inject(MainDashboardService);
 
-  toggle() {
+  ngOnInit(): void {
+    this.selected.set(this.mainDashboardService.selectedCoin());
+  }
+
+  public toggle() {
     if ( !this.options()?.length ) return;
     this.open.update(prev => !prev); 
   }
 
 
-  select(option: Coin) {
+  public select(option: Coin) {
     this.selected.set(option);
     
     this.mainDashboardService.selectedCoin.set(
-      option.id
+      option
     );
 
     this.open.set(false);
