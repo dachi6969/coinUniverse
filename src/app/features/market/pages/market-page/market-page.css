@@ -1,0 +1,25 @@
+.market-page_wrap{
+    min-height: 100vh;
+    padding: 18px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.shopping_table,
+.user-coins_table{
+    flex: 1;
+    padding: 20px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+}
+
+.shopping_table{
+    min-height: 600px;
+}
+
+.user-coins_table{
+    min-height: 350px;
+}
