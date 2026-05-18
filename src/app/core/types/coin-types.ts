@@ -47,3 +47,18 @@ export interface DashboardState {
   topCoins: DashboardData
 };
 
+export interface CoinShape {
+  amount: number;
+  buy_price: number;
+
+  bought_at: string;
+  coin_name: string;
+  coin_symbol: string;
+
+  id: string;
+  user_id?: string;
+}
+
+export interface BoughtCoins {
+  [symbol: string]: CoinShape;
+}
