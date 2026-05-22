@@ -51,14 +51,24 @@ export interface CoinShape {
   amount: number;
   buy_price: number;
 
-  bought_at: string;
+  status: 'bought' | 'sold';
+  bought_at?: string;
   coin_name: string;
   coin_symbol: string;
 
-  id: string;
+  id?: string;
   user_id?: string;
 }
 
 export interface BoughtCoins {
   [symbol: string]: CoinShape;
-}
+};
+
+export type OwnedCoins = CoinShape & {
+  img: string;
+  current_price: number;
+};
+
+export type BuyCoinPayload = CoinShape & {
+  newBalance: number;
+};
