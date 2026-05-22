@@ -5,7 +5,7 @@ export const NOTIF_TEMPLATES: Record<string, NotificationTemplate> = {
     BUY_SUCCESS: {
       title: 'Purchase Confirmed ✅',
       message: (params: { amount: string, symbol: string }) => 
-        `You have successfully purchased ${params.amount} ${params.symbol}. Asset is now in your portfolio.`,
+        `You have successfully purchased ${params.amount} ${params.symbol.toUpperCase()}. Asset is now in your portfolio.`,
       type: 'success'
     },
   

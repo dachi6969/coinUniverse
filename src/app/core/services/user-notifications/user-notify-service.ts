@@ -69,7 +69,11 @@ export class UserNotifyService {
       )
       .subscribe();
   }
-  public async sendNotification(notifi: NotificationTemplate, params?: string) {
+  public async sendNotification(
+    notifi: NotificationTemplate, 
+    params?:{ amount: string, symbol: string }
+    ) 
+    {
     const userId = this.userStatusData()?.id;
     const createdAt = new Date();
     
