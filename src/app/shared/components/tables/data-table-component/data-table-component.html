@@ -1,4 +1,5 @@
 <div class="table-container">
+    @if ( data(); as data ) {
     <table class="minimal-table">
       <thead>
         <tr>
@@ -8,7 +9,6 @@
         </tr>
       </thead>
       <tbody>
-        @if ( data(); as data ) {
           @for (row of data; track $index) {
             <tr>
               @for (col of columns(); track col.key) {
@@ -24,10 +24,10 @@
               }
             </tr>
           }
-        }
-        @else {
-            <table-skeleton></table-skeleton>
-        }
-      </tbody>
+        </tbody>
     </table>
+    }
+    @else {
+        <table-skeleton></table-skeleton>
+    }
   </div>

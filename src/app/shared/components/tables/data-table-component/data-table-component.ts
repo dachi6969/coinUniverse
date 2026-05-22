@@ -10,7 +10,7 @@ import { TableSkeleton } from "../../../../features/dashboard/components/top-per
   styleUrl: './data-table-component.css',
 })
 export class DataTableComponent {
-  public readonly data = input<any[]>();
+  public readonly data = input<any[] | null>(null);
   public readonly columns = input<any[]>();
 
   private readonly customTemplates = 
