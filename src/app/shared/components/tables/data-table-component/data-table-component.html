@@ -1,0 +1,33 @@
+<div class="table-container">
+    <table class="minimal-table">
+      <thead>
+        <tr>
+          @for (col of columns(); track col.key) {
+            <th>{{ col.label }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @if ( data(); as data ) {
+          @for (row of data; track $index) {
+            <tr>
+              @for (col of columns(); track col.key) {
+                <td>
+                  @if (getTemplate(col.key); as customTpl) {
+                    <ng-container *ngTemplateOutlet="customTpl; 
+                    context: { $implicit: row[col.key], row: row }"
+                    ></ng-container>
+                  } @else {
+                    {{ row[col.key] }}
+                  }
+                </td>
+              }
+            </tr>
+          }
+        }
+        @else {
+            <table-skeleton></table-skeleton>
+        }
+      </tbody>
+    </table>
+  </div>
