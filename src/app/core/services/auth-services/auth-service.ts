@@ -95,6 +95,17 @@ export class AuthService {
     return { error };
   };
 
+  public updateUserBalance(currentBalance: number): void {
+    const user = this.userData();
+  
+    if (!user) return;
+  
+    this.userData.set({
+      ...user,
+      balance: currentBalance
+    });
+  }
+
   // METHODS.
   public loginUser(): void {
     this.isUserLoggedIn.set(true);
