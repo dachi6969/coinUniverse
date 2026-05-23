@@ -22,10 +22,11 @@ import { LiveStreamService } from '../../../../core/services/dashboard-services/
   styleUrl: './dashboard-page.css',
 })
 export class DashboardPage {
-
+  
   private mainDashboardService = inject(MainDashboardService);
   public readonly isChartError = this.mainDashboardService.isChartError;
-  private liveStreamService = inject(LiveStreamService)
+  
+  private liveStreamService = inject(LiveStreamService);
 
   public readonly dashboardData$: Observable<DashboardData> = 
   this.mainDashboardService.dashboardData$;
@@ -49,11 +50,12 @@ export class DashboardPage {
     })
   );
 
+
   public readonly cryptoExchanges$: Observable<CryptoExchange[]> = 
   this.mainDashboardService.exchangesData$;
 
   public readonly top100Coin$ = 
-  this.liveStreamService.topCoins$;
+  this.mainDashboardService.topCoins$;
 
   public readonly livePrices$ = 
   this.liveStreamService.livePrices$;

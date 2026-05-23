@@ -1,8 +1,10 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { DashboardService } from '../../../core/services/dashboard-services/dashboard-service';
-import { catchError, distinctUntilChanged, map, Observable, of, shareReplay, switchMap } from 'rxjs';
+import { catchError, combineLatest, distinctUntilChanged, map, Observable, of, shareReplay, startWith, switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Coin, CryptoExchange } from '../../../core/types/coin-types';
+import { LiveStreamService } from '../../../core/services/dashboard-services/live-stream-service';
+import { LivePrices } from '../../../core/types/live-prices.types';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +23,7 @@ export class MainDashboardService {
     distinctUntilChanged()
   );
 
+  private liveStreamService = inject(LiveStreamService);
   private dashboardService = inject(DashboardService);
 
   readonly selectedCoin$ =
@@ -32,6 +35,26 @@ export class MainDashboardService {
         map(coins => coins.find(c => c.id === coinName))
       )
     }),
+  );
+
+  public readonly topCoins$ = 
+  combineLatest([
+    this.liveStreamService.topCoins$,
+    this.liveStreamService.livePrices$
+    .pipe( startWith({} as LivePrices) )
+  ]).pipe(
+    map(([topCoins,livePrices]) => {
+
+      const modified = topCoins.map(c => {
+        return {
+          ...c,
+          current_price: 
+          livePrices[(c.symbol).toUpperCase() + 'USDT'] 
+          ?? c.current_price
+        }
+      });
+      return modified;
+    })
   );
 
   readonly targetHours = [0, 3, 6, 9, 12, 15, 18, 21];
@@ -75,7 +98,9 @@ export class MainDashboardService {
       })
     );
 
-  readonly dashboardData$ = this.dashboardService.top100coin$.pipe(
+  readonly dashboardData$ = 
+  this.dashboardService.top100coin$
+  .pipe(
     map(coins => {
       // 1. Get BTC
       const btc = coins.find(c => c.id === "bitcoin");
