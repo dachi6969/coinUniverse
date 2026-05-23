@@ -1,24 +1,54 @@
 <div class="shopping-table_wrap">
-    <h3 class="table_title">
-        Shopping List
-    </h3>
-
     <div class="table-container">
-        <table class="shopping-table">
-            <thead>
-            <tr>
-                  <th>Coin</th>
-                  <th>Price</th>
-                  <th>24h Change</th>
-                  <th>Market Cap</th>
-                  <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
 
-            </tbody>
-        </table>
+        <div class="table-title_wrap">
+            <h3 class="table-title">
+                Shopping List
+            </h3>
+            <span class="balance">
+                Balance: ${{ balance() | number: '1.2-2' }}
+            </span>
+        </div>
+        
+        <data-table-component [columns]="shopTableColumns" [data]="topCoins()">
+
+            <ng-template appTableColumn="symbol" let-row="row">
+                <div class="assets">
+                    <div class="icon-wrapper">
+                        <img [ngSrc]="row.image" alt="logo" fill class="coin-icon" />
+                    </div>
+                    <span>{{ row.symbol | uppercase}}</span>
+                </div>
+            </ng-template>
+
+            <ng-template appTableColumn="current_price" let-value>
+                <span class="price-cell" [priceHighlight]="value">
+                    ${{ value | number: '1.2-6' }}
+                </span>
+            </ng-template>
+
+            <ng-template appTableColumn="price_change_percentage_24h" let-value>
+                <span class="daily_changes" BenefitIndicator>
+                    {{ (value | number: '1.2-2') || '0.00' }}%
+                </span>
+            </ng-template>
+
+
+            <ng-template appTableColumn="market_cap" let-value>
+                ${{ value | abbreviateNumber }}
+            </ng-template>
+
+            <ng-template appTableColumn="actions" let-row="row">
+                    <ui-button
+                    variant="filled"
+                    size="small"
+                    color="success"
+                    (onClick)="onBuy.emit(row)"
+                    >
+                    Buy
+                    </ui-button>
+            </ng-template>
+
+        </data-table-component>
     </div>
-
-
 </div>

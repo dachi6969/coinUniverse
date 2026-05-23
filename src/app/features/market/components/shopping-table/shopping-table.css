@@ -6,47 +6,84 @@
     flex-direction: column;
     justify-content: space-around;
     gap: 16px;
-  }
+}
   
-  .table_title{
-    color: var(--text-primary);
-  }
-  
-  .table-container {
-    max-height: 380px;
+.table-container {
+    max-height: 550px;
     width: 100%;
     overflow-x: auto;
     overflow-y: auto;
     scrollbar-width: none;
+}
+
+.table-title_wrap{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.table-title{
+  color: var(--text-primary);
+}
+
+  
+.up {
+    color: var(--success);
+}
+
+.down {
+    color: #ef4444;
+}
+
+.icon-wrapper {
+    position: relative; 
+    width: 24px;
+    height: 24px;
   }
   
-  .shopping-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'Inter', sans-serif;
-    color: var(--text-primary);
-  
-    th, td {
-      padding: 16px 12px;
-      text-align: left;
-    }
-  
-    th {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-  
-    td {
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    tbody tr {
-      border-top: 1px solid #334155; 
-    }
-  
+  .coin-icon {
+    object-fit: contain; 
+    border-radius: 50%;
   }
 
+.assets{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.daily_changes{
+    color: var(--success);
+}
+
+.price-cell {
+  transition: all 0.9s ease-out;
+}
+
+.flash-up {
+  color: #00ff00 !important;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+.flash-down {
+  color: #ff4444 !important;
+  text-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
+}
+
+.has-dash{
+  color: #ff4444
+}
+
+@media (max-width: 900px) {
+  .table-title{
+    font-size: 20px;
+  }
+
+  .balance{
+    font-size: 16px;
+  }
+}
