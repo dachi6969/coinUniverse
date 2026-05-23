@@ -1,0 +1,139 @@
+.crypto-modal {
+    background: var(--bg-card);
+    border: 1px solid #1e222d;
+    border-radius: 16px;
+    padding: 0;
+    color: var(--text-primary);
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 30px rgba(59, 110, 255, 0.2); 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+  }
+  
+  .modal-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e222d;
+  }
+  
+  .modal-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #3d6eff; 
+  }
+  
+  .close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .modal-body {
+    padding: 24px;
+  }
+  
+  .coin-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .label { color: var(--text-muted); font-size: 0.9rem; }
+  .value { font-family: 'Geist Mono', monospace; font-weight: bold; }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  
+  .input-group input {
+    width: 100%;
+    background: #0A0B0E;
+    border: 1px solid #3d6eff;
+    border-radius: 8px;
+    padding: 12px;
+    color: white;
+    outline: none;
+    font-size: 1rem;
+  }
+  
+  .balance-info {
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+  }
+  
+  .balance-value { 
+    color: #4caf50; 
+  } 
+  
+  .modal-footer {
+    padding: 20px;
+    display: flex;
+    gap: 12px;
+  }
+  
+  .btn-confirm {
+    flex: 2;
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .btn-cancel {
+    flex: 1;
+    background: transparent;
+    border: 1px solid #1e222d;
+    color: var(--text-primary);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #bdbdbd85;
+    color: #666;
+    border: 1px solid #999;
+    box-shadow: none;
+    pointer-events: none;
+  }
+  
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px); 
+    z-index: 999;
+  }
+
+  @media (max-width: 480px) {
+    .crypto-modal{
+      max-width: 90%;
+    }
+  }
