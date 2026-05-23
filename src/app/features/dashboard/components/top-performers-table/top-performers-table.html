@@ -3,52 +3,35 @@
         Top Cryptocurrencies
     </h3>
 
-    @if ( data() ) {
-        <div class="table-container">
-            <table class="minimal-table">
-              <thead>
-                <tr>
-                  <th>Asset</th>
-                  <th>Price</th>
-                  <th>24h Change</th>
-                  <th>Market Cap</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for ( c of data(); track c.id; let i = $index ) {
-                    <tr>
-                        <td>
-                            <div class="assets">
-                                <span>{{ i + 1 }}</span>
-                                <div class="icon-wrapper">
-                                    <img [ngSrc]="c.image" alt="logo" fill class="coin-icon" />
-                                </div>
-                                <span>{{ c.symbol | uppercase}}</span>
-                            </div>
-                        </td>
-                        <td class="price-cell"
-                        [priceHighlight]="livePrices()?.[ (c.symbol | uppercase) + 'USDT' ]"
-                        >
-                            ${{ (livePrices()?.[ (c.symbol | uppercase) + 'USDT' ] || c.current_price) | number: '1.2-6' }}
-                        </td>
-                        <td>
-                            <span class="daily_changes"
-                            BenefitIndicator
-                            >
-                                {{ (c.price_change_percentage_24h | number: '1.2-2') || '0.00' }}%
-                            </span>
-                        </td>
-                        <td>
-                            ${{ c.market_cap | abbreviateNumber }}
-                        </td>
-                    </tr>
-                }
-              </tbody>
-            </table>
-          </div>
+    <data-table-component [columns]="topPerformanceColumns" [data]="data()">
+        
+        <ng-template appTableColumn="asset" let-row="row">
+            <div class="assets">
+                <div class="icon-wrapper">
+                    <img [ngSrc]="row.image" alt="logo" fill class="coin-icon" />
+                </div>
+                <span>{{ row.symbol | uppercase}}</span>
+            </div>
+        </ng-template>
 
-    }@else {
-        <table-skeleton></table-skeleton>
-    }
+        <ng-template appTableColumn="current_price" let-value>
+            <span class="price-cell"
+            [priceHighlight]="value"
+            >
+                ${{ value | number: '1.2-6' }}
+            </span>
+        </ng-template>
+
+        <ng-template appTableColumn="price_change_percentage_24h" let-value>
+            <span class="daily_changes" BenefitIndicator>
+                {{ (value | number: '1.2-2') || '0.00' }}%
+            </span>
+        </ng-template>
+
+        <ng-template appTableColumn="market_cap" let-value>
+            ${{ value | abbreviateNumber }}
+        </ng-template>
+    
+    </data-table-component>
 
 </div>
