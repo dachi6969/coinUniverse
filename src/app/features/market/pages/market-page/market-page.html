@@ -1,8 +1,39 @@
 <main class="market-page_wrap">
     <div class="shopping_table">
-        <shopping-table></shopping-table>
+        <shopping-table
+        [topCoins]="topCoins$ | async"
+        [balance]="userData()?.balance ?? 0"
+        (onBuy)="selectCoinToBuy($event)"
+        ></shopping-table>
     </div>
+
     <div class="user-coins_table">
-        table
+        <bought-coins-table
+        [boughtCoins]="boughtCoins$ | async"
+        (onSell)="selectCoinToSell($event)"
+        ></bought-coins-table>
     </div>
 </main>
+
+<!-- dialog to buy -->
+@if ( selectedCoin() ) {
+    <shop-dialog 
+    [coin]="selectedCoin()" 
+    [balance]="userData()?.balance ?? 0"
+    [livePrice]="(livePrice$ | async) ?? 0"
+    [loading]="loading()"
+    (buyCoin)="onCoinTransfer($event)"
+    (exit)="exitBuyProcess()"
+    ></shop-dialog>
+}
+<!-- dialog to sell -->
+@if ( selectedCoinToSell() ) {
+    <sell-coin-dialog
+    [coin]="selectedCoinToSell()"
+    [balance]="userData()?.balance ?? 0"
+    [livePrice]="(livePricesToSell$ | async) ?? 0"
+    [loading]="loading()"
+    (exit)="exitSellProcess()"
+    (onSellEvent)="onCoinTransfer($event)"
+    ></sell-coin-dialog>
+}

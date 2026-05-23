@@ -12,13 +12,16 @@
     flex: 1;
     padding: 20px;
     background-color: var(--bg-card);
+    position: relative;
     border: 1px solid var(--border-subtle);
     border-radius: 10px;
 }
 
-.shopping_table{
-    min-height: 600px;
-}
+  .balance{
+    font-weight: bold;
+    color: var(--text-primary);
+  }
+
 
 .user-coins_table{
     min-height: 350px;
