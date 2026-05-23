@@ -1,7 +1,8 @@
 import { Component, contentChildren, input, TemplateRef } from '@angular/core';
 import { TableColumnDirective } from '../../../directives/table-column.directive';
 import { CommonModule } from '@angular/common';
-import { TableSkeleton } from "../../../../features/dashboard/components/top-performers-table/table-skeleton/table-skeleton";
+import { TableSkeleton } from './table-skeleton/table-skeleton';
+
 
 @Component({
   selector: 'data-table-component',
