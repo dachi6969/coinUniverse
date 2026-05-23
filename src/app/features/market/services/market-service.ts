@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { LiveStreamService } from '../../../core/services/dashboard-services/live-stream-service';
-import { combineLatest, map, Observable, startWith } from 'rxjs';
+import { combineLatest, map, Observable, of, startWith, switchMap } from 'rxjs';
 import { LivePrices } from '../../../core/types/live-prices.types';
 import { BoughtCoins, BuyCoinPayload, Coin, CoinShape, OwnedCoins } from '../../../core/types/coin-types';
 import { AuthService } from '../../../core/services/auth-services/auth-service';
@@ -97,24 +97,27 @@ export class MarketService {
       )
     );
 
-  public readonly allCoins$ =
-  combineLatest([
-    this.boughtCoins$,
-    this.topCoins$
-  ]).pipe(
-    map(([boughts, topCoins]) => {
-      const combined = topCoins
-      .filter(coin => boughts[coin.symbol])
-      .map(item => {
-        return {
-          ...boughts[item.symbol],
-          img: item.image,
-          current_price: item.current_price
+    public readonly allCoins$ = this.boughtCoins$.pipe(
+      switchMap(boughts => {
+        const hasBoughtCoins = Object.keys(boughts).length > 0;
+
+        if (!hasBoughtCoins) {
+          return of([]);
         }
-      })
-      return combined;
-    }),
-  )
+    
+        return this.topCoins$.pipe(
+          map(topCoins => {
+            return topCoins
+              .filter(coin => boughts[coin.symbol])
+              .map(item => ({
+                ...boughts[item.symbol],
+                img: item.image,
+                current_price: item.current_price
+              }));
+          })
+        );
+      }),
+    );
 
   // METHODS.
   public selectCoinToBuy(c: Coin): void {
