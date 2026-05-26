@@ -27,11 +27,11 @@ export class MarketPage {
   public readonly loading = this.marketService.loading;
   public readonly userData = this.marketService.userData;
   
-  public readonly topCoins$ = 
-  this.marketService.topCoins$;
+  public readonly top100LiveCoins$ = 
+  this.marketService.top100LiveCoins$;
 
-  public readonly boughtCoins$ =
-  this.marketService.allCoins$;
+  public readonly avalibleCoins$ =
+  this.marketService.avalibleCoins$;
   
   public readonly livePrice$ = 
   this.marketService.livePrice$;

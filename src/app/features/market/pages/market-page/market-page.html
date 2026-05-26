@@ -1,7 +1,7 @@
 <main class="market-page_wrap">
     <div class="shopping_table">
         <shopping-table
-        [topCoins]="topCoins$ | async"
+        [topCoins]="top100LiveCoins$ | async"
         [balance]="userData()?.balance ?? 0"
         (onBuy)="selectCoinToBuy($event)"
         ></shopping-table>
@@ -9,7 +9,7 @@
 
     <div class="user-coins_table">
         <bought-coins-table
-        [boughtCoins]="boughtCoins$ | async"
+        [boughtCoins]="avalibleCoins$ | async"
         (onSell)="selectCoinToSell($event)"
         ></bought-coins-table>
     </div>

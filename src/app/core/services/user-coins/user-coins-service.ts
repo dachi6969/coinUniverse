@@ -4,7 +4,8 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { from, map, of, switchMap } from 'rxjs';
 import { UserNotifyService } from '../user-notifications/user-notify-service';
 import { NOTIF_TEMPLATES } from '../../constants/notifications';
-import { BuyCoinPayload } from '../../types/coin-types';
+import { BoughtCoins, BuyCoinPayload, CoinShape } from '../../types/coin-types';
+import { LiveStreamService } from '../dashboard-services/live-stream-service';
 
 
 @Injectable({
@@ -20,8 +21,15 @@ export class UserCoinsService {
 
   private readonly uData$ = toObservable(this.userData);
 
+  private readonly liveStreamService = 
+  inject(LiveStreamService);
 
-  public ownedCoinsStream$ = this.uData$
+  // price fallback here, livePrice ?? current coin price from coingecko api(cached).
+  public readonly top100LiveCoins$ = 
+  this.liveStreamService.top100LiveCoins$;
+
+
+  public coinTransactions$ = this.uData$
   .pipe(
     switchMap(user => {
       const id = user?.id;
@@ -36,6 +44,51 @@ export class UserCoinsService {
         map(res => res.data || []), 
       );
     })
+  );
+
+  private readonly ownedCoins$ =
+  this.coinTransactions$.pipe(
+    map((coins: CoinShape[]) =>
+      coins.reduce((acc, cur) => {
+        const symbol = cur.coin_symbol;
+
+        if (!acc[symbol]) {
+          acc[symbol] = { ...cur };
+        } else {
+          acc[symbol].amount += cur.amount;
+        }
+
+        // remove immediately if 0
+        if (acc[symbol].amount === 0) {
+          delete acc[symbol];
+        }
+
+        return acc;
+      }, {} as BoughtCoins)
+    )
+  );
+
+  public readonly avalibleCoins$ = this.ownedCoins$
+  .pipe(
+    switchMap(boughts => {
+      const hasBoughtCoins = Object.keys(boughts).length > 0;
+
+      if (!hasBoughtCoins) {
+        return of([]);
+      }
+  
+      return this.top100LiveCoins$.pipe(
+        map(topCoins => {
+          return topCoins
+            .filter(coin => boughts[coin.symbol])
+            .map(item => ({
+              ...boughts[item.symbol],
+              img: item.image,
+              current_price: item.current_price
+            }));
+        })
+      );
+    }),
   );
 
   private buyNotification(amount: string, symbol: string): void {
