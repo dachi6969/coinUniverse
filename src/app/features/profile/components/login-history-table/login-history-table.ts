@@ -9,5 +9,5 @@ import { SessionType } from '../../../../core/types/auth-types';
   styleUrl: './login-history-table.css',
 })
 export class LoginHistoryTable {
-  public history = input<SessionType[] | null>([]);
+  public readonly history = input<SessionType[] | null>([]);
 }

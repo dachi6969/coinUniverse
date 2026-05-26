@@ -14,6 +14,6 @@ import { UserData, UserStatus } from '../../../../core/types/user-data.types';
   styleUrl: './profile-overview.css',
 })
 export class ProfileOverview {
-  public user = input< UserData | null >(null);
-  public userStatus = input< UserStatus | null >(null);
+  public readonly user = input< UserData | null >(null);
+  public readonly userStatus = input< UserStatus | null >(null);
 }
