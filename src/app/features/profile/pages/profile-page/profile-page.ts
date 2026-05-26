@@ -3,9 +3,7 @@ import { ProfileOverview } from "../../components/profile-overview/profile-overv
 import { LoginHistoryTable } from "../../components/login-history-table/login-history-table";
 import { AccountSettings } from "../../components/account-settings/account-settings";
 import { AccountDeletion } from "../../components/account-deletion/account-deletion";
-import { DashboardLayoutService } from '../../../../layouts/dashboard-layout/services/dashboard-layout-service';
-import { SecurityService } from '../../../../core/services/security-service/security-service';
-import { AuthService } from '../../../../core/services/auth-services/auth-service';
+import { ProfileService } from '../../services/profile-service';
 
 @Component({
   selector: 'app-profile-page',
@@ -19,17 +17,21 @@ import { AuthService } from '../../../../core/services/auth-services/auth-servic
   styleUrl: './profile-page.css',
 })
 export class ProfilePage implements OnDestroy {
-  private readonly dashboardLayoutService = inject(DashboardLayoutService);
+  private readonly profileService = inject(ProfileService);
 
-  private readonly securityService = inject(SecurityService);
+  public readonly pending = this.profileService.pending;
+
   public readonly loginHistory = 
-  this.securityService.loginHistory;
+  this.profileService.loginHistory;
 
-  private readonly authService = inject(AuthService);
-  public readonly user = this.authService.userData;
-  public readonly userStatus = this.authService.userStatusData;
+  public readonly user = this.profileService.user;
+  public readonly userStatus = this.profileService.userStatus;
 
   ngOnDestroy(): void {
-    this.dashboardLayoutService.isProfilePage.set(false);
-  }
+    this.profileService.onProfileLeave();
+  };
+
+  public onDeleteAccount(): void{
+    this.profileService.onDeleteAccount();
+  };
 }

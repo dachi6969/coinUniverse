@@ -33,5 +33,9 @@ export class DashboardLayoutService {
     this.isSidebarOpen.set(false);
   };
 
+  public onProfilePageLeave(): void {
+    
+  }
+
 
 }

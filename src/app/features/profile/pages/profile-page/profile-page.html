@@ -16,7 +16,10 @@
             <account-settings></account-settings>
         </div>
         <div class="box box4">
-            <account-deletion></account-deletion>
+            <account-deletion 
+            (canDelete)="onDeleteAccount()"
+            [pending]="pending()"
+            ></account-deletion>
         </div>
     </div>
 

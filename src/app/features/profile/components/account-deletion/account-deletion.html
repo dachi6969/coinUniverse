@@ -23,8 +23,8 @@
   
       <button 
         class="delete-btn" 
-        [disabled]="!canDelete() || pending()"
-        (click)="onDeleteAccount()"
+        [disabled]="!(inputValue().trim() === 'DELETE') || pending()"
+        (click)="canDelete.emit()"
         >
         Delete
       </button>
