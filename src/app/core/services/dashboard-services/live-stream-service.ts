@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { DashboardService } from './dashboard-service';
 import { webSocket } from 'rxjs/webSocket';
-import { map, Observable, retry, shareReplay, switchMap, scan, auditTime } from 'rxjs';
+import { map, Observable, retry, shareReplay, switchMap, scan, auditTime, combineLatest, startWith } from 'rxjs';
 import { Coin } from '../../types/coin-types';
 import { LivePrices } from '../../types/live-prices.types';
 
@@ -21,6 +21,7 @@ export class LiveStreamService {
     }),
   );
 
+
   public livePrices$: Observable<LivePrices> = this.topCoins$.pipe(
 
     switchMap((top100Coins: Coin[]) => {
@@ -38,6 +39,27 @@ export class LiveStreamService {
       );
     }),
     shareReplay(1),
+  );
+
+  // grouped 100coin + live prices.
+  public readonly top100LiveCoins$ = 
+  combineLatest([
+    this.topCoins$,
+    this.livePrices$
+    .pipe( startWith({}as LivePrices) )
+  ]).pipe(
+    map(([topCoins,livePrices]) => {
+
+      const modified = topCoins.map(c => {
+        return {
+          ...c,
+          current_price: 
+          livePrices[(c.symbol).toUpperCase() + 'USDT'] 
+          ?? c.current_price
+        }
+      });
+      return modified;
+    })
   );
 
   private buildCombinedUrl(coins: any[]): string { // binding coinNames in url.
