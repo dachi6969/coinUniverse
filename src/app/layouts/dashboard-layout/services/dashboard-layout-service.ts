@@ -34,7 +34,7 @@ export class DashboardLayoutService {
   };
 
   public onProfilePageLeave(): void {
-    
+    this.isProfilePage.set(false);
   }
 
 
