@@ -1,11 +1,14 @@
 <div class="settings-card">
+  @if ( user(); as user ) {
     <h3 class="card-title">Security Settings</h3>
   
     <div class="settings-section">
       <label>Registered Email</label>
       <div class="input-wrapper email">
-        <input type="email" [value]="user()?.email"  readonly class="readonly-input">
-        <span class="status-tag">Verified</span>
+        <input type="email" [value]="user.email"  readonly class="readonly-input">
+        <span class="status-tag">
+          {{ user.email_verified ? 'Verified' : 'Unverified' }}
+        </span>
       </div>
       <div class="info-box">
         <p>Email changes require manual verification for security reasons.</p>
@@ -50,4 +53,5 @@
         Save Changes
       </ui-button>
     </form>
-  </div>
+  }
+</div>

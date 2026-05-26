@@ -20,6 +20,8 @@ export class ProfilePage implements OnDestroy {
   private readonly profileService = inject(ProfileService);
 
   public readonly pending = this.profileService.pending;
+  public readonly loading = this.profileService.loading;
+  public readonly errorMessage = this.profileService.errorMessage;
 
   public readonly loginHistory = 
   this.profileService.loginHistory;
@@ -30,6 +32,10 @@ export class ProfilePage implements OnDestroy {
   ngOnDestroy(): void {
     this.profileService.onProfileLeave();
   };
+
+  public onSaveChanges(pass: string): void {
+    this.profileService.onSaveChanges(pass);
+  }
 
   public onDeleteAccount(): void{
     this.profileService.onDeleteAccount();

@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class ProfileService {
 
   public readonly pending = signal<boolean>(false);
+  public readonly loading = signal<boolean>(false);
+  public readonly errorMessage = signal<string>('');
 
   private readonly router = inject(Router);
   private readonly dashboardLayoutService = inject(DashboardLayoutService);
@@ -23,11 +25,50 @@ export class ProfileService {
   public readonly userStatus = this.authService.userStatusData;
   private readonly supabase = this.authService.supabase;
 
+  
+  // Password Change.
+  public async onSaveChanges(password: string): Promise<void> {
+    try{
+      this.errorMessage.set('');
+      this.loading.set(true);
+
+      const { error } = 
+      await this.authService
+      .updateUser(password);
+
+      if (error) {
+        this.errorCase(error);
+        return;
+      }
+      this.succesfullyCahnge();
+    }
+    catch(error){
+      console.error(error);
+    }
+    finally{
+      this.loading.set(false);
+    }
+  };
+
+  private succesfullyCahnge(): void{
+    alert('Password changed succesfully.');
+    this.errorMessage.set('');
+  };
+
+  private errorCase(err: Error): void{
+    if (err.message.includes('different')) {
+      this.errorMessage
+      .set('New password must be different from current one.');
+    }else{
+      console.log(err.message);
+    }
+  };
+
   private async deletionDone(): Promise<void> {
     await this.supabase.auth.signOut();
     this.router.navigate(['/dashboard']);
   };
-
+  // Account Deletion.
   public async onDeleteAccount(): Promise<void> {
     this.pending.set(true);
 

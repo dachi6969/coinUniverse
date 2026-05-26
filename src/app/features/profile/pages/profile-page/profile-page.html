@@ -13,7 +13,12 @@
             ></login-history-table>
         </div>
         <div class="box box3">
-            <account-settings></account-settings>
+            <account-settings
+            [user]="user()"
+            [loading]="loading()"
+            [errorMessage]="errorMessage()"
+            (saveChange)="onSaveChanges($event)"
+            ></account-settings>
         </div>
         <div class="box box4">
             <account-deletion 
