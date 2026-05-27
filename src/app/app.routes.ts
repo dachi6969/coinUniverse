@@ -10,6 +10,7 @@ import { WorkInProgress } from './features/work-in-progress/work-in-progress';
 import { profileSlugGuard } from './features/profile/guards/profile-slug-guard';
 import { notificationsGuard } from './features/user-notifications/guards/notifications-guard';
 import { MarketPage } from './features/market/pages/market-page/market-page';
+import { canVisitPortfolioGuard } from './features/portfolio/guards/can-visit-portfolio-guard';
 
 
 export const routes: Routes = [
@@ -41,10 +42,15 @@ export const routes: Routes = [
                 .then(c => c.NotificationsPage),
                 canActivate: [notificationsGuard] 
             },
+            { 
+                path: 'portfolio', 
+                loadComponent: () => 
+                import('./features/portfolio/pages/portfolio-page/portfolio-page')
+                .then(c => c.PortfolioPage),
+                canActivate: [canVisitPortfolioGuard]
+            },
             { path: 'markets', component: MarketPage },
             { path: 'settings', component: WorkInProgress },
-            { path: 'portfolio', component: WorkInProgress },
-            { path: 'charts', component: WorkInProgress },
         ]
     },
     {
