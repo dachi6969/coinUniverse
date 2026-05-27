@@ -1,0 +1,37 @@
+<div class="own-coins-table_wrap">
+    <data-table-component [columns]="ownCoinsTableColumns" [data]="ownCoins()">
+    
+        <ng-template appTableColumn="coin" let-row="row">
+            <div class="assets">
+                <div class="icon-wrapper">
+                    <img [ngSrc]="row.img" alt="logo" fill class="coin-icon" />
+                </div>
+                <span>{{ row.symbol | uppercase}}</span>
+            </div>
+        </ng-template>
+
+        <ng-template appTableColumn="buy_price" let-value>
+            <span class="buy_price">
+                ${{ value | number: '1.2-4' }}
+            </span>
+        </ng-template>
+
+        <ng-template appTableColumn="current_price" let-value>
+            <span [priceHighlight]="value">
+                ${{ value | number: '1.2-4' }}
+            </span>
+        </ng-template>
+
+        <ng-template appTableColumn="amount" let-value>
+            {{ value | number: '1.2-3' }}
+        </ng-template>
+
+        <ng-template appTableColumn="profitLoss" let-row="row">
+            <span [priceHighlight]="(row.buy_price | benefitIndicator: row.current_price)">
+                ${{ row.buy_price | benefitIndicator: row.current_price }}
+            </span>
+        </ng-template>
+
+
+    </data-table-component>
+</div>

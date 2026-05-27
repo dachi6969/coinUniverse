@@ -1,0 +1,52 @@
+
+.own-coins-table_wrap{
+    width: 100%;
+    min-height: 350px;
+    max-height: 350px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.icon-wrapper {
+    position: relative; 
+    width: 24px;
+    height: 24px;
+  }
+  
+  .coin-icon {
+    object-fit: contain; 
+    border-radius: 50%;
+  }
+  
+  .assets{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  
+  .up {
+      color: var(--success);
+  }
+  
+  .down {
+      color: #ef4444;
+  }
+  
+  .buy_price{
+    color: var(--warning);
+  }
+  
+  .flash-up {
+    color: #00ff00 !important;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+  }
+  
+  .flash-down {
+    color: #ff4444 !important;
+    text-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
+  }
+  
+  .has-dash{
+    color: var(--danger)
+  }
