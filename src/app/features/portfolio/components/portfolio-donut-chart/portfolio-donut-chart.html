@@ -1,0 +1,10 @@
+<div class="chart_wrap">
+    @if (isLoading()) {
+        <donut-skeleton></donut-skeleton>
+    }
+  
+    <canvas 
+    #donutChartCanvas class="donut" 
+    [class.hidden]="isLoading()"
+    ></canvas>
+</div>
