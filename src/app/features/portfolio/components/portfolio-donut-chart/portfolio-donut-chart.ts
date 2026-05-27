@@ -2,10 +2,12 @@ import { Component, computed, effect, ElementRef, input, ViewChild } from '@angu
 import { Chart } from 'chart.js';
 import { OwnedCoins } from '../../../../core/types/coin-types';
 import { DonutSkeleton } from "../../../../shared/components/donut-skeleton/donut-skeleton";
+import { UiButton } from "../../../../shared/components/ui-button/ui-button";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'portfolio-donut-chart',
-  imports: [DonutSkeleton],
+  imports: [DonutSkeleton, UiButton, RouterLink],
   templateUrl: './portfolio-donut-chart.html',
   styleUrl: './portfolio-donut-chart.css',
 })

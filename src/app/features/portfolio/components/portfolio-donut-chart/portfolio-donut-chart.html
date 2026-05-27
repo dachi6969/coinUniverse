@@ -2,9 +2,19 @@
     @if (isLoading()) {
         <donut-skeleton></donut-skeleton>
     }
-  
+
+    @if (!isLoading() && !avalibleCoins()?.length) {
+        <div class="empty-card">
+            <span>0 Active asset found.</span>
+            <ui-button routerLink="/markets">
+                Market
+            </ui-button>
+        </div>
+    }
+
     <canvas 
-    #donutChartCanvas class="donut" 
-    [class.hidden]="isLoading()"
+        #donutChartCanvas 
+        class="donut" 
+        [class.hidden]="isLoading() || !avalibleCoins()?.length"
     ></canvas>
 </div>
