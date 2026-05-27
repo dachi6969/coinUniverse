@@ -12,7 +12,7 @@ class="sidebar-wrap"
                 <a 
                 class="nav_link" 
                 [routerLink]="nav.navTitle.toLocaleLowerCase()" 
-                [disableIf]="(nav.navTitle === 'Notifications') && !isUserLoggedIn()"
+                [disableIf]="disableState(nav.navTitle)"
                 (click)="closeSidebar()"
                 >
                     <ng-container

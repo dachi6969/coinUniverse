@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { LogoIcon } from "../../../shared/icons/logo-icon/logo-icon";
 import { DashboardLayoutService } from '../services/dashboard-layout-service';
 import { NgComponentOutlet } from '@angular/common';
@@ -29,6 +29,11 @@ export class DashboardSidebar {
   private readonly authService = inject(AuthService);
   public readonly isUserLoggedIn = 
   this.authService.isUserLoggedIn;
+
+  public disableState (title: string): boolean {
+    if ( this.isUserLoggedIn() ) return false;
+    return title === 'Notifications' || title === 'Portfolio' 
+  }
 
   public readonly navigation = navigation;
 
