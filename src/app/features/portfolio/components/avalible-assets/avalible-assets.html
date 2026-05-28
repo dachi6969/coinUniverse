@@ -1,4 +1,13 @@
 <div class="own-coins-table_wrap">
+    @if ( ownCoins() && !ownCoins()?.length ) {
+        <div class="portfolio-overlay">
+            <div class="overlay-icon">🪙</div>
+            <h3>Your active coins will appear here</h3>
+            <p>You currently hold 0 coins. Start trading to track your portfolio.</p>
+        </div>
+    }
+
+    <h3>Your Assets</h3>
     <data-table-component [columns]="ownCoinsTableColumns" [data]="ownCoins()">
     
         <ng-template appTableColumn="coin" let-row="row">
@@ -34,4 +43,5 @@
 
 
     </data-table-component>
+    
 </div>
