@@ -4,18 +4,20 @@
   overflow-x: auto;
   overflow-y: auto;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
   max-height: 110vh;
 
 }
 
 .minimal-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-family: 'Inter', sans-serif;
   color: var(--text-primary);
 
   th, td {
-    padding: 16px 12px;
+    padding: 13px 12px;
     text-align: left;
   }
 
@@ -39,10 +41,27 @@
     border-top: 1px solid #334155; 
     transition: background-color 0.2s ease;
 
-    &:not(.skeleton-row):hover {
-      background-color: rgba(255, 255, 255, 0.03); 
-    }
   }
+  tr:hover {
+    background-color: rgba(255, 255, 255, 0.03); 
+  }
+}
+
+.minimal-table th:nth-child(1),
+.minimal-table td:nth-child(1) {
+  position: sticky;
+  left: 0;
+  z-index: 100; 
+}
+
+.minimal-table td:nth-child(1) {
+  box-shadow: 2px 0 6px -4px rgba(0, 0, 0, 0.326);
+}
+
+.minimal-table th, 
+.minimal-table td {
+  white-space: nowrap;
+  background: var(--bg-card); 
 }
 
 .skeleton-row {
