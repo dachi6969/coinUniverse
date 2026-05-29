@@ -1,0 +1,49 @@
+.portfolio-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+  padding: 1.2rem;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.2rem;
+  align-items: center;
+  width: 100%;
+}
+
+.chart-holder, .table-holder {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: 100%;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  box-sizing: border-box;
+  position: relative;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+  }
+}
+
+.chart-holder > :not(h3), .table-holder > :not(h3) {
+  flex-grow: 1;
+  width: 100%;
+  overflow: auto;
+}
+
+
+@media (max-width: 900px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+  

@@ -1,0 +1,32 @@
+<div class="portfolio-page">
+
+    <highlight-cards
+    [balance]="user()?.balance ?? 0"
+    [highlightsData]="hightlightsData$ | async"
+    ></highlight-cards>
+
+    <div class="analytics-grid">
+
+      <div class="chart-holder">
+        <h3>Asset Allocation</h3>
+        <portfolio-donut-chart 
+          [avalibleCoins]="avalibleAssets$ | async">
+        </portfolio-donut-chart>
+      </div>
+    
+      <div class="table-holder">
+        <avalible-assets 
+          [ownCoins]="avalibleAssets$ | async">
+        </avalible-assets>
+      </div>
+    
+    </div>
+
+    <div class="table-holder">
+      <h3>Transaction History</h3>
+      <transaction-history 
+      [transactionHistory]="transactions$ | async" 
+      ></transaction-history>  
+    </div>
+  
+</div>
