@@ -1,0 +1,47 @@
+.cards-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.icon-wrapper {
+  position: relative; 
+  width: 24px;
+  height: 24px;
+}
+  
+.coin-icon {
+  object-fit: contain; 
+  border-radius: 50%;
+}
+  
+.assets{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+highlight-card{
+  flex: 1
+}
+
+small{
+  color: var(--warning);
+}
+
+
+.flash-up {
+  color: #00ff00 !important;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+  
+.flash-down {
+  color: #ff4444 !important;
+  text-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
+}
+
+.skeleton{
+  flex: 1;
+}

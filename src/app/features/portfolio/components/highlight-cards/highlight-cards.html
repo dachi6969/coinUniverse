@@ -1,0 +1,58 @@
+<div class="cards-grid">
+
+  @if ( highlightsData(); as hd ) {
+          <highlight-card>
+            <span card-title>Total Balance</span>
+            <h2 card-content>
+              ${{ balance() | number: '1.2-2'}}
+            </h2>
+            <span card-footer>Avalible funds</span>
+          </highlight-card>
+      
+          <highlight-card>
+            <span card-title>Total Profit / Loss</span>
+            <h2 card-content 
+            [priceHighlight]="hd.profit"
+            >
+              ${{ profit() | number: '1.2-2' }}
+            </h2>
+            <span card-footer>Profit is mutable</span>
+          </highlight-card>
+      
+          <highlight-card>
+            <span card-title>Best Performer</span>
+
+            @if ( topPerformer(); as tp ) {
+              <div class="assets" card-content>
+                <div class="icon-wrapper">
+                  <img [ngSrc]="tp.img" class="coin-icon" alt="logo" fill/>
+                </div>
+                <h2 class="card-value">
+                    {{ tp.symbol | uppercase}}
+                </h2>
+                <span [priceHighlight]="tp.profitPercent">
+                    {{ tp.profitPercent }}%
+                </span>
+              </div>
+            }@else {
+              <small card-content>0 result found...</small>
+            }
+            
+            <span card-footer>The result is mutable.</span>
+          </highlight-card>
+          
+          <highlight-card>
+            <span card-title>Holdings Count</span>
+            <h2 card-content >
+              {{ coinsQuaintity() }} Coin
+            </h2>
+            <span card-footer>Avalible coins</span>
+          </highlight-card>
+        }
+        @else {
+          @for (item of [1,2,3,4]; track $index) {
+            <highlight-skeleton class="skeleton">
+            </highlight-skeleton>
+          }
+        }
+</div>
