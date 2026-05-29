@@ -1,0 +1,58 @@
+<div class="transaction_history_wrap">
+    @if (transactionHistory(); as history) {
+      @for (c of history; track c.id) {
+        <div class="transaction-card" [ngClass]="c.status">
+          
+          <div class="card-section assets-info">
+            <div class="icon-wrapper">
+              <img [ngSrc]="c.img" alt="logo" fill class="coin-icon" />
+            </div>
+            <div class="meta-text">
+              <span class="coin-symbol">
+                {{ c.coin_symbol | uppercase }}
+              </span>
+              <span class="coin-name">
+                {{ c.coin_name }}
+              </span>
+            </div>
+          </div>
+  
+          <div class="card-section time-info">
+            <span class="date-label">Date</span>
+            <span class="date-value">
+                {{ c.bought_at | date: 'shortDate' }}
+            </span>
+          </div>
+  
+          <div class="card-section amount-info">
+            <span class="type-label" 
+            [ngClass]="isSold(c) ? 'outcome' : 'income'"
+            >
+              {{ statusLabel(c) }}
+            </span>
+            <span class="amount-value">
+                {{ c.amount }} {{ c.coin_symbol | uppercase }}
+            </span>
+          </div>
+  
+          <div class="card-section price-info">
+            <span class="total-price" 
+            [ngClass]="isSold(c) ? 'income' : 'outcome'"
+            >
+                {{ c.status === 'sold' ? '+' : '-' }}
+                ${{ getTransactionTotal(c) | number: '1.2-2' }}
+            </span>
+            <span class="unit-price">
+                @ ${{ c.buy_price | number: '1.2-2' }}
+            </span>
+          </div>
+  
+        </div>
+      }
+      @empty {
+        <div class="empty-state">
+            No transactions yet.
+        </div>
+      }
+    } 
+</div>

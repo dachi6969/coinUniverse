@@ -1,0 +1,187 @@
+.transaction_history_wrap {
+  width: 100%;
+  min-height: 300px;
+  max-height: 450px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 4px;
+}
+
+.transaction-card {
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .transaction-card:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+    transform: translateX(2px);
+  }
+}
+
+.card-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.assets-info {
+  flex: 2;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-wrapper {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  padding: 6px;
+}
+
+.coin-icon {
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.meta-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.coin-symbol {
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.coin-name {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.time-info {
+  flex: 1.5;
+}
+
+.date-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.date-value {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  margin-top: 2px;
+}
+
+.amount-info {
+  flex: 1.5;
+  align-items: flex-start;
+}
+
+.type-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.amount-value {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.price-info {
+  flex: 2;
+  align-items: flex-end;
+}
+
+.total-price {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.unit-price {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.bought {
+  background: linear-gradient(
+    90deg,
+    rgba(16, 185, 129, 0.06) 0%,
+    rgba(16, 185, 129, 0.01) 100%
+  );
+  border-left: 3px solid var(--success);
+}
+
+.sold {
+  background: linear-gradient(
+    90deg,
+    rgba(244, 63, 94, 0.06) 0%,
+    rgba(244, 63, 94, 0.01) 100%
+  );
+  border-left: 3px solid var(--danger);
+}
+
+.income {
+  color: var(--success);
+}
+
+.outcome {
+  color: var(--danger);
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 40px 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .transaction-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 12px;
+    column-gap: 8px;
+    padding: 14px;
+    align-items: start;
+  }
+
+  .assets-info {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .price-info {
+    grid-column: 2;
+    grid-row: 1;
+    align-items: flex-end;
+  }
+
+  .time-info {
+    grid-column: 1;
+    grid-row: 2;
+    padding-left: 48px;
+  }
+
+  .amount-info {
+    grid-column: 2;
+    grid-row: 2;
+    align-items: flex-end;
+  }
+}
