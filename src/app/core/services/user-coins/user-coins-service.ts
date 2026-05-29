@@ -1,11 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { AuthService } from '../auth-services/auth-service';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { from, map, of, switchMap } from 'rxjs';
+import { filter, from, map, of, shareReplay, switchMap } from 'rxjs';
 import { UserNotifyService } from '../user-notifications/user-notify-service';
 import { NOTIF_TEMPLATES } from '../../constants/notifications';
 import { BoughtCoins, BuyCoinPayload, CoinShape } from '../../types/coin-types';
 import { LiveStreamService } from '../dashboard-services/live-stream-service';
+import { UserData } from '../../types/user-data.types';
 
 
 @Injectable({
@@ -28,24 +29,24 @@ export class UserCoinsService {
   public readonly top100LiveCoins$ = 
   this.liveStreamService.top100LiveCoins$;
 
-
-  public coinTransactions$ = this.uData$
-  .pipe(
-    switchMap(user => {
-      const id = user?.id;
-      if (!id) return of([]);
-
-      return from(
+  // brings current user's transactions, if user exist(loggedIN).
+  public readonly coinTransactions$ = this.uData$.pipe(
+    filter((user): user is UserData => !!user?.id),
+  
+    switchMap(user =>
+      from(
         this.supabase
           .from('coins')
           .select('*')
-          .eq('user_id', id)
+          .eq('user_id', user.id)
       ).pipe(
-        map(res => res.data || []), 
-      );
-    })
+        map(res => res.data || [])
+      )
+    ),
+    shareReplay(1),
   );
-
+  
+  // counting user's avalible coins, rely on transaction's history.
   private readonly ownedCoins$ =
   this.coinTransactions$.pipe(
     map((coins: CoinShape[]) =>
@@ -76,7 +77,6 @@ export class UserCoinsService {
       if (!hasBoughtCoins) {
         return of([]);
       }
-  
       return this.top100LiveCoins$.pipe(
         map(topCoins => {
           return topCoins
@@ -89,6 +89,7 @@ export class UserCoinsService {
         })
       );
     }),
+    shareReplay(1),
   );
 
   private buyNotification(amount: string, symbol: string): void {
