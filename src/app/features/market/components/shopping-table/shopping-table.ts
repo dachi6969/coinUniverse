@@ -25,7 +25,7 @@ import { TableColumnDirective } from '../../../../shared/directives/table-column
 })
 export class ShoppingTable {
   public readonly topCoins = input< Coin[] | null >(null);
-  public readonly balance = input< number >(0);
+  public readonly balance = input< number | null >(null);
   public readonly onBuy = output<Coin>();
 
   public readonly shopTableColumns = [

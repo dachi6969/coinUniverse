@@ -5,9 +5,11 @@
             <h3 class="table-title">
                 Shopping List
             </h3>
-            <span class="balance">
-                Balance: ${{ balance() | number: '1.2-2' }}
-            </span>
+            @if (balance(); as balance) {
+                <span class="balance">
+                    Balance: ${{ balance | number: '1.2-2' }}
+                </span>
+            }
         </div>
         
         <data-table-component [columns]="shopTableColumns" [data]="topCoins()">

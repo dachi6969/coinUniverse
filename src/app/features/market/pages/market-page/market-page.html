@@ -2,7 +2,7 @@
     <div class="shopping_table">
         <shopping-table
         [topCoins]="top100LiveCoins$ | async"
-        [balance]="userData()?.balance ?? 0"
+        [balance]="userData()?.balance ?? null"
         (onBuy)="selectCoinToBuy($event)"
         ></shopping-table>
     </div>
