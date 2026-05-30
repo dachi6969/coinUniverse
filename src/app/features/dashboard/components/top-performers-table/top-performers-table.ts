@@ -22,7 +22,7 @@ import { TableColumnDirective } from "../../../../shared/directives/table-column
   styleUrl: './top-performers-table.css',
 })
 export class TopPerformersTable {
-  public readonly data = input< Coin[] | null >(null);
+  public readonly top100Coins = input< Coin[] | null >(null);
 
   public readonly topPerformanceColumns = [
     { key: 'asset', label: 'Asset' },

@@ -3,7 +3,7 @@
         Top Cryptocurrencies
     </h3>
 
-    <data-table-component [columns]="topPerformanceColumns" [data]="data()">
+    <data-table-component [columns]="topPerformanceColumns" [data]="top100Coins()">
         
         <ng-template appTableColumn="asset" let-row="row">
             <div class="assets">
