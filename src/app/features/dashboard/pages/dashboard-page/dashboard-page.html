@@ -1,22 +1,23 @@
 <main class="dashboard_wrap">
 
     <dashboard-highlights 
-    [data]="dashboardData$ | async"
-    [livePrices]="livePrices$ | async"
+    [hightlightsData]="dashboardData$ | async"
     ></dashboard-highlights>
 
     <div class="dashboard-content_wraper">
         <div class="box box1">
             <main-chart-content
             [perDayPrice]="last24hPrices$ | async"
-            [combinedData]="cs$ | async"
+            [selectedCoin]="(selectedCoin$ | async) ?? null"
+            [top100coins]="top100staticCoins$ | async"
             [isChartError]="isChartError()"
-            (retry)="retry()"
+            (select)="onSelect($event)"
+            (retry)="onRetry()"
             ></main-chart-content>
         </div>
         <div class="box box2">
             <top-performers-table 
-            [data]="top100Coin$ | async"
+            [top100Coins]="top100LiveCoins$ | async"
             ></top-performers-table>
         </div>
         <div class="box box3">

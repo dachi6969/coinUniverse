@@ -1,36 +1,34 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { DashboardService } from '../../../core/services/dashboard-services/dashboard-service';
-import { catchError, combineLatest, distinctUntilChanged, map, Observable, of, shareReplay, startWith, switchMap } from 'rxjs';
+import { catchError, distinctUntilChanged, map, Observable, of, shareReplay, switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { Coin, CryptoExchange } from '../../../core/types/coin-types';
+import { Coin } from '../../../core/types/coin-types';
 import { LiveStreamService } from '../../../core/services/dashboard-services/live-stream-service';
-import { LivePrices } from '../../../core/types/live-prices.types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MainDashboardService {
   public isChartError = signal<boolean>(false);
-  selectedCoin = signal<Coin | null>(null);
+  public selectedCoin = signal<Coin | null>(null);
 
-  private last24hPricesCache$ = 
+  private readonly last24hPricesCache$ = 
   new Map<string, Observable<number[] | null>>();
 
-  selected$: Observable<string> = 
+  private readonly selected$: Observable<string> = 
   toObservable(this.selectedCoin)
   .pipe(
     map(coin => coin?.id ?? 'bitcoin'),
     distinctUntilChanged()
   );
 
-  private liveStreamService = inject(LiveStreamService);
-  private dashboardService = inject(DashboardService);
+  private readonly liveStreamService = inject(LiveStreamService);
+  private readonly dashboardService = inject(DashboardService);
 
-  readonly selectedCoin$ =
-  this.selected$.
-  pipe(
+  public readonly selectedCoin$ =
+  this.selected$.pipe(
     switchMap((coinName: string) => {
-      return this.dashboardService.top100coin$
+      return this.topCoins$
       .pipe(
         map(coins => coins.find(c => c.id === coinName))
       )
@@ -38,29 +36,15 @@ export class MainDashboardService {
   );
 
   public readonly topCoins$ = 
-  combineLatest([
-    this.liveStreamService.topCoins$,
-    this.liveStreamService.livePrices$
-    .pipe( startWith({} as LivePrices) )
-  ]).pipe(
-    map(([topCoins,livePrices]) => {
+  this.liveStreamService.topCoins$;
 
-      const modified = topCoins.map(c => {
-        return {
-          ...c,
-          current_price: 
-          livePrices[(c.symbol).toUpperCase() + 'USDT'] 
-          ?? c.current_price
-        }
-      });
-      return modified;
-    })
-  );
+  public readonly top100LiveCoins$ = 
+  this.liveStreamService.top100LiveCoins$;
 
   readonly targetHours = [0, 3, 6, 9, 12, 15, 18, 21];
 
-  readonly last24hPrices$: Observable<number[] | null> =
-    this.selected$.pipe(
+  readonly last24hPrices$ = this.selected$
+  .pipe(
       switchMap((coinName: string) => {
   
         if (!this.last24hPricesCache$.has(coinName)) {
@@ -98,15 +82,15 @@ export class MainDashboardService {
       })
     );
 
-  readonly dashboardData$ = 
-  this.dashboardService.top100coin$
+  public readonly dashboardData$ = 
+  this.liveStreamService.top100LiveCoins$
   .pipe(
     map(coins => {
-      // 1. Get BTC
-      const btc = coins.find(c => c.id === "bitcoin");
-  
-      // 2. Filter to avoid errors
+      // 1. Filter to avoid errors
       const withChange = coins.filter(c => c.price_change_percentage_24h != null);
+      
+      // 2. Get BTC
+      const btc = coins.find(c => c.id === "bitcoin");
   
       // 3. Find Top gainer
       const topGainer = withChange.reduce((prev, curr) => 
@@ -122,19 +106,19 @@ export class MainDashboardService {
       const topVolume = coins.reduce((prev, curr) => 
         curr.total_volume > prev.total_volume ? curr : prev
       );
-
-      const topValues = 
-      [...coins]
-      .sort((a, b) => b.current_price - a.current_price)
-      return { btc, topGainer, topLoser, topVolume, topValues };
-    }),
-    shareReplay(1)
+      
+      return { btc, topGainer, topLoser, topVolume };
+    })
   );
 
-  readonly exchangesData$: Observable<CryptoExchange[]> = 
+  public readonly exchangesData$ = 
   this.dashboardService.getTopCryptoExchanges$;
 
-  public retry(): void {
+  public onSelect(c: Coin): void {
+    this.selectedCoin.set(c);
+  };
+
+  public onRetry(): void {
     this.selectedCoin.set(null);
     this.isChartError.set(false);
   };

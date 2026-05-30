@@ -3,11 +3,9 @@ import { CommonModule } from '@angular/common';
 import { DashboardHighlights } from "../../components/dashboard-highlights/dashboard-highlights";
 import { TopPerformersTable } from "../../components/top-performers-table/top-performers-table";
 import { MainDashboardService } from '../../services/main-dashboard-service';
-import { combineLatest, map, Observable } from 'rxjs';
 import { MainChartContent } from "../../components/main-chart-content/main-chart-content";
-import { CryptoExchange, DashboardData } from '../../../../core/types/coin-types';
 import { TopExchangesTable } from "../../components/top-exchanges-table/top-exchanges-table";
-import { LiveStreamService } from '../../../../core/services/dashboard-services/live-stream-service';
+import { Coin } from '../../../../core/types/coin-types';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -22,47 +20,26 @@ import { LiveStreamService } from '../../../../core/services/dashboard-services/
   styleUrl: './dashboard-page.css',
 })
 export class DashboardPage {
-  
-  private mainDashboardService = inject(MainDashboardService);
+  private readonly mainDashboardService = inject(MainDashboardService);
+
+  // UI State.
   public readonly isChartError = this.mainDashboardService.isChartError;
-  
-  private liveStreamService = inject(LiveStreamService);
 
-  public readonly dashboardData$: Observable<DashboardData> = 
-  this.mainDashboardService.dashboardData$;
+  // Data Streams.
+  public readonly last24hPrices$ = this.mainDashboardService.last24hPrices$;
+  public readonly dashboardData$ = this.mainDashboardService.dashboardData$
+  public readonly cryptoExchanges$ = this.mainDashboardService.exchangesData$;
+  public readonly top100LiveCoins$ = this.mainDashboardService.top100LiveCoins$;
+  public readonly top100staticCoins$ = this.mainDashboardService.topCoins$;
+  public readonly selectedCoin$ = this.mainDashboardService.selectedCoin$;
 
-  public readonly topCoins$: Observable<DashboardData> = 
-  this.mainDashboardService.dashboardData$;
+  // METHODS.
+  public onSelect(coin: Coin): void {
+    this.mainDashboardService.onSelect(coin);
+  };
 
-  public readonly last24hPrices$: Observable<number[] | null> = 
-  this.mainDashboardService.last24hPrices$;
-
-  private readonly selectedCoin$ = 
-  this.mainDashboardService.selectedCoin$;
-
-  public readonly cs$: any = 
-  combineLatest(
-    this.topCoins$,
-    this.selectedCoin$,
-  ).pipe(
-    map(([topCoins,selectedCoin]) => {
-      return { topCoins,selectedCoin };
-    })
-  );
-
-
-  public readonly cryptoExchanges$: Observable<CryptoExchange[]> = 
-  this.mainDashboardService.exchangesData$;
-
-  public readonly top100Coin$ = 
-  this.mainDashboardService.topCoins$;
-
-  public readonly livePrices$ = 
-  this.liveStreamService.livePrices$;
-
-
-  public retry(): void {
-    this.mainDashboardService.retry();
-  }
+  public onRetry(): void {
+    this.mainDashboardService.onRetry();
+  };
 
 }

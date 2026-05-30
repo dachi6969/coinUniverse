@@ -1,10 +1,8 @@
-<div class="dropdown" (click)="toggle(); $event.stopPropagation()">
+<div class="dropdown" (click)="onToggle(); $event.stopPropagation()">
 
 @if (options(); as opts) {
 
-  <div class="dropdown__selected"
-    [style.width]="maxWidth() ? '100%' : ''">
-
+  <div class="dropdown__selected">
     @if (selected(); as sel) {
    
       <div class="icon-wrapper">
@@ -14,25 +12,16 @@
         {{ sel.name }} ({{ sel.symbol | uppercase }})
       </span>
 
-    } @else {
-
-      <div class="icon-wrapper">
-        <img [ngSrc]="opts[0].image" fill class="coin-icon"/>
-      </div>
-      <span class="dropdown__selected-text">
-        {{ opts[0]?.name }} ({{ opts[0]?.symbol | uppercase }})
-      </span>
     }
-
   </div>
 
-  @if (open()) {
+  @if (isOpen()) {
     <ul class="dropdown__list">
 
       @for (option of opts; track option.id) {
         <li
           class="dropdown__item"
-          (click)="select(option); $event.stopPropagation()">
+          (click)="onSelect(option); $event.stopPropagation()">
 
           {{ option.name }} ({{ option.symbol | uppercase }})
         </li>

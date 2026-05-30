@@ -1,6 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, HostListener, inject, input, OnInit, signal } from '@angular/core';
-import { MainDashboardService } from '../../../services/main-dashboard-service';
+import { Component, HostListener, input, output, signal } from '@angular/core';
 import { Coin } from '../../../../../core/types/coin-types';
 
 @Component({
@@ -9,38 +8,27 @@ import { Coin } from '../../../../../core/types/coin-types';
   templateUrl: './filter-dropdown.html',
   styleUrl: './filter-dropdown.css',
 })
-export class FilterDropdown implements OnInit {
-  public options = input< Coin[] | null >(null);
+export class FilterDropdown  {
   public readonly placeholder = input('default');
-  public maxWidth = input<boolean>(false);
+  public readonly selected = input< Coin | null >();
+  public readonly options = input< Coin[] | null >(null);
+  public readonly select = output<Coin>();
 
-  public open = signal(false);
-  public selected = signal<Coin | null>(null);
-
-  private mainDashboardService = inject(MainDashboardService);
-
-  ngOnInit(): void {
-    this.selected.set(this.mainDashboardService.selectedCoin());
-  }
-
-  public toggle() {
-    if ( !this.options()?.length ) return;
-    this.open.update(prev => !prev); 
-  }
-
-
-  public select(option: Coin) {
-    this.selected.set(option);
-    
-    this.mainDashboardService.selectedCoin.set(
-      option
-    );
-
-    this.open.set(false);
-  }
+  public isOpen = signal<boolean>(false);
 
   @HostListener('document:click')
   close() {
-    this.open.set(false)
+    this.isOpen.set(false)
+  }
+
+  // METHODS.
+  public onToggle() {
+    if ( !this.options()?.length ) return;
+    this.isOpen.update(prev => !prev); 
+  }
+
+  public onSelect(option: Coin) {
+    this.select.emit(option)
+    this.isOpen.set(false);
   }
 }
