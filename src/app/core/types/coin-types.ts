@@ -1,4 +1,3 @@
-
 // basic coin data type.
 export interface Coin {
     id: string;                      
@@ -39,7 +38,6 @@ export interface DashboardData {
   topGainer: Coin;
   topLoser: Coin;
   topVolume: Coin;
-  topValues: Coin[];
 };
 
 export interface DashboardState {
