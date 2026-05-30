@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LogoIcon } from "../../../shared/icons/logo-icon/logo-icon";
 import { DashboardLayoutService } from '../services/dashboard-layout-service';
 import { NgComponentOutlet } from '@angular/common';
@@ -6,7 +6,7 @@ import { AuthService } from '../../../core/services/auth-services/auth-service';
 import { Router, RouterLink } from '@angular/router';
 import { LoginIcon } from "../../../shared/icons/login-icon/login-icon";
 import { navigation } from './sidebar-nav-list';
-import { DisableIfDirective } from '../../../shared/directives/disable-if-directive';
+import { DisableIfDirective } from './disable-if-directive';
 
 @Component({
   selector: 'app-dashboard-sidebar',

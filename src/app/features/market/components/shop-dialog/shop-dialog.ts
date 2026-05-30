@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MaxAmountPipe } from '../../../../shared/pipes/max-amount-pipe';
 import { FormsModule } from '@angular/forms';
 import { UiButton } from "../../../../shared/components/ui-button/ui-button";
-import { CryptoInputDirective } from '../../../../shared/directives/crypto-input-directive';
+import { CryptoInputDirective } from '../../../../shared/directives/form-directives/crypto-input-directive';
 
 @Component({
   selector: 'shop-dialog',

@@ -3,7 +3,7 @@ import { AfterViewInit, Directive, ElementRef, Renderer2 } from '@angular/core';
 @Directive({
   selector: '[BenefitIndicator]'
 })
-export class BenefitIndicator implements AfterViewInit {
+export class BenefitIndicatorDirective implements AfterViewInit {
 
   constructor(
     private el: ElementRef,

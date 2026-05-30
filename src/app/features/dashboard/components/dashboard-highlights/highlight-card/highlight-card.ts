@@ -1,12 +1,12 @@
 import { Component, input } from '@angular/core';
 import { Coin } from '../../../../../core/types/coin-types';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { PriceHighlightDirective } from '../../../../../shared/directives/price-highlight-directive';
-import { BenefitIndicator } from "../../../../../shared/directives/benefit-indicator";
+import { PriceHighlightDirective } from '../../../../../shared/directives/ui-directives/price-highlight-directive';
+import { BenefitIndicatorDirective } from "../../../../../shared/directives/ui-directives/benefit-indicator-directive";
 
 @Component({
   selector: 'highlight-card',
-  imports: [CommonModule, PriceHighlightDirective, BenefitIndicator,NgOptimizedImage],
+  imports: [CommonModule, PriceHighlightDirective, BenefitIndicatorDirective,NgOptimizedImage],
   templateUrl: './highlight-card.html',
   styleUrl: './highlight-card.css',
 })

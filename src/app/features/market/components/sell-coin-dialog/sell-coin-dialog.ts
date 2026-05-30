@@ -3,7 +3,7 @@ import { UiButton } from "../../../../shared/components/ui-button/ui-button";
 import { BuyCoinPayload, OwnedCoins } from '../../../../core/types/coin-types';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CryptoInputDirective } from '../../../../shared/directives/crypto-input-directive';
+import { CryptoInputDirective } from '../../../../shared/directives/form-directives/crypto-input-directive';
 
 @Component({
   selector: 'sell-coin-dialog',

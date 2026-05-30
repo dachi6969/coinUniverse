@@ -1,5 +1,5 @@
 import { Component, contentChildren, input, TemplateRef } from '@angular/core';
-import { TableColumnDirective } from '../../../directives/table-column.directive';
+import { TableColumnDirective } from '../../../directives/table-directives/table-column.directive';
 import { CommonModule } from '@angular/common';
 import { TableSkeleton } from './table-skeleton/table-skeleton';
 
