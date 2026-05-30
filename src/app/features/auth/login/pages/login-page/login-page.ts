@@ -4,7 +4,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { LogoIcon } from "../../../../../shared/icons/logo-icon/logo-icon";
 import { UiButton } from "../../../../../shared/components/ui-button/ui-button";
 import { AuthService } from '../../../../../core/services/auth-services/auth-service';
-import { UserData } from '../../../../../core/types/user-data.types';
+import { UserData } from '../../../../../core/types/user-types/user-data.types';
 import { Router, RouterLink } from '@angular/router';
 import { EMAIL_VALIDATOR, PASSWORD_VALIDATOR } from '../../../../../core/services/auth-services/validators';
 import { SecurityService } from '../../../../../core/services/security-service/security-service';

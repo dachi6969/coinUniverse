@@ -4,9 +4,9 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { filter, from, map, of, shareReplay, switchMap } from 'rxjs';
 import { UserNotifyService } from '../user-notifications/user-notify-service';
 import { NOTIF_TEMPLATES } from '../../constants/notifications';
-import { BoughtCoins, BuyCoinPayload, CoinShape } from '../../types/coin-types';
+import { BoughtCoins, BuyCoinPayload, CoinShape } from '../../types/coin-types/coin-types';
 import { LiveStreamService } from '../dashboard-services/live-stream-service';
-import { UserData } from '../../types/user-data.types';
+import { UserData } from '../../types/user-types/user-data.types';
 
 
 @Injectable({

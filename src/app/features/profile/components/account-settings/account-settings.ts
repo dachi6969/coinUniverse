@@ -3,7 +3,7 @@ import { AuthInput } from "../../../../shared/components/auth-input/auth-input";
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CONFIRM_VALIDATOR, PASSWORD_VALIDATOR } from '../../../../core/services/auth-services/validators';
 import { UiButton } from "../../../../shared/components/ui-button/ui-button";
-import { UserData } from '../../../../core/types/user-data.types';
+import { UserData } from '../../../../core/types/user-types/user-data.types';
 
 @Component({
   selector: 'account-settings',

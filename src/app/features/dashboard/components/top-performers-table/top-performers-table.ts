@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AbbreviateNumberPipe } from '../../../../shared/pipes/abbreviate-number/abbreviate-number-pipe';
-import { Coin } from '../../../../core/types/coin-types';
+import { Coin } from '../../../../core/types/coin-types/coin-types';
 import { PriceHighlightDirective } from '../../../../shared/directives/ui-directives/price-highlight-directive';
 import { BenefitIndicatorDirective } from '../../../../shared/directives/ui-directives/benefit-indicator-directive';
 import { DataTableComponent } from "../../../../shared/components/tables/data-table-component/data-table-component";

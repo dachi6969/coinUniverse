@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Coin } from '../../../../../core/types/coin-types';
+import { Coin } from '../../../../../core/types/coin-types/coin-types';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { PriceHighlightDirective } from '../../../../../shared/directives/ui-directives/price-highlight-directive';
 import { BenefitIndicatorDirective } from "../../../../../shared/directives/ui-directives/benefit-indicator-directive";

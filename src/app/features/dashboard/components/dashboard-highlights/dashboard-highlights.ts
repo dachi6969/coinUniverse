@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HighlightSkeleton } from "./highlight-skeleton/highlight-skeleton";
-import { DashboardData } from '../../../../core/types/coin-types';
+import { DashboardData } from '../../../../core/types/coin-types/coin-types';
 import { HighlightCard } from "./highlight-card/highlight-card";
 
 @Component({

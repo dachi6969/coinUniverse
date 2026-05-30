@@ -1,6 +1,6 @@
 import { Component, computed, effect, ElementRef, input, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
-import { OwnedCoins } from '../../../../core/types/coin-types';
+import { OwnedCoins } from '../../../../core/types/coin-types/coin-types';
 import { DonutSkeleton } from "../../../../shared/components/donut-skeleton/donut-skeleton";
 import { UiButton } from "../../../../shared/components/ui-button/ui-button";
 import { RouterLink } from "@angular/router";

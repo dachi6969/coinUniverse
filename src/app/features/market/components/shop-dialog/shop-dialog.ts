@@ -1,5 +1,5 @@
 import { Component, computed, input, output, signal } from '@angular/core';
-import { BuyCoinPayload, Coin } from '../../../../core/types/coin-types';
+import { BuyCoinPayload, Coin } from '../../../../core/types/coin-types/coin-types';
 import { CommonModule } from '@angular/common';
 import { MaxAmountPipe } from '../../../../shared/pipes/max-amount-pipe';
 import { FormsModule } from '@angular/forms';

@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { OwnedCoins } from '../../../../core/types/coin-types';
+import { OwnedCoins } from '../../../../core/types/coin-types/coin-types';
 
 @Component({
   selector: 'transaction-history',

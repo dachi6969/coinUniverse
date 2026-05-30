@@ -3,7 +3,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChartSkeleton } from "./chart-skeleton/chart-skeleton";
 import { FilterDropdown } from "./filter-dropdown/filter-dropdown";
 import { MainChart } from "./main-chart/main-chart";
-import { Coin } from '../../../../core/types/coin-types';
+import { Coin } from '../../../../core/types/coin-types/coin-types';
 
 @Component({
   selector: 'main-chart-content',

@@ -8,7 +8,7 @@ import { UiButton } from "../../../../../shared/components/ui-button/ui-button";
 import { UserService } from '../../../../../core/services/user-service/user-service';
 import { RouterLink } from "@angular/router";
 import { CONFIRM_VALIDATOR, EMAIL_VALIDATOR, NUMBER_VALIDATOR, PASSWORD_VALIDATOR, USERNAME_VALIDATOR } from '../../../../../core/services/auth-services/validators';
-import { CreateUserDTO } from '../../../../../core/types/user-data.types';
+import { CreateUserDTO } from '../../../../../core/types/user-types/user-data.types';
 
 @Component({
   selector: 'app-register-page',

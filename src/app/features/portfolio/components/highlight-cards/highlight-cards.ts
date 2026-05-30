@@ -3,7 +3,7 @@ import { Component, computed, input } from '@angular/core';
 import { PriceHighlightDirective } from '../../../../shared/directives/ui-directives/price-highlight-directive';
 import { HighlightSkeleton } from "../../../dashboard/components/dashboard-highlights/highlight-skeleton/highlight-skeleton";
 import { HighlightCard } from "./highlight-card/highlight-card";
-import { PortfolioHighlightsType } from '../../../../core/types/highlights-types';
+import { PortfolioHighlightsType } from './highlights-types';
 
 @Component({
   selector: 'highlight-cards',

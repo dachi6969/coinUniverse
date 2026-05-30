@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { DataTableComponent } from "../../../../shared/components/tables/data-table-component/data-table-component";
-import { OwnedCoins } from '../../../../core/types/coin-types';
+import { OwnedCoins } from '../../../../core/types/coin-types/coin-types';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { PriceHighlightDirective } from '../../../../shared/directives/ui-directives/price-highlight-directive';
 import { BenefitIndicatorPipe } from '../../../../shared/pipes/benefit-indicator-pipe';

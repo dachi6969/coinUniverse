@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { DashboardService } from '../../../core/services/dashboard-services/dashboard-service';
 import { catchError, distinctUntilChanged, map, Observable, of, shareReplay, switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { Coin } from '../../../core/types/coin-types';
+import { Coin } from '../../../core/types/coin-types/coin-types';
 import { LiveStreamService } from '../../../core/services/dashboard-services/live-stream-service';
 
 @Injectable({

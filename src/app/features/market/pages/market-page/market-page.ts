@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ShoppingTable } from "../../components/shopping-table/shopping-table";
 import { CommonModule } from '@angular/common';
-import { BuyCoinPayload, Coin, OwnedCoins } from '../../../../core/types/coin-types';
+import { BuyCoinPayload, Coin, OwnedCoins } from '../../../../core/types/coin-types/coin-types';
 import { ShopDialog } from '../../components/shop-dialog/shop-dialog';
 import { BoughtCoinsTable } from "../../components/bought-coins-table/bought-coins-table";
 import { MarketService } from '../../services/market-service';

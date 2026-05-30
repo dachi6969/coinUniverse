@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { OwnedCoins } from '../../../../core/types/coin-types';
+import { OwnedCoins } from '../../../../core/types/coin-types/coin-types';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { BenefitIndicatorPipe } from '../../../../shared/pipes/benefit-indicator-pipe';
 import { UiButton } from "../../../../shared/components/ui-button/ui-button";

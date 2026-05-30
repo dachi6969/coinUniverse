@@ -5,7 +5,7 @@ import { TopPerformersTable } from "../../components/top-performers-table/top-pe
 import { MainDashboardService } from '../../services/main-dashboard-service';
 import { MainChartContent } from "../../components/main-chart-content/main-chart-content";
 import { TopExchangesTable } from "../../components/top-exchanges-table/top-exchanges-table";
-import { Coin } from '../../../../core/types/coin-types';
+import { Coin } from '../../../../core/types/coin-types/coin-types';
 
 @Component({
   selector: 'app-dashboard-page',

@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, HostListener, input, output, signal } from '@angular/core';
-import { Coin } from '../../../../../core/types/coin-types';
+import { Coin } from '../../../../../core/types/coin-types/coin-types';
 
 @Component({
   selector: 'filter-dropdown',

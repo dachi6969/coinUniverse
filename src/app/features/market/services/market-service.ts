@@ -1,8 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { LiveStreamService } from '../../../core/services/dashboard-services/live-stream-service';
 import { map, Observable, startWith } from 'rxjs';
-import { LivePrices } from '../../../core/types/live-prices.types';
-import { BuyCoinPayload, Coin, OwnedCoins } from '../../../core/types/coin-types';
+import { LivePrices } from '../../../core/types/coin-types/live-prices.types';
+import { BuyCoinPayload, Coin, OwnedCoins } from '../../../core/types/coin-types/coin-types';
 import { AuthService } from '../../../core/services/auth-services/auth-service';
 import { UserCoinsService } from '../../../core/services/user-coins/user-coins-service';
 

@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { CryptoExchange } from '../../../../core/types/coin-types';
+import { CryptoExchange } from '../../../../core/types/coin-types/coin-types';
 import { DataTableComponent } from "../../../../shared/components/tables/data-table-component/data-table-component";
 import { TableColumnDirective } from "../../../../shared/directives/table-directives/table-column.directive";
 

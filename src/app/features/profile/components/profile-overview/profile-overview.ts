@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserData, UserStatus } from '../../../../core/types/user-data.types';
+import { UserData, UserStatus } from '../../../../core/types/user-types/user-data.types';
 
 @Component({
   selector: 'profile-overview',

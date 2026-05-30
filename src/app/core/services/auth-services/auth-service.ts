@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../../enviroments/supa-base-env';
-import { CreateUserDTO, UserData, UserStatus } from '../../types/user-data.types';
+import { CreateUserDTO, UserData, UserStatus } from '../../types/user-types/user-data.types';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Router } from '@angular/router';
 import { Session } from '@supabase/supabase-js';
