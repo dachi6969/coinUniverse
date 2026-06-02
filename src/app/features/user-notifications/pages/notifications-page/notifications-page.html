@@ -22,7 +22,7 @@
                 size="small"
                 variant="outlined"
                 (onClick)="deleteAll()"
-                [disabled]="!currentNotifi().length"
+                [disabled]="!currentNotifications().length"
             >
                 Clear all
             </ui-button>
@@ -33,7 +33,7 @@
             @if ( isLoading() ) {
                 <notifications-skeleton></notifications-skeleton>
             }
-            @if ( currentNotifi(); as notifi ) {
+            @if ( currentNotifications(); as notifi ) {
                 @for ( n of notifi; track n.id ) {
                     <div class="content"
                     (click)="openMessage(n)"
@@ -67,8 +67,9 @@
             }
             @if ( isNotificationOpen() && selectedMessage() ) {
                 <open-notification 
-                (goBack)="closeMessage()"
                 [message]="selectedMessage()"
+                (goBack)="closeMessage()"
+                (readNotifi)="onReadNotifi($event)"
                 ></open-notification>
             }
         </div>

@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SearchIcon } from "../../../../shared/icons/search-icon/search-icon";
 import { UiButton } from "../../../../shared/components/ui-button/ui-button";
 import { NotificationsSkeleton } from "../../components/notifications-skeleton/notifications-skeleton";
-import { UserNotifyService } from '../../../../core/services/user-notifications/user-notify-service';
 import { OpenNotification } from "../../components/open-notification/open-notification";
 import { Notifications } from '../../../../core/types/notifications-types';
+import { NotificationsService } from '../../services/notifications-service';
 
 @Component({
   selector: 'notifications-page',
@@ -21,37 +21,44 @@ import { Notifications } from '../../../../core/types/notifications-types';
 })
 export class NotificationsPage {
 
-  public searchVal = signal('');
+  public readonly searchVal = signal('');
 
-  private nService = inject(UserNotifyService);
-  public isLoading = this.nService.isLoading;
-  private notifications = this.nService.notifications;
+  // Injected States.
+  private readonly notifiService =  inject(NotificationsService);
+  public readonly isLoading = this.notifiService.isLoading;
+  private readonly notifications = this.notifiService.notifications;
+  public readonly isNotificationOpen = this.notifiService.isNotificationOpen;
+  public readonly selectedMessage = this.notifiService.selectedMessage;
 
-  public readonly currentNotifi = computed(() => {
+  // Search Engine.
+  public readonly currentNotifications = computed(() => {
     const search = this.searchVal().trim();
-    if ( search ) {
-      const filtered = this.notifications().filter(not => {
-        return not.title.includes(search)
-      })
+    const notif = this.notifications();
+
+    if ( search && notif.length ) {
+      const filtered = 
+      notif.filter(not => not.title.includes(search));
+
       return filtered;
     }
-    return this.notifications();
+    return notif;
   });
 
-  public isNotificationOpen = signal<boolean>(false);
-  public selectedMessage = signal< Notifications | null >(null);
-
+  // METHODS.
   public deleteAll(): void {
-    this.nService.deleteAllNotifications();
+    this.notifiService.deleteAllNotifications();
   }
 
-  public openMessage(notifi: Notifications) {
-    this.selectedMessage.set(notifi);
-    this.isNotificationOpen.set(true);
-  }
+  public openMessage(n: Notifications) {
+    this.notifiService.openMessage(n);
+  };
 
   public closeMessage(): void {
-    this.isNotificationOpen.set(false);
-  }
+    this.notifiService.closeMessage();
+  };
+
+  public onReadNotifi(msg: Notifications): void {
+    this.notifiService.readNotification(msg);
+  };
 
 }
