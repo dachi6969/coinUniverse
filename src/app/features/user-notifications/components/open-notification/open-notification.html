@@ -1,13 +1,8 @@
 @if ( message(); as msg )  {
     <div class="notification_modal">
-        <button class="back-btn" (click)="onBack($event)">
-            ← 
-        </button>
-        <h3>
-            {{ msg.title }}
-        </h3>
-        <div>
-            {{ msg.message }}
-        </div>
+        <button 
+        class="back-btn" (click)="onBack($event)"> ← </button>
+        <h3>{{ msg.title }}</h3>
+        <div>{{ msg.message }}</div>
     </div>
 }
