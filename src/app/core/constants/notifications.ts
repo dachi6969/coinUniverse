@@ -1,4 +1,4 @@
-import { NotificationTemplate } from "../../features/user-notifications/notification-types";
+import { NotificationTemplate } from "../../features/user-notifications/types/notification-types";
 
 export const NOTIF_TEMPLATES: Record<string, NotificationTemplate> = {
 
