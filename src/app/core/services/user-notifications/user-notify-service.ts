@@ -1,6 +1,6 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { AuthService } from '../auth-services/auth-service';
-import { NotificationTemplate } from '../../../features/user-notifications/notification-types';
+import { NotificationTemplate } from '../../../features/user-notifications/types/notification-types';
 import { Notifications } from '../../types/notifications-types';
 
 @Injectable({
@@ -8,9 +8,9 @@ import { Notifications } from '../../types/notifications-types';
 })
 export class UserNotifyService {
 
-  private authService = inject(AuthService);
-  private supabase = this.authService.supabase;
-  private userStatusData = this.authService.userStatusData;
+  private readonly authService = inject(AuthService);
+  private readonly supabase = this.authService.supabase;
+  private readonly userStatusData = this.authService.userStatusData;
 
   private channel: any | null = null;
 
@@ -33,7 +33,7 @@ export class UserNotifyService {
       this.listenToNotifications(userId);
     }
     this.isLoading.set(true);
-    const { data, error } = await this.supabase
+    const { data } = await this.supabase
       .from('notifications')
       .select('*')
       .eq('user_id', userId)
@@ -45,7 +45,7 @@ export class UserNotifyService {
     }
   }
   
-  listenToNotifications(userId: string) {
+  private async listenToNotifications(userId: string) {
     this.channel = this.supabase
       .channel('realtime:notifications')
       .on(
