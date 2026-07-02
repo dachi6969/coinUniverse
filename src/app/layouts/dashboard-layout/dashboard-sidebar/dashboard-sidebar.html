@@ -1,45 +1,51 @@
 <aside 
 class="sidebar-wrap"
 [class.open]="!isDesktop()"
+hideOnScroll
 >
-    <div>
-        <div class="sidebar_title">
-            <logo-icon [size]="30"  color="light"/>
-            <span class="brand-title">CoinUniverse</span>
+    <div class="sidebar-content_wrap" >
+        <div class="first-content">
+            <div class="sidebar_title">
+                <logo-icon [size]="30"  color="light"/>
+                <span class="brand-title">CoinUniverse</span>
+            </div>
+            <nav class="sidebar_nav">
+                @for ( nav of navigation; track nav ) {
+                    <a 
+                    class="nav_link" 
+                    [routerLink]="nav.navTitle.toLocaleLowerCase()" 
+                    [disableIf]="disableState(nav.navTitle)"
+                    (click)="closeSidebar()"
+                    >
+                        <ng-container
+                         *ngComponentOutlet="nav.icon; inputs: { size: 24, color: 'light' }">
+                        </ng-container>
+                        @if ( isDesktop() ) {
+                            <span>
+                                {{ nav.navTitle }}
+                            </span>
+                        }
+                        @if ( nav.navTitle === 'Notifications' && isUserLoggedIn() ) {
+                            <span class="notifi-quaintity">{{ unreadNotify() }}</span>
+                        }
+                    </a>
+                }
+            </nav>
         </div>
-        <nav class="sidebar_nav">
-            @for ( nav of navigation; track nav ) {
-                <a 
-                class="nav_link" 
-                [routerLink]="nav.navTitle.toLocaleLowerCase()" 
-                [disableIf]="disableState(nav.navTitle)"
-                (click)="closeSidebar()"
-                >
-                    <ng-container
-                     *ngComponentOutlet="nav.icon; inputs: { size: 24, color: 'light' }">
-                    </ng-container>
-                    <span>
-                        {{ nav.navTitle }}
-                    </span>
-                </a>
-            }
-        </nav>
-    </div>
-    <div class="auth_nav">
-        @if ( isUserLoggedIn() ) {
-            <button class="auth_btn" (click)="logOut()">
-                <login-icon color="light" [size]="24"/>
-                <span>
-                    Log out
-                </span>
-            </button>
-        }@else {
-            <button class="auth_btn" (click)="navToLoginPage()">
-                <login-icon color="light" [size]="24"/>
-                <span>
-                    Log in
-                </span>
-            </button>
+        @if ( isDesktop() ) {
+            <div class="auth_nav">
+                @if ( isUserLoggedIn() ) {
+                    <button class="auth_btn" (click)="logout()">
+                        <login-icon color="light" [size]="24"/>
+                        <span>Log out</span>
+                    </button>
+                }@else {
+                    <button class="auth_btn" routerLink="/auth/login">
+                        <login-icon color="light" [size]="24"/>
+                        <span>Log in</span>
+                    </button>
+                }
+            </div>
         }
     </div>
 </aside>
