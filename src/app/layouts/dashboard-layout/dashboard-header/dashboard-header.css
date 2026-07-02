@@ -1,7 +1,6 @@
 .header{
     height: 65px;
     width: 100%;
-    padding: 18px;
 
     display: flex;
     align-items: center;
@@ -19,8 +18,9 @@
     cursor: default;
 }
 
-menu-icon{
-    display: none;
+logo-icon,
+profile-icon{
+    cursor: pointer;    
 }
 
 .sidebar-modal {
@@ -38,6 +38,25 @@ menu-icon{
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.auth-actions{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.auth-actions button{
+    background-color: var(--bg-card);
+    padding: 0.8rem 1.5rem;
+    border: 1px solid var(--bg-card);
+    color: var(--text-primary);
+    border-radius: 0.6rem;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+.auth-actions button:hover{
+    background-color: var(--bg-main);
+    border: 1px solid var(--bg-card);
 }
 
 .profile-icon_wrap{
@@ -58,7 +77,8 @@ menu-icon{
         left: 0;
         right: 0;
         z-index: 9000;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 1rem;
     }
 
     menu-icon{

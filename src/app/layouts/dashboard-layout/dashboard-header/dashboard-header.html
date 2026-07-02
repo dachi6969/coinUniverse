@@ -2,11 +2,11 @@
     <div>
         @if ( isDesktop() ) {
             <span class="header_title">
-                {{ headerTitle() | titlecase}}
+                {{ headerTitle$ | async | titlecase}}
             </span>
         }@else {    
             <div>
-                <menu-icon [size]="30" (onClick)="open()" />
+                <logo-icon [size]="40" (click)="navToMainPage()"/>
                 @if ( isSidebarOpen() ) {
                     <div class="sidebar-modal"
                     (click)="close()"
@@ -22,8 +22,14 @@
     <div>
         @if ( isDesktop() ) {
             <div class="desktop-actions_wrap">
-                <!-- search is hardcoded right now, no output  -->
-                <dashboard-search /> 
+                <div class="auth-actions">
+                    @if ( !isUserLoggedIn() ) {
+                        <button routerLink="auth/login">Log in</button>
+                        <button routerLink="auth/register">Sign up</button>
+                    }@else {
+                        <button (click)="logout()">Log out</button>
+                    }
+                </div>
                 <div class="profile-icon_wrap">
                     <profile-icon color="light" [size]="27" (onClick)="navToProfile()"/>
                 </div>
